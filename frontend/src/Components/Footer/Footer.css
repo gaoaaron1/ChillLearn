@@ -4,7 +4,9 @@
     justify-content: center;
     align-items: center;
     gap: 50px;
-
+    padding: 40px 20px;
+    background: #f9f9f9;
+    text-align: center;
 }
 
 .footer-logo {
@@ -13,22 +15,28 @@
     gap: 20px;
 }
 
-.footer-logo p {
-    color: #383838;
-    font-size: 46px;
-    font-weight: 700;
+.footer-logo img {
+    max-width: 500px; /* Ensure the logo resizes on smaller screens */
 }
 
 .footer-links {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    gap: 50px;
+    gap: 30px;
     color: #252525;
     font-size: 20px;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links li {
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer-links li:hover {
+    color: #555;
 }
 
 .footer-social-icon {
@@ -41,17 +49,25 @@
     padding-bottom: 6px;
     background: #fbfbfb;
     border: 1px solid #ebebeb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icons-container img {
+    width: 30px;
+    height: 30px;
 }
 
 .footer-copyright {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     width: 100%;
-    margin-bottom: 30px;
     color: #1a1a1a;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .footer-copyright hr {
@@ -60,4 +76,50 @@
     border-radius: 10px;
     height: 3px;
     background: #c7c7c7;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .footer-links {
+        gap: 20px;
+        font-size: 18px;
+    }
+
+    .footer-icons-container {
+        padding: 8px;
+    }
+
+    .footer-icons-container img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .footer-logo img {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+        font-size: 16px;
+    }
+
+    .footer-social-icon {
+        gap: 15px;
+    }
+
+    .footer-icons-container img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .footer-logo img {
+        max-width: 300px;
+    }
+
+    .footer-copyright {
+        font-size: 14px;
+    }
 }

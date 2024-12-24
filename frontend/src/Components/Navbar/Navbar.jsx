@@ -3,20 +3,19 @@ import './Navbar.css'; // Import CSS
 import logo from '../Assets/logo2.png';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
-import { ShopContext } from '../../Context/ShopContext';
-import { useGradeContext } from '../../Context/GradeContext'; // Import the custom hook for GradeContext
+import { useGradeContext } from '../../Context/GradeContext'; 
 
 const Navbar = () => {
-  //======================== USE STATES ========================//
-  const { getTotalCartItems } = useContext(ShopContext);
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
-  
-  // Access grade context to get the selectedGrade and setSelectedGrade
+  const [menuOpen, setMenuOpen] = useState(false); // Manage mobile menu visibility
   const { selectedGrade, setSelectedGrade } = useGradeContext(); 
 
-  //======================== DECLARATIVE ========================//
   const toggleSidebar = () => {
     setExpanded(!expanded);
+  };
+
+  const toggleMobileMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle the mobile menu
   };
 
   const scrollToElement = (targetId, offset = 50) => {
@@ -31,13 +30,11 @@ const Navbar = () => {
     }
   };
 
-  // Menu items from Navbar
   const menuItems = [
     { name: "About", path: "/about" },
     { name: "Contact Us", path: "/contact" },
   ];
 
-  // Handle grade change from navbar
   const handleGradeSelection = (grade) => {
     setSelectedGrade(grade); // Update the grade state in GradeContext
   };
@@ -45,19 +42,15 @@ const Navbar = () => {
   return (
     <div className="sidebar2-container">
       {/* Top Vertical Sidebar */}
-      <nav
-        id="sidebar2"
-        className={`sidebar2 ${expanded ? 'expanded' : ''}`}
-      >
+      <nav id="sidebar2" className={`sidebar2 ${expanded ? 'expanded' : ''}`}>
         <ul className="nav-grid">
           <div className="nav-logo">
-            {/* Make the logo clickable and navigate to the Shop (Home) page */}
             <Link to="/">
               <img src={logo} alt="Logo" />
             </Link>
           </div>
 
-          <ul className={`nav-menu`}>
+          <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
             {menuItems.map((item) => (
               <li key={item.name}>
                 <Link to={item.path}>{item.name}</Link>
@@ -67,13 +60,7 @@ const Navbar = () => {
             <li className="dropdown">
               <Link to="/grades">
                 Grades K-12
-                <svg
-                  className="arrow"
-                  width="12"
-                  height="8"
-                  viewBox="0 0 12 8"
-                  style={{ marginLeft: '10px' }}
-                >
+                <svg className="arrow" width="12" height="8" viewBox="0 0 12 8" style={{ marginLeft: '10px' }}>
                   <path d="M0 0l6 8 6-8H0z" fill="black" />
                 </svg>
               </Link>
@@ -96,18 +83,21 @@ const Navbar = () => {
               </ul>
             </li>
           </ul>
-
-
         </ul>
       </nav>
 
-      {/* Toggle Button */}
+      {/* Toggle Button for Desktop */}
       <button
         className="toggle-btn"
         style={{ top: expanded ? '125px' : '10px' }}
         onClick={toggleSidebar}
       >
         <span id="arrow-icon">{expanded ? '▲' : '▼'}</span>
+      </button>
+
+      {/* Hamburger Icon for Mobile */}
+      <button className="hamburger" onClick={toggleMobileMenu}>
+        ☰
       </button>
     </div>
   );

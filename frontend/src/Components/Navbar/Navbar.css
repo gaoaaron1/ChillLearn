@@ -1,7 +1,7 @@
 /* Sidebar2 Container */
 .sidebar2-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: auto;
   }
   
@@ -66,7 +66,7 @@
     justify-content: space-between; /* Evenly space items horizontally */
     height: 100%; /* Full height to fill the sidebar */
     padding: 0 100px; /* Add padding for sides */
-    margin-left: 20px; /* Add margin to the left for spacing */
+    margin-left: -125px; /* Add margin to the left for spacing */
     transition: opacity 0.3s ease; /* Smooth transition for visibility */
   }
 
@@ -243,3 +243,129 @@
   margin: 10px 0; /* Restore margin */
 }
 
+.hamburger {
+  display: none;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+
+/* Hide the toggle button on mobile */
+@media (max-width: 768px) {
+  .toggle-btn {
+    display: none; /* Hide the toggle button on mobile */
+  }
+
+  .nav-logo {
+    display: flex; /* Flex layout for logo */
+    align-items: left; /* Center items vertically */
+    margin: 20px 0; /* Adjust margin to reduce space */
+  }
+
+    /* Image and text styles within the logo */
+  .nav-logo img {
+    height: 125px; /* Increased size for logo image */
+    margin-right: 50px; /* Space between logo and text */
+    padding-left: -20px;
+  }
+
+
+  .hamburger {
+    display: block; /* Show hamburger menu */
+    position: absolute; /* Position the hamburger menu on top */
+    bottom: -10px; /* Adjust the position as needed */
+    left: 400px; /* Move the hamburger icon more to the left */
+    font-size: 48px; /* Make the hamburger icon smaller */
+    z-index: 1001; /* Ensure it appears above other elements */
+  }
+
+  /* Nav menu on mobile */
+  .nav-menu {
+    display: none; /* Hide menu by default */
+    position: absolute;
+    top: 70px; /* Adjust position */
+    left: 0;
+    width: 100%;
+    background-color: rgba(241,247,246,255);
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.open {
+    display: flex; /* Show menu when hamburger is clicked */
+    width: 100%;
+    left: 0px;
+  }
+
+  /* Optional: Adding overlay when menu is open */
+  .navbar.open {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background behind the menu */
+    color: white;
+  }
+}
+
+
+/* Optionally add an overlay effect when menu is open */
+.navbar.open {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+
+@media (max-width: 480px) {
+  .nav-logo img {
+    height: 100px; /* Adjust logo size for smaller screens */
+    margin-right: 10px; /* Reduce spacing */
+  }
+
+  .nav-grid {
+    height: 100px;
+  }
+
+  .hamburger {
+    left: 250px; /* Align hamburger icon properly */
+    font-size: 48px; /* Smaller hamburger icon */
+    bottom: -16px;
+  }
+
+  #sidebar2 {
+    height: 0; /* Ensure sidebar starts collapsed */
+    position: fixed;
+    width: 100%; /* Full width for mobile */
+    z-index: 999;
+  }
+
+  #sidebar2.expanded {
+    height: auto; /* Expand to auto height */
+    padding: 10px; /* Provide padding for content */
+  }
+
+  /* Collapse nav-menu by default */
+  .nav-menu {
+    display: none;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Smaller gap */
+    background-color: rgba(241, 247, 246, 255); /* Background for visibility */
+    padding: 10px;
+    position: fixed; /* Fixed position for dropdown feel */
+    width: 100%; /* Full width */
+    left: 0;
+    top: 50px; /* Below the top bar */
+    z-index: 998;
+  }
+
+  /* Show nav-menu when open */
+  .nav-menu.open {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    top: 100px;
+    left: -20px;
+  }
+}
