@@ -1,32 +1,33 @@
-import React from 'react'
-import './Hero.css'
-import hand_icon from '../Assets/hand_icon.png'
-import arrow_icon from '../Assets/arrow.png'
-import hero_image from '../Assets/hero_image.png'
+import React from 'react';
+import './Hero.css';
+import hero_img from '../Assets/home_banner.png';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
+const arrow_icon_placeholder = "https://via.placeholder.com/40x40.png?text=%E2%86%92"; // Arrow icon placeholder
+const hero_image = hero_img;
 
 function Hero() {
     return (
         <div className="hero">
             <div className="hero-left">
-                <h2>NEW ARRIVALS ONLY</h2>
+                <h2>Master Your Alberta Curriculum</h2>
                 <div>
-                    <div className="hero-hand-icon">
-                        <p>new</p>
-                        <img src={hand_icon} alt="" />
-                    </div>
-                    <p>collections</p>
-                    <p>for everyone</p>
+                    <p>Learning Resources</p>
+                    <p>For Students K-12</p>
                 </div>
                 <div className="hero-latest-btn">
-                    <div>Latest Collection</div>
-                    <img src={arrow_icon} alt="" />
+                    {/* Wrap the button with Link to redirect to grades page */}
+                    <Link to="/grades" className="start-studying-btn">
+                        <div>Start Studying Now</div>
+  
+                    </Link>
                 </div>
             </div>
             <div className="hero-right">
-                <img src={hero_image} alt="" />
+                <img className="hero-image" src={hero_image} alt="hero visual" />
             </div>
         </div>
-    )
+    );
 }
 
-export default Hero
+export default Hero;

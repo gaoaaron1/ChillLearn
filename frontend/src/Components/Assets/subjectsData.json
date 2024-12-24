@@ -1,0 +1,21 @@
+{
+    "kindergarten": {
+      "Math": ["Counting", "Shapes", "Patterns"],
+      "Science": ["Plants", "Animals", "Weather"],
+      "ELA": ["Letter Recognition", "Phonics", "Simple Sentences"],
+      "Social": ["Community", "Family", "Basic Geography"]
+    },
+    "grade1": {
+      "Math": ["Addition", "Subtraction", "Place Value"],
+      "Science": ["Forces", "Magnets", "Living Things"],
+      "ELA": ["Reading", "Writing", "Grammar"],
+      "Social": ["Maps", "Basic History", "Government"]
+    },
+    "grade2": {
+      "Math": ["Multiplication", "Division", "Fractions"],
+      "Science": ["Matter", "Energy", "Earth & Space"],
+      "ELA": ["Comprehension", "Creative Writing", "Grammar"],
+      "Social": ["History", "Geography", "Civics"]
+    }
+  }
+  

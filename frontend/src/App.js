@@ -1,40 +1,45 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Shop from './Pages/Shop'
-import About from './Pages/About'
-import ShopCategory from './Pages/ShopCategory';
+import Shop from './Pages/Shop';
+import About from './Pages/About';
+import SubjectContext from './Pages/SubjectContext';
+import QuestionsPage from './Pages/QuestionsPage';
+
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
 import Footer from './Components/Footer/Footer';
 import ImportProducts from './Pages/ImportProducts';
-import men_banner from './Components/Assets/banner_mens.png'
-import women_banner from './Components/Assets/banner_women.png'
-import kid_banner from './Components/Assets/banner_kids.png'
-
+import men_banner from './Components/Assets/banner_mens.png';
+import women_banner from './Components/Assets/banner_women.png';
+import kid_banner from './Components/Assets/banner_kids.png';
+import kindergarten_banner from './Components/Assets/kindergarten_poster.png';
+import GradesPage from './Pages/GradesPage.jsx'; // Import the GradesPage component
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Shop/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/mens' element={<ShopCategory banner={men_banner} category="men"/>}/>   
-        <Route path='/womens' element={<ShopCategory banner={women_banner} category="women"/>}/>
-        <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid"/>}/>
-        <Route path="product" element={<Product/>}>
-          <Route path=':productId' element={<Product/>}/>
-        </Route>
-      <Route path='/cart' element={<Cart/>}/>
-      <Route path='/login' element={<LoginSignup/>}/>
-      <Route path='/admin/import' element={<ImportProducts/>}/> 
-      </Routes>    
-      <Footer/>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Shop />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/kindergarten' element={<SubjectContext banner={kindergarten_banner} category="kindergarten" />} />
+          <Route path='/grade1' element={<SubjectContext banner={men_banner} category="grade1" />} />
+          <Route path='/grade2' element={<SubjectContext banner={women_banner} category="grade2" />} />
+          <Route path="/questions/:grade/:subject/:unit" element={<QuestionsPage />} />
+          <Route path="product" element={<Product />}>
+            <Route path=':productId' element={<Product />} />
+          </Route>
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/login' element={<LoginSignup />} />
+          <Route path='/admin/import' element={<ImportProducts />} />
+          {/* Add the Grades route here */}
+          <Route path='/grades' element={<GradesPage />} /> 
+        </Routes>
+        <Footer />
       </BrowserRouter>
-     
     </div>
   );
 }

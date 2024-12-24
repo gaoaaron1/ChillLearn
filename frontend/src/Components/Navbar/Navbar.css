@@ -46,7 +46,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(252, 251, 251, 0.7); /* Translucent black background */
+    background-color: rgba(241,247,246,255); /* Translucent black background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     transition: height 0.5s ease;
     backdrop-filter: blur(10px);
@@ -77,23 +77,26 @@
   }
   
   /* Logo Styles */
-  .nav-logo {
-    display: flex; /* Flex layout for logo */
-    align-items: center; /* Center items vertically */
-    margin: 10px 0; /* Adjust margin to reduce space */
-  }
-  
-  /* Image and text styles within the logo */
-  .nav-logo img {
-    height: 50px; /* Set a height for logo image */
-    margin-right: 10px; /* Space between logo and text */
-  }
-  
-  .nav-logo p {
-    color: rgb(12, 12, 12); /* Change text color to white */
-    font-size: 25px;
-    font-weight: 600;
-  }
+ /* Logo Styles */
+.nav-logo {
+  display: flex; /* Flex layout for logo */
+  align-items: center; /* Center items vertically */
+  margin: 10px 0; /* Adjust margin to reduce space */
+}
+
+/* Image and text styles within the logo */
+.nav-logo img {
+  height: 200px; /* Increased size for logo image */
+  margin-right: -10px; /* Space between logo and text */
+}
+
+.nav-logo p {
+  color: rgb(12, 12, 12); /* Change text color to default */
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'Arial', sans-serif; /* Remove JusMe font, use default system font */
+}
+
   
   /* Toggle Button Styles */
   .toggle-btn {
@@ -130,48 +133,50 @@
     top: 10px; /* Position the button at the top when collapsed */
   }
   
-  /* Dropdown Menu Styles */
-  .dropdown {
-    position: relative;
-    cursor: pointer; /* Show pointer on hover */
-    display: flex; /* Ensure elements are aligned correctly */
-    align-items: center; /* Align arrow with text */
-  }
+  /* Dropdown Menu */
+.dropdown {
+  position: relative;
+  cursor: pointer; /* Show pointer on hover */
+}
+
+.dropdown-menu {
+  position: absolute;
+  list-style: none;
+  top: 100%; /* Aligns the menu right below the parent item */
+  left: 0;
+  background-color: rgba(230, 227, 227, 0.9); /* Black translucent background for dropdown */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px 0;
+  display: none; /* Hide dropdown menu by default */
+  flex-direction: column;
+  gap: 10px;
+  min-width: 150px;
+  z-index: 1000;
+}
+
+/* Show the dropdown menu when hovering over the dropdown */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
   
-  .dropdown-menu {
-    position: absolute;
-    list-style: none;
-    top: 100%; /* Aligns the menu right below the parent item */
-    left: 0;
-    background-color: rgba(230, 227, 227, 0.9); /* Black translucent background for dropdown */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    min-width: 150px;
-    z-index: 1000;
-  }
-  
-  /* Dropdown Menu Buttons */
+ /* Dropdown Menu Buttons */
 .category-button {
-    width: 100%; /* Full width of the dropdown item */
-    padding: 10px;
-    background-color: white;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 500;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .category-button:hover {
-    background-color: rgba(255, 65, 65, 0.2); /* Light red hover effect */
-/* Slight zoom on hover */
-  }
+  width: 100%; /* Full width of the dropdown item */
+  padding: 10px;
+  background-color: white;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: rgba(255, 65, 65, 0.2); /* Light red hover effect */
+}
   
 
   /* Login and Cart Section */

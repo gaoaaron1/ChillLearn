@@ -1,10 +1,10 @@
 .hero {
     height: 100vh;
-    background: linear-gradient(180deg, #fde1ff 0%, #fdf5fd 60%);;
+    background: linear-gradient(180deg, #e0f7fa 0%, #b3e5fc 60%);  /* Lighter, calming color palette */
     display: flex;
 }
 
-.hero-left{
+.hero-left {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -14,26 +14,26 @@
     line-height: 1.1;
 }
 
-.hero-left h2{
+.hero-left h2 {
     color: #090909;
-    font-size: 26px;
-    font-weight: 600;
-}
-
-.hero-left p{
-    color: #171717;
-    font-size: 100px;
+    font-size: 30px;  /* Adjusted font size for better readability */
     font-weight: 700;
 }
 
-.hero-hand-icon {
+.hero-left p {
+    color: #171717;
+    font-size: 60px;  /* Reduced size for better readability */
+    font-weight: 500;
+}
+
+.hero-book-icon {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.hero-hand-icon img{
-    width: 105px;
+.hero-book-icon img {
+    width: 100px;  /* Adjusted icon size */
 }
 
 .hero-latest-btn {
@@ -45,7 +45,7 @@
     height: 70px;
     border-radius: 75px;
     margin-top: 30px;
-    background: #ff4141;
+    background: #4caf50;  /* Green to symbolize learning and success */
     color: white;
     font-size: 22px;
     font-weight: 500;
@@ -57,3 +57,47 @@
     align-items: center;
     justify-content: center;
 }
+
+/* Fancy Image Style */
+.hero-image {
+    width: 80%; /* Adjust width to make the image fit better */
+    object-fit: cover;
+    border-radius: 20px; /* Rounded corners for a smoother look */
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); /* Creates a diagonal shape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+}
+
+/* Ensure the link looks like a button */
+.start-studying-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Remove default underline */
+    color: inherit; /* Use inherited text color */
+    cursor: pointer; /* Show pointer cursor */
+    padding: 10px 30px; /* Add padding to make button more clickable */
+    border-radius: 75px; /* Rounded corners */
+    background-color: #4caf50;  /* Green to symbolize learning and success */
+    font-weight: bold;
+    font-size: 22px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.start-studying-btn:hover {
+    transform: scale(1.1); /* Slightly expand the button on hover */
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow to lift the button */
+}
+
+/* Style for the arrow */
+.start-studying-btn img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect on the arrow */
+.start-studying-btn:hover img {
+    transform: translateX(5px); /* Slightly move the arrow to the right */
+}
+
