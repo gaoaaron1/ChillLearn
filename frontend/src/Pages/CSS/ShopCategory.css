@@ -1,0 +1,151 @@
+/* Sort Dropdown Styles */
+.shopcategory-sort {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #888;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.shopcategory-sort:hover {
+    background-color: #f0f0f0;
+}
+
+.sort-dropdown {
+    margin-left: 10px;          /* Space between text and dropdown */
+    border: none;               /* Remove default border */
+    background-color: transparent; /* Match background */
+    font-size: 16px;           /* Match font size */
+    color: #444;               /* Font color */
+    cursor: pointer;           /* Pointer cursor */
+    outline: none;             /* Remove outline */
+}
+
+.sort-dropdown:focus {
+    outline: none;             /* Remove focus outline */
+}
+
+.shopcategory-sort img {
+    margin-left: 8px;          /* Space between dropdown and icon */
+}
+
+/* Main Container for Shop Category */
+.shop-category {
+    width: 1200px;                  /* Set a fixed width */
+    margin: 0 auto;                 /* Center horizontally */
+}
+
+/* Banner Styling */
+.shopcategory-banner {
+    display: block;
+    margin: 30px auto;
+    width: 100%;                    /* Make banner responsive */
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 300px;
+}
+
+/* Index and Sort Section */
+.shopcategory-indexSort {
+    display: flex;
+    margin: 20px auto;
+    padding: 0 20px;                /* Padding for smaller screens */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shopcategory-indexSort p {
+    font-size: 16px;
+    color: #444;
+}
+
+.shopcategory-indexSort p span {
+    font-weight: 600;
+    color: #222;
+}
+
+/* Products Grid */
+.shopcategory-products {
+    margin: 40px 0;                /* Center the product grid vertically */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+    gap: 40px;                     /* Space between items */
+}
+
+/* Pagination Buttons */
+.shopcategory-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.shopcategory-pagination button {
+    padding: 12px 25px;
+    margin: 0 8px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shopcategory-pagination button.active {
+    background-color: #FF4141;
+    color: white;
+}
+
+.shopcategory-pagination button:hover {
+    background-color: rgba(255, 65, 65, 0.8);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .shop-category {
+        width: 100%;               /* Use full width on smaller screens */
+        padding: 0 10px;          /* Add some padding for smaller screens */
+    }
+
+    .shopcategory-indexSort {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0 20px;
+    }
+
+    .shopcategory-products {
+        grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
+        gap: 30px;
+    }
+
+    .shopcategory-banner {
+        width: 100%;
+        max-height: 200px;
+    }
+}
+
+/* Additional styles for smaller devices */
+@media (max-width: 480px) {
+    .shopcategory-banner {
+        max-height: 150px; /* Adjust banner height for smaller screens */
+    }
+
+    .shopcategory-indexSort p {
+        font-size: 14px; /* Smaller text for mobile */
+    }
+
+    .shopcategory-sort {
+        padding: 8px 16px; /* Adjust padding for smaller buttons */
+    }
+
+    .shopcategory-pagination button {
+        padding: 10px 20px; /* Smaller pagination buttons */
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+}

@@ -1,0 +1,44 @@
+/* Import Products Page Styling */
+.import-products {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto; /* Center content */
+    padding: 30px;
+    text-align: center;
+}
+
+.import-products h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.import-products button {
+    background-color: #FF4141;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.import-products button:hover {
+    background-color: #d03939;
+}
+
+.import-products button:focus {
+    outline: none;
+}
+
+.import-products .form-container {
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .import-products {
+        padding: 20px;
+    }
+}

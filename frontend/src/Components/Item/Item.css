@@ -1,0 +1,64 @@
+.item-card {
+    width: 350px; /* Set card width */
+    background-color: #fff;
+    border-radius: 12px; /* Slightly larger radius for modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for effect */
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Add transition for box-shadow */
+    overflow: hidden;
+    position: relative; /* Positioning for the pseudo-element */
+    margin: 10px; /* Margin to create space between cards */
+}
+
+.item-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Change shadow on hover */
+}
+
+.item-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.item-image {
+    width: 100%; /* Full width of the card */
+    height: 500px; /* Set a fixed height for the images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 12px; /* Rounded corners for the image */
+    transition: transform 0.3s; /* Transition for image scale on hover */
+}
+
+.item-card:hover .item-image {
+    transform: scale(1.05); /* Scale up the image on hover */
+}
+
+.item-info {
+    margin-top: 15px; /* Add margin for spacing */
+    text-align: center; /* Center align text */
+}
+
+.item-name {
+    margin: 10px 0; /* Adjusted margin for spacing */
+    font-weight: bold; /* Make the product name bold */
+    font-size: 1.2rem; /* Increase font size */
+    color: #374151; /* Dark color for the name */
+}
+
+.item-prices {
+    display: flex;
+    justify-content: center; /* Center prices */
+    gap: 10px; /* Smaller gap */
+}
+
+.item-price-new {
+    color: #ff5722; /* Highlight new price in a standout color */
+    font-size: 20px; /* Slightly larger font size */
+    font-weight: 600;
+}
+
+.item-price-old {
+    color: #8c8c8c; /* Gray color for the old price */
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: line-through; /* Strike through for old price */
+}

@@ -1,0 +1,240 @@
+/* Sidebar2 Container */
+.sidebar2-container {
+    position: relative;
+    width: 100vw;
+    height: auto;
+  }
+  
+/* Hide nav items when sidebar is collapsed */
+
+/* Button Styles for Nav Items */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px; /* Adjust gap between buttons */
+    color: rgb(14, 12, 12); /* Change text color to white */
+    font-size: 20px;
+    opacity: 0; /* Default opacity */
+    font-weight: 500;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.sidebar2.expanded .nav-menu {
+    opacity: 1; /* Make visible when expanded */
+    height: auto; /* Allow height to adjust */
+}
+  
+  .nav-menu li a {
+    text-decoration: none; /* Remove underline from links */
+    color: rgb(12, 11, 11); /* Default link color */
+  }
+  
+  .nav-menu li a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Background color on hover */
+    border: 2px solid #FF4141; /* Border color on hover */
+    border-radius: 12px; /* Rounded corners */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+    transition: transform 0.3s ease, border-radius 0.3s ease; /* Smooth transition */
+}
+  
+  /* Top Vertical Sidebar */
+  #sidebar2 {
+    height: 0;
+    width: 100%;
+    overflow: visible;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(252, 251, 251, 0.7); /* Translucent black background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transition: height 0.5s ease;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+        transition: height 1s ease, opacity 1s ease; /* Adjust duration here */
+  }
+  
+  #sidebar2.expanded {
+    height: 100px; /* Expand to desired height */
+  }
+  
+/* Adjust the nav-grid position */
+.nav-grid {
+    display: flex; /* Use flex layout for horizontal spacing */
+    flex-direction: row; /* Arrange items in a row */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Evenly space items horizontally */
+    height: 100%; /* Full height to fill the sidebar */
+    padding: 0 100px; /* Add padding for sides */
+    margin-left: 20px; /* Add margin to the left for spacing */
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+  }
+
+  
+  /* Nav Items */
+  .nav-item {
+    text-align: center;
+  }
+  
+  /* Logo Styles */
+  .nav-logo {
+    display: flex; /* Flex layout for logo */
+    align-items: center; /* Center items vertically */
+    margin: 10px 0; /* Adjust margin to reduce space */
+  }
+  
+  /* Image and text styles within the logo */
+  .nav-logo img {
+    height: 50px; /* Set a height for logo image */
+    margin-right: 10px; /* Space between logo and text */
+  }
+  
+  .nav-logo p {
+    color: rgb(12, 12, 12); /* Change text color to white */
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
+  /* Toggle Button Styles */
+  .toggle-btn {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    border: none;
+    background: rgba(255, 255, 255, 0.1); /* Slightly translucent background */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 24px;
+    transition: top 0.5s ease, background 0.3s ease; /* Smooth transition for button */
+    padding: 10px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Add speech bubble tail */
+  .toggle-btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Tail to the left */
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(255, 255, 255, 0.1); /* Same as button background */
+    top: 50%;
+    left: -10px; /* Position the tail */
+    transform: translateY(-50%); /* Center the tail vertically */
+  }
+  
+  /* Adjust toggle button position for when sidebar is collapsed */
+  .sidebar2-container .toggle-btn:not(.expanded) {
+    top: 10px; /* Position the button at the top when collapsed */
+  }
+  
+  /* Dropdown Menu Styles */
+  .dropdown {
+    position: relative;
+    cursor: pointer; /* Show pointer on hover */
+    display: flex; /* Ensure elements are aligned correctly */
+    align-items: center; /* Align arrow with text */
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    list-style: none;
+    top: 100%; /* Aligns the menu right below the parent item */
+    left: 0;
+    background-color: rgba(230, 227, 227, 0.9); /* Black translucent background for dropdown */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 150px;
+    z-index: 1000;
+  }
+  
+  /* Dropdown Menu Buttons */
+.category-button {
+    width: 100%; /* Full width of the dropdown item */
+    padding: 10px;
+    background-color: white;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .category-button:hover {
+    background-color: rgba(255, 65, 65, 0.2); /* Light red hover effect */
+/* Slight zoom on hover */
+  }
+  
+
+  /* Login and Cart Section */
+.nav-login-cart {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+.nav-login-cart button {
+    width: 125px;
+    height: 58px;
+    outline: none;
+    border: 1px solid #231f1f; /* White border */
+    border-radius: 75px;
+    color: rgb(8, 8, 8); /* Change text color to white */
+    font-size: 20px;
+    font-weight: 500;
+    background: white; /* Transparent background */
+    cursor: pointer;
+    transition: background 0.3s ease; /* Button hover transition */
+}
+
+.nav-login-cart button:hover {
+    background: rgba(255, 255, 255, 0.2); /* Background color on hover */
+    border: 2px solid #FF4141; /* Border color on hover */
+    border-radius: 12px; /* Rounded corners */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+
+}
+
+/* Shopping cart button */
+.nav-cart-count {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -55px;
+    border-radius: 11px;
+    font-size: 14px;
+    background: red;
+    color: white;
+}
+
+/* Hide logo and cart when sidebar is collapsed */
+#sidebar2:not(.expanded) .nav-logo,
+#sidebar2:not(.expanded) .nav-login-cart {
+  opacity: 0; /* Make them invisible */
+  height: 0; /* Remove height to collapse them completely */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  overflow: hidden; /* Prevent any overflow */
+  transition: opacity 0.3s ease, height 0.3s ease; /* Smooth transition */
+}
+
+/* Show logo and cart when sidebar is expanded */
+#sidebar2.expanded .nav-logo,
+#sidebar2.expanded .nav-login-cart {
+  opacity: 1; /* Make them visible */
+  height: auto; /* Allow height to adjust */
+  padding: 10px 0; /* Restore padding */
+  margin: 10px 0; /* Restore margin */
+}
+
