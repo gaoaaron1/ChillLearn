@@ -3,9 +3,9 @@ import './CSS/SubjectContext.css';
 import { ShopContext } from '../Context/ShopContext';
 import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
 import subjectsData from '../../src/Components/Assets/subjectsData.json';
+import Navbar from '../Components/Navbar/Navbar';
 
 const SubjectContext = (props) => {
-    const { all_product } = useContext(ShopContext);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState('oldest');
     const [expandedSubjects, setExpandedSubjects] = useState({
@@ -15,7 +15,6 @@ const SubjectContext = (props) => {
         Social: false,
     });
     const [selectedGrade, setSelectedGrade] = useState(""); // Remove default grade value
-    const itemsPerPage = 9;
     const navigate = useNavigate(); // Initialize useNavigate hook for navigation
 
     const { grade } = useParams(); // Use useParams hook to get the grade from URL
@@ -63,6 +62,8 @@ const SubjectContext = (props) => {
 
     return (
         <div className="subject-context">
+            <Navbar setSelectedGrade={setSelectedGrade} /> {/* Pass setSelectedGrade as a prop */}
+
             <img className="subject-banner" src={props.banner} alt="" />
 
             {/* Custom Grade Dropdown */}

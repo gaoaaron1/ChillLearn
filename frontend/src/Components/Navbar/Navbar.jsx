@@ -5,14 +5,12 @@ import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 
-const Navbar = () => {
+const Navbar = ({ setSelectedGrade }) => {
   //======================== USE STATES ========================//
-
   const { getTotalCartItems } = useContext(ShopContext);
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
 
   //======================== DECLARATIVE ========================//
-
   const toggleSidebar = () => {
     setExpanded(!expanded);
   };
@@ -35,6 +33,11 @@ const Navbar = () => {
     { name: "Contact Us", path: "/contact" },
   ];
 
+  // Handle grade change from navbar
+  const handleGradeSelection = (grade) => {
+    setSelectedGrade(grade); // Update the grade state in SubjectContext
+  };
+
   return (
     <div className="sidebar2-container">
       {/* Top Vertical Sidebar */}
@@ -43,7 +46,6 @@ const Navbar = () => {
         className={`sidebar2 ${expanded ? 'expanded' : ''}`}
       >
         <ul className="nav-grid">
-
           <div className="nav-logo">
             {/* Make the logo clickable and navigate to the Shop (Home) page */}
             <Link to="/">
@@ -59,7 +61,7 @@ const Navbar = () => {
             ))}
 
             <li className="dropdown">
-            <Link to="/grades">
+              <Link to="/grades">
                 Grades K-12
                 <svg
                   className="arrow"
@@ -73,24 +75,16 @@ const Navbar = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link to="/kindergarten">
-                    <button className="category-button">Kindergarten</button>
-                  </Link>
+                  <button className="category-button" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</button>
                 </li>
                 <li>
-                  <Link to="/grade1">
-                    <button className="category-button">Grade 1</button>
-                  </Link>
+                  <button className="category-button" onClick={() => handleGradeSelection('grade1')}>Grade 1</button>
                 </li>
                 <li>
-                  <Link to="/grade2">
-                    <button className="category-button">Grade 2</button>
-                  </Link>
+                  <button className="category-button" onClick={() => handleGradeSelection('grade2')}>Grade 2</button>
                 </li>
-                {/* Add more grades as needed */}
               </ul>
             </li>
-
           </ul>
 
           <div className="nav-login-cart">
@@ -101,7 +95,6 @@ const Navbar = () => {
             </Link>
             <div className="nav-cart-count">{getTotalCartItems()}</div>
           </div>
-
         </ul>
       </nav>
 
@@ -117,4 +110,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
