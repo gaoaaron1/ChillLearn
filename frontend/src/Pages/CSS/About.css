@@ -1,127 +1,81 @@
-/* Wrapper to align everything centrally */
-.about-wrapper {
-    display: flex;
-    height: 100%; /* Full viewport height */
-    width: 100%; /* Full viewport width */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    background-color: #f9f9f9; /* Light background for contrast */
-    box-sizing: border-box;
-    padding: 50px;
-}
+/* AboutPage.css */
 
-/* Sidebar stays in place on the left */
-.about-wrapper > :first-child {
-    flex-shrink: 0; /* Prevent sidebar from shrinking */
-    margin-right: 15px; /* Slightly smaller margin between sidebar and content */
-}
-
-/* Main content container */
+/* Container for the whole About page */
 .about-container {
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center horizontally */
-    width: 100%;
-    max-width: 900px; /* Limit max width for smaller layout */
-    padding: 30px; /* Adjusted padding for compact look */
-    background: white; /* White background for content */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 8px; /* Rounded corners */
-    box-sizing: border-box;
-}
-
-/* Title Styles */
-h1 {
-    font-size: 48px; /* Slightly smaller title */
+    font-family: 'Arial', sans-serif;
     color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-h2 {
-    font-size: 24px; /* Adjusted section title size */
-    margin-top: 20px; /* Reduced top margin */
-    color: #555;
-}
-
-/* Section Spacing */
-.about-section {
-    width: 100%;
-    margin-bottom: 40px; /* Slightly reduced space between sections */
-    text-align: center;
-}
-
-.about-image {
-    width: 100%;
-    max-width: 600px; /* Limit image width */
-    height: auto;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-/* Mission and Vision Flex Layout */
-.mission-vision {
-    display: flex;
-    gap: 15px; /* Slightly smaller gap between sections */
-    margin-bottom: 40px;
-    width: 100%;
-}
-
-.mission, .vision {
-    flex: 1;
-    padding: 15px; /* Reduced inner padding */
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Values Section */
-.values-list {
-    list-style: none;
-    padding: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
     margin: 0;
-}
-
-.values-list li {
-    font-size: 16px; /* Slightly smaller font for list items */
-    padding: 8px 0; /* Reduced padding between items */
-}
-
-/* Team Members Section */
-.team-members {
-    display: flex;
-    gap: 15px; /* Slightly smaller gap between members */
-}
-
-.team-member {
+    min-height: 100vh;
+  }
+  
+  /* Styling for header section */
+  .about-header {
     text-align: center;
-    flex: 1;
-}
-
-.team-member img {
-    width: 80px; /* Reduced size for circular images */
-    height: 80px;
-    border-radius: 50%;
+    background-color: #45a049;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    
+  }
+  
+  .about-header h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .about-header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Styling for the content section */
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .about-section {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .about-section h2 {
+    font-size: 2rem;
+    color: #45a049;
+    margin-bottom: 10px;
+  }
+  
+  .about-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .about-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .about-section ul li {
+    font-size: 1.1rem;
     margin-bottom: 8px;
-}
-
-.team-member h3 {
-    font-size: 18px; /* Adjusted font size for names */
-    margin: 8px 0 4px;
-}
-
-.team-member p {
-    font-size: 14px; /* Smaller font for roles */
-    color: #777;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .mission-vision {
-        flex-direction: column; /* Stack sections on smaller screens */
-    }
-
-    .team-members {
-        flex-direction: column; /* Stack team members vertically */
-    }
-}
+  }
+  
+  /* Footer Styling */
+  .about-footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 8px;
+  }
+  

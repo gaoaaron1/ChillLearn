@@ -97,14 +97,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="nav-login-cart">
-            <Link to="/cart" className="cart-button">
-              <button className="cart-icon-button">
-                <img src={cart_icon} alt="Cart" />
-              </button>
-            </Link>
-            <div className="nav-cart-count">{getTotalCartItems()}</div>
-          </div>
+
         </ul>
       </nav>
 

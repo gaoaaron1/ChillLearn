@@ -1,70 +1,48 @@
-import React, { useEffect } from 'react';
-import Sidebar from '../UI/Sidebar/Sidebar';
-import './CSS/About.css'; // Import CSS for styles
-import AboutImage from '../Components/Assets/About.jpg'; // Import the image
+import React from 'react';
+import './CSS/About.css'; // Import the CSS file
 
 const About = () => {
-    // Scroll to the top when the component is mounted
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []); // Empty dependency array to ensure it runs only once on mount
-    return (
-        <div className="about-wrapper">
-            {/* Sidebar Component */}
-            <Sidebar />
-
-            {/* Main Content */}
-            <div className="about-container">
-                <h1>About Us</h1>
-                <section className="about-section">
-                    <h2>Our Story</h2>
-                    <p>
-                        At JUSME, we believe that fashion is more than just clothing—it's an expression of who you are.
-                        Our journey began with a simple idea: to provide high-quality, stylish apparel that empowers
-                        individuals to express their unique personalities.
-                    </p>
-                    <img src={AboutImage} alt="Our Story" className="about-image" />
-                </section>
-
-                <section className="mission-vision">
-                    <div className="mission">
-                        <h2>Our Mission</h2>
-                        <p>
-                            Our mission is to inspire and empower people through fashion. We strive to create products
-                            that not only look great but also feel great to wear.
-                        </p>
-                    </div>
-                    <div className="vision">
-                        <h2>Our Vision</h2>
-                        <p>
-                            We envision a world where everyone has the freedom to express themselves through their style.
-                            Our goal is to make fashionable clothing accessible to everyone, regardless of their budget.
-                        </p>
-                    </div>
-                </section>
-
-                <section className="values-section">
-                    <h2>Our Values</h2>
-                    <ul className="values-list">
-                        <li>Quality: We prioritize high-quality materials and craftsmanship.</li>
-                        <li>Innovation: We embrace creativity and stay ahead of trends.</li>
-                        <li>Inclusivity: We celebrate diversity and welcome all styles.</li>
-                        <li>Sustainability: We are committed to environmentally friendly practices.</li>
-                    </ul>
-                </section>
-
-                <section className="team-section">
-                    <h2>Meet Our Team</h2>
-                    <div className="team-members">
-                        <div className="team-member">
-                            <h3>Aaron Gao</h3>
-                            <p>Web Developer</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
+  return (
+    <div className="about-container">
+      <header className="about-header">
+        <h1>Welcome to ChillLearn</h1>
+        <p>Your go-to platform for practice exams and study resources.</p>
+      </header>
+      <section className="about-content">
+        <div className="about-section">
+          <h2>Our Mission</h2>
+          <p>
+            ChillLearn is dedicated to helping students succeed by providing a
+            comprehensive platform for practice exams and study materials. Whether
+            you're preparing for your next big exam or just looking to brush up on
+            key concepts, ChillLearn offers the tools to help you perform at your best.
+          </p>
         </div>
-    );
+        <div className="about-section">
+          <h2>Features</h2>
+          <ul>
+            <li>Access to a wide range of practice exams for various subjects</li>
+            <li>Study materials and resources to enhance your learning</li>
+            <li>Track your progress and performance over time</li>
+            <li>Convenient and easy-to-use interface</li>
+            <li>Customizable study plans</li>
+          </ul>
+        </div>
+        <div className="about-section">
+          <h2>Why Choose ChillLearn?</h2>
+          <p>
+            We understand the challenges students face when preparing for exams. Our
+            platform is designed to make studying more efficient, organized, and
+            enjoyable. With ChillLearn, you can focus on what really matters: mastering
+            the material and achieving your academic goals.
+          </p>
+        </div>
+      </section>
+      <footer className="about-footer">
+        <p>© 2024 ChillLearn. All rights reserved.</p>
+      </footer>
+    </div>
+  );
 };
 
 export default About;
