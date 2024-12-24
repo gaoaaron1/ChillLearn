@@ -16,11 +16,13 @@ import women_banner from './Components/Assets/banner_women.png';
 import kid_banner from './Components/Assets/banner_kids.png';
 import kindergarten_banner from './Components/Assets/kindergarten_poster.png';
 import GradesPage from './Pages/GradesPage.jsx'; // Import the GradesPage component
+import { GradeProvider } from './Context/GradeContext.jsx';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <GradeProvider>
         <Navbar />
         <Routes>
           <Route path='/' element={<Shop />} />
@@ -39,6 +41,7 @@ function App() {
           <Route path='/grades' element={<GradesPage />} /> 
         </Routes>
         <Footer />
+        </GradeProvider>
       </BrowserRouter>
     </div>
   );

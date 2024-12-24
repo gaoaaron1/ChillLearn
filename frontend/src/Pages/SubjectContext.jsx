@@ -1,33 +1,32 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CSS/SubjectContext.css';
-import { ShopContext } from '../Context/ShopContext';
 import { useNavigate, useParams } from 'react-router-dom'; // Import useParams
 import subjectsData from '../../src/Components/Assets/subjectsData.json';
-import Navbar from '../Components/Navbar/Navbar';
+import { useGradeContext } from '../Context/GradeContext';
 
 const SubjectContext = (props) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [sortOrder, setSortOrder] = useState('oldest');
     const [expandedSubjects, setExpandedSubjects] = useState({
         Math: false,
         English: false,
         Science: false,
         Social: false,
     });
-    const [selectedGrade, setSelectedGrade] = useState(""); // Remove default grade value
-    const navigate = useNavigate(); // Initialize useNavigate hook for navigation
 
+    const navigate = useNavigate(); // Initialize useNavigate hook for navigation
     const { grade } = useParams(); // Use useParams hook to get the grade from URL
+
+    // Use context to get the selected grade and setSelectedGrade function
+    const { selectedGrade, setSelectedGrade } = useGradeContext();
 
     // Update selected grade when the grade in the URL changes
     useEffect(() => {
         if (grade) {
-            setSelectedGrade(grade); // Set grade from URL
+            setSelectedGrade(grade); // Set grade from URL to context
         }
-    }, [grade]); // Re-run when grade changes
+    }, [grade, setSelectedGrade]); // Re-run when grade changes
 
     // If selectedGrade is empty (initial load), default to "kindergarten"
-    const subjects = selectedGrade ? subjectsData[selectedGrade] : subjectsData["kindergarten"]; 
+    const subjects = selectedGrade ? subjectsData[selectedGrade] : subjectsData["kindergarten"];
 
     // Handle subject and unit expansion
     const handleExpandToggle = (subject) => {
@@ -35,13 +34,6 @@ const SubjectContext = (props) => {
             ...expandedSubjects,
             [subject]: !expandedSubjects[subject],
         });
-    };
-
-    // Handle grade selection
-    const handleGradeChange = (e) => {
-        const newGrade = e.target.value;
-        setSelectedGrade(newGrade); // Update the selected grade
-        navigate(`/${newGrade}`); // Navigate to the selected grade page
     };
 
     // Convert grade value to a more readable format
@@ -60,10 +52,15 @@ const SubjectContext = (props) => {
         navigate(`/questions/${selectedGrade}/${subject}/${unit}`);
     };
 
+    // Handle grade change directly from the context
+    const handleGradeChange = (e) => {
+        const newGrade = e.target.value;
+        setSelectedGrade(newGrade); // Update the selected grade in the context
+        navigate(`/${newGrade}`); // Navigate to the selected grade page
+    };
+
     return (
         <div className="subject-context">
-            <Navbar setSelectedGrade={setSelectedGrade} /> {/* Pass setSelectedGrade as a prop */}
-
             <img className="subject-banner" src={props.banner} alt="" />
 
             {/* Custom Grade Dropdown */}

@@ -4,11 +4,15 @@ import logo from '../Assets/logo2.png';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
+import { useGradeContext } from '../../Context/GradeContext'; // Import the custom hook for GradeContext
 
-const Navbar = ({ setSelectedGrade }) => {
+const Navbar = () => {
   //======================== USE STATES ========================//
   const { getTotalCartItems } = useContext(ShopContext);
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
+  
+  // Access grade context to get the selectedGrade and setSelectedGrade
+  const { selectedGrade, setSelectedGrade } = useGradeContext(); 
 
   //======================== DECLARATIVE ========================//
   const toggleSidebar = () => {
@@ -35,7 +39,7 @@ const Navbar = ({ setSelectedGrade }) => {
 
   // Handle grade change from navbar
   const handleGradeSelection = (grade) => {
-    setSelectedGrade(grade); // Update the grade state in SubjectContext
+    setSelectedGrade(grade); // Update the grade state in GradeContext
   };
 
   return (
@@ -75,13 +79,19 @@ const Navbar = ({ setSelectedGrade }) => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <button className="category-button" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</button>
+                  <Link to="/kindergarten">
+                    <button className="category-button" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="category-button" onClick={() => handleGradeSelection('grade1')}>Grade 1</button>
+                  <Link to="/grade1">
+                    <button className="category-button" onClick={() => handleGradeSelection('grade1')}>Grade 1</button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="category-button" onClick={() => handleGradeSelection('grade2')}>Grade 2</button>
+                  <Link to="/grade2">
+                    <button className="category-button" onClick={() => handleGradeSelection('grade2')}>Grade 2</button>
+                  </Link>
                 </li>
               </ul>
             </li>
