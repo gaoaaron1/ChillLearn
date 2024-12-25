@@ -1,31 +1,93 @@
+/* General Styles for Grades Page */
 .grades-page {
-    text-align: center;
-    padding: 50px;
-  }
+  text-align: center;
+  padding: 50px;
+}
+
+.grades-page h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.grade-options {
+  display: flex; /* Use flex layout for larger screens */
+  flex-direction: column; /* Arrange buttons vertically */
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center; /* Center the buttons horizontally */
+}
+
+.grade-option {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-align: center; /* Center the text inside the button */
   
+  /* Ensure all buttons are the same size */
+  width: 250px; /* Fixed width */
+  height: 60px; /* Fixed height */
+  display: flex;
+  align-items: center; /* Vertically center text */
+  justify-content: center; /* Horizontally center text */
+}
+
+.grade-option:hover {
+  transform: scale(1.1); /* Slightly expand the button on hover */
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
   .grades-page h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
+      font-size: 28px; /* Smaller heading size on medium screens */
+      margin-bottom: 20px;
   }
-  
+
   .grade-options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+      gap: 15px; /* Reduce gap on medium screens */
   }
-  
+
   .grade-option {
-    background-color: #4caf50;
-    color: white;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+      padding: 12px 25px; /* Reduce padding on smaller screens */
+      font-size: 16px; /* Smaller text size */
+      width: 200px; /* Adjust width on medium screens */
+      height: 50px; /* Adjust height on medium screens */
   }
-  
-  .grade-option:hover {
-    transform: scale(1.1); /* Slightly expand the button on hover */
-    background-color: #45a049; /* Darker green on hover */
+}
+
+@media (max-width: 480px) {
+  .grades-page {
+      padding: 20px; /* Reduce padding on small screens */
   }
-  
+
+  .grades-page h1 {
+      font-size: 24px; /* Even smaller font size on very small screens */
+      margin-bottom: 15px;
+  }
+
+  .grade-options {
+      gap: 10px; /* Further reduce the gap on very small screens */
+      grid-template-columns: 1fr; /* Stack the options vertically */
+  }
+
+  .grade-option {
+      width: 100%; /* Make the grade options take full width */
+      padding: 12px 0; /* Adjust padding for full-width buttons */
+      font-size: 16px; /* Maintain the font size */
+      height: 50px; /* Keep consistent height */
+  }
+}
+
+/* For larger screens, use vertical layout */
+@media (min-width: 1024px) {
+  .grade-options {
+      display: flex; /* Use flex for larger screens */
+      flex-direction: column; /* Arrange items in a single vertical column */
+      gap: 30px; /* Increase gap between buttons */
+  }
+}

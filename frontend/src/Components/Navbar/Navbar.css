@@ -139,12 +139,13 @@
   cursor: pointer; /* Show pointer on hover */
 }
 
+/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
   list-style: none;
   top: 100%; /* Aligns the menu right below the parent item */
   left: 0;
-  background-color: rgba(230, 227, 227, 0.9); /* Black translucent background for dropdown */
+  background-color: white; /* Black translucent background for dropdown */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 10px 0;
@@ -153,6 +154,7 @@
   gap: 10px;
   min-width: 150px;
   z-index: 1000;
+  text-align: center;
 }
 
 /* Show the dropdown menu when hovering over the dropdown */

@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './Navbar.css'; // Import CSS
 import logo from '../Assets/logo2.png';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
-import { useGradeContext } from '../../Context/GradeContext'; 
+import { useGradeContext } from '../../Context/GradeContext';
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
   const [menuOpen, setMenuOpen] = useState(false); // Manage mobile menu visibility
-  const { selectedGrade, setSelectedGrade } = useGradeContext(); 
+  const [dropdownOpen, setDropdownOpen] = useState(false); // Manage dropdown menu state
+  const { selectedGrade, setSelectedGrade } = useGradeContext();
 
   const toggleSidebar = () => {
     setExpanded(!expanded);
@@ -37,6 +38,7 @@ const Navbar = () => {
 
   const handleGradeSelection = (grade) => {
     setSelectedGrade(grade); // Update the grade state in GradeContext
+    setDropdownOpen(false); // Close the dropdown menu after selecting a grade
   };
 
   return (
@@ -57,30 +59,32 @@ const Navbar = () => {
               </li>
             ))}
 
-            <li className="dropdown">
+            <li
+              className="dropdown"
+              onMouseEnter={() => setDropdownOpen(true)} // Show dropdown on hover
+              onMouseLeave={() => setDropdownOpen(false)} // Hide dropdown when hover ends
+            >
               <Link to="/grades">
                 Grades K-12
                 <svg className="arrow" width="12" height="8" viewBox="0 0 12 8" style={{ marginLeft: '10px' }}>
                   <path d="M0 0l6 8 6-8H0z" fill="black" />
                 </svg>
               </Link>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link to="/kindergarten">
-                    <button className="category-button" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</button>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/grade1">
-                    <button className="category-button" onClick={() => handleGradeSelection('grade1')}>Grade 1</button>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/grade2">
-                    <button className="category-button" onClick={() => handleGradeSelection('grade2')}>Grade 2</button>
-                  </Link>
-                </li>
-              </ul>
+
+              {/* Dropdown Menu */}
+              {dropdownOpen && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/kindergarten" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</Link>
+                  </li>
+                  <li>
+                    <Link to="/grade1" onClick={() => handleGradeSelection('grade1')}>Grade 1</Link>
+                  </li>
+                  <li>
+                    <Link to="/grade2" onClick={() => handleGradeSelection('grade2')}>Grade 2</Link>
+                  </li>
+                </ul>
+              )}
             </li>
           </ul>
         </ul>
