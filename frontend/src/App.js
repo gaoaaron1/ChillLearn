@@ -6,11 +6,8 @@ import About from './Pages/About';
 import SubjectContext from './Pages/SubjectContext';
 import QuestionsPage from './Pages/QuestionsPage';
 
-import Product from './Pages/Product';
-import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
 import Footer from './Components/Footer/Footer';
-import ImportProducts from './Pages/ImportProducts';
 import men_banner from './Components/Assets/banner_mens.png';
 import women_banner from './Components/Assets/banner_women.png';
 import kid_banner from './Components/Assets/banner_kids.png';
@@ -32,12 +29,8 @@ function App() {
           <Route path='/grade1' element={<SubjectContext banner={grade_banner} category="grade1" />} />
           <Route path='/grade2' element={<SubjectContext banner={grade_banner} category="grade2" />} />
           <Route path="/questions/:grade/:subject/:unit" element={<QuestionsPage />} />
-          <Route path="product" element={<Product />}>
-            <Route path=':productId' element={<Product />} />
-          </Route>
-          <Route path='/cart' element={<Cart />} />
+
           <Route path='/login' element={<LoginSignup />} />
-          <Route path='/admin/import' element={<ImportProducts />} />
           {/* Add the Grades route here */}
           <Route path='/grades' element={<GradesPage />} /> 
         </Routes>

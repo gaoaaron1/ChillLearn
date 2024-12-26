@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ShopContextProvider from './Context/ShopContext';
+import { GradeProvider } from './Context/GradeContext'; // Import GradeProvider instead of ShopContext
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ShopContextProvider>
+  <GradeProvider>  {/* Wrap the app with GradeProvider */}
     <App />
-  </ShopContextProvider>
+  </GradeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

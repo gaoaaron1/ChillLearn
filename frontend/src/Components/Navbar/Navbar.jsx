@@ -19,6 +19,10 @@ const Navbar = () => {
     setMenuOpen(!menuOpen); // Toggle the mobile menu
   };
 
+  const closeMobileMenu = () => {
+    setMenuOpen(false); // Close the mobile menu after selecting an item
+  };
+
   const scrollToElement = (targetId, offset = 50) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
@@ -55,7 +59,9 @@ const Navbar = () => {
           <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
             {menuItems.map((item) => (
               <li key={item.name}>
-                <Link to={item.path}>{item.name}</Link>
+                <Link to={item.path} onClick={closeMobileMenu}>
+                  {item.name}
+                </Link>
               </li>
             ))}
 
@@ -64,7 +70,17 @@ const Navbar = () => {
               onMouseEnter={() => setDropdownOpen(true)} // Show dropdown on hover
               onMouseLeave={() => setDropdownOpen(false)} // Hide dropdown when hover ends
             >
-              <Link to="/grades">
+              <Link
+                to="/grades"
+                onClick={() => {
+                  if (dropdownOpen) {
+                    setDropdownOpen(false); // If the dropdown is open, close it
+                  } else {
+                    setDropdownOpen(true); // If the dropdown is closed, open it
+                  }
+                  closeMobileMenu(); // Close the mobile menu after clicking
+                }}
+              >
                 Grades K-12
                 <svg className="arrow" width="12" height="8" viewBox="0 0 12 8" style={{ marginLeft: '10px' }}>
                   <path d="M0 0l6 8 6-8H0z" fill="black" />
@@ -75,13 +91,19 @@ const Navbar = () => {
               {dropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/kindergarten" onClick={() => handleGradeSelection('kindergarten')}>Kindergarten</Link>
+                    <Link to="/kindergarten" onClick={() => { handleGradeSelection('kindergarten'); closeMobileMenu(); }}>
+                      Kindergarten
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/grade1" onClick={() => handleGradeSelection('grade1')}>Grade 1</Link>
+                    <Link to="/grade1" onClick={() => { handleGradeSelection('grade1'); closeMobileMenu(); }}>
+                      Grade 1
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/grade2" onClick={() => handleGradeSelection('grade2')}>Grade 2</Link>
+                    <Link to="/grade2" onClick={() => { handleGradeSelection('grade2'); closeMobileMenu(); }}>
+                      Grade 2
+                    </Link>
                   </li>
                 </ul>
               )}
@@ -89,15 +111,6 @@ const Navbar = () => {
           </ul>
         </ul>
       </nav>
-
-      {/* Toggle Button for Desktop */}
-      <button
-        className="toggle-btn"
-        style={{ top: expanded ? '125px' : '10px' }}
-        onClick={toggleSidebar}
-      >
-        <span id="arrow-icon">{expanded ? '▲' : '▼'}</span>
-      </button>
 
       {/* Hamburger Icon for Mobile */}
       <button className="hamburger" onClick={toggleMobileMenu}>

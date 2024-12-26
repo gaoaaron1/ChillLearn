@@ -6,6 +6,7 @@ import { useGradeContext } from '../Context/GradeContext';
 
 const SubjectContext = (props) => {
     const [expandedSubjects, setExpandedSubjects] = useState({});
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
     const navigate = useNavigate();
     const { grade } = useParams();
     const { selectedGrade, setSelectedGrade } = useGradeContext();
@@ -31,6 +32,7 @@ const SubjectContext = (props) => {
         const newGrade = e.target.value;
         setSelectedGrade(newGrade);
         navigate(`/${newGrade}`);
+        setIsDropdownOpen(false); 
     };
 
     const getGradeName = (grade) => {
@@ -42,22 +44,31 @@ const SubjectContext = (props) => {
         }
     };
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     return (
         <div className="subject-context">
             <img className="subject-banner" src={props.banner} alt="Subject Banner" />
             <div className="grade-selector">
                 <label>Select Grade: </label>
                 <div className="shopcategory-sort">
-                    <button className="dropdown-btn">
+                    <button className="dropdown-btn" onClick={toggleDropdown}>
                         {getGradeName(selectedGrade || "kindergarten")}
+                        <span className={`arrow ${isDropdownOpen ? 'up' : 'down'}`}>&#9660;</span>
                     </button>
-                    <div className="dropdown-content">
-                        {["kindergarten", "grade1", "grade2"].map((gradeOption) => (
-                            <button key={gradeOption} value={gradeOption} onClick={handleGradeChange}>
-                                {getGradeName(gradeOption)}
-                            </button>
-                        ))}
-                    </div>
+                    {isDropdownOpen && (
+                        <ul className="dropdown-menu">
+                            {["kindergarten", "grade1", "grade2"].map((gradeOption) => (
+                                <li key={gradeOption}>
+                                    <button value={gradeOption} onClick={handleGradeChange}>
+                                        {getGradeName(gradeOption)}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
             <div className="subjects">

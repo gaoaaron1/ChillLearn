@@ -1,5 +1,6 @@
+/* Basic Styling */
 .subject-context {
-    width: 90%; /* Adjusted for smaller screens */
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -17,7 +18,7 @@
 .grade-selector {
     margin: 20px 0;
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -29,6 +30,8 @@
     border: 1px solid #888;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown-btn {
@@ -38,32 +41,66 @@
     border: none;
     color: #4CAF50;
     font-weight: bold;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
     min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.arrow {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.down {
+    transform: rotate(0deg);
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
+/* Updated dropdown menu styles */
+.dropdown-menu {
+    position: absolute;
+    list-style: none;
+    top: 100%; 
+    left: 0;
+    background-color: white; 
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 150px;
+    z-index: 1000;
+    text-align: center;
 }
 
-.shopcategory-sort:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content button {
-    padding: 10px;
+.dropdown-menu li {
     width: 100%;
-    background-color: #fff;
+}
+
+.dropdown-menu button {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
     border: none;
     text-align: left;
+    transition: background-color 0.3s ease, border 0.3s ease;
 }
 
+.dropdown-menu button:hover {
+    background-color: #FF8C00; /* Orange background on hover */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Subject container styles */
 .subject-container {
     margin: 10px 0;
     padding: 10px;
@@ -87,7 +124,7 @@
     background-color: #f9f9f9;
     border-left: 4px solid #4CAF50;
     display: flex;
-    flex-wrap: wrap; /* Wrap units for smaller screens */
+    flex-wrap: wrap;
     gap: 10px;
 }
 
