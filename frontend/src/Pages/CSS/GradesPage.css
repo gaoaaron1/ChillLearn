@@ -1,4 +1,3 @@
-/* General Styles for Grades Page */
 .grades-page {
   text-align: center;
   padding: 50px;
@@ -9,13 +8,38 @@
   margin-bottom: 30px;
 }
 
+.expand-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.expand-btn:hover {
+  background-color: #45a049;
+}
+
 .grade-options {
-  display: flex; /* Use flex layout for larger screens */
-  flex-direction: column; /* Arrange buttons vertically */
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
-  align-items: center; /* Center the buttons horizontally */
+  align-items: center;
+  overflow: hidden;
+  max-height: 0; /* Initially collapsed */
+  padding: 0; /* No padding initially */
+  transition: max-height 0.5s ease-out, padding 0.3s ease-out; /* Transition max-height and padding for smoothness */
+}
+
+.grade-options.expanded {
+  max-height: 500px; /* Ensure it’s large enough to reveal content when expanded */
+  padding: 20px 0; /* Add padding when expanded */
 }
 
 .grade-option {
@@ -26,7 +50,7 @@
   border-radius: 10px;
   text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  text-align: center; /* Center the text inside the button */
+  text-align: center;
   
   /* Ensure all buttons are the same size */
   width: 250px; /* Fixed width */

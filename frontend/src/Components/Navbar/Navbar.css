@@ -256,6 +256,7 @@
 
 
 
+
 /* Hide the toggle button on mobile */
 @media (max-width: 768px) {
   .toggle-btn {
@@ -275,21 +276,19 @@
     padding-left: -20px;
   }
 
-
   .hamburger {
     display: block; /* Show hamburger menu */
-    position: absolute; /* Position the hamburger menu on top */
-    bottom: -10px; /* Adjust the position as needed */
-    left: 400px; /* Move the hamburger icon more to the left */
+    position: fixed; /* Fix it to the top */
+    top: 10px; /* Adjust the distance from the top */
+    left: 400px; /* Adjust horizontal positioning */
     font-size: 48px; /* Make the hamburger icon smaller */
     z-index: 1001; /* Ensure it appears above other elements */
   }
-
-  /* Nav menu on mobile */
-  .nav-menu {
+   /* Nav menu on mobile */
+   .nav-menu {
     display: none; /* Hide menu by default */
-    position: absolute;
-    top: 70px; /* Adjust position */
+    position: fixed; /* Fix the menu at the top */
+    top: 50px; /* Adjust position below the navbar */
     left: 0;
     width: 100%;
     background-color: rgba(241,247,246,255);
@@ -297,6 +296,7 @@
     gap: 20px;
     padding: 20px;
     transition: all 0.3s ease;
+    z-index: 1000; /* Ensure it's above other elements */
   }
 
   .nav-menu.open {
@@ -319,6 +319,36 @@
   color: white;
 }
 
+/* Targeting devices with widths between 768px and 1024px (iPad Mini Portrait & Landscape) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hamburger {
+    top: 15px; /* Adjust as needed */
+    left: 650px; /* Adjust as needed */
+    font-size: 50px; /* Adjust size */
+  }
+
+  .nav-menu {
+    top: 60px; /* Adjust position of mobile menu */
+  }
+
+  .dropdown-menu {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(241, 247, 246, 255);
+    padding: 10px;
+    position: fixed;
+    top: 100px; /* Position below the navbar */
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+  }
+
+  /* Show the dropdown menu if it's open */
+  .dropdown.open .dropdown-menu {
+    display: flex;
+  }
+}
 
 @media (max-width: 480px) {
   .nav-logo img {
@@ -331,9 +361,9 @@
   }
 
   .hamburger {
-    left: 250px; /* Align hamburger icon properly */
-    font-size: 48px; /* Smaller hamburger icon */
-    bottom: -16px;
+    left: 350px; /* Align hamburger icon properly */
+    font-size: 50px; /* Smaller hamburger icon */
+    top: 20px; /* Keep it within the header area */
   }
 
   #sidebar2 {
@@ -369,5 +399,14 @@
     width: 100%;
     top: 100px;
     left: -20px;
+  }
+}
+
+
+@media (max-width: 420px) {
+  .hamburger {
+    left: 290px; /* Align hamburger icon properly */
+    font-size: 50px; /* Smaller hamburger icon */
+    top: 20px; /* Keep it within the header area */
   }
 }

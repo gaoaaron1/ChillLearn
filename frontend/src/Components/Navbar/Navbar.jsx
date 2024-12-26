@@ -45,6 +45,12 @@ const Navbar = () => {
     setDropdownOpen(false); // Close the dropdown menu after selecting a grade
   };
 
+  // Function to toggle dropdown on mobile
+  const handleGradeToggle = (event) => {
+    event.preventDefault(); // Prevent default behavior (navigation)
+    setDropdownOpen(!dropdownOpen); // Toggle dropdown on mobile
+  };
+
   return (
     <div className="sidebar2-container">
       {/* Top Vertical Sidebar */}
@@ -65,21 +71,15 @@ const Navbar = () => {
               </li>
             ))}
 
+            {/* Grades K-12 dropdown */}
             <li
               className="dropdown"
-              onMouseEnter={() => setDropdownOpen(true)} // Show dropdown on hover
+              onMouseEnter={() => setDropdownOpen(true)} // Show dropdown on hover (desktop)
               onMouseLeave={() => setDropdownOpen(false)} // Hide dropdown when hover ends
             >
               <Link
-                to="/grades"
-                onClick={() => {
-                  if (dropdownOpen) {
-                    setDropdownOpen(false); // If the dropdown is open, close it
-                  } else {
-                    setDropdownOpen(true); // If the dropdown is closed, open it
-                  }
-                  closeMobileMenu(); // Close the mobile menu after clicking
-                }}
+                to={window.innerWidth > 768 ? '/grades' : '#'} // Use link for desktop, prevent navigation on mobile
+                onClick={window.innerWidth <= 768 ? handleGradeToggle : null} // Toggle dropdown on mobile
               >
                 Grades K-12
                 <svg className="arrow" width="12" height="8" viewBox="0 0 12 8" style={{ marginLeft: '10px' }}>
@@ -111,6 +111,15 @@ const Navbar = () => {
           </ul>
         </ul>
       </nav>
+
+      {/* Toggle Button for Desktop */}
+      <button
+        className="toggle-btn"
+        style={{ top: expanded ? '125px' : '10px' }}
+        onClick={toggleSidebar}
+      >
+        <span id="arrow-icon">{expanded ? '▲' : '▼'}</span>
+      </button>      
 
       {/* Hamburger Icon for Mobile */}
       <button className="hamburger" onClick={toggleMobileMenu}>
