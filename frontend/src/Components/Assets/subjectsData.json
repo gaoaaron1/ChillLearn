@@ -23,6 +23,12 @@
       "English": ["Comprehension", "Creative Writing", "Grammar"],
       "Social": ["History", "Geography", "Civics"]
     },
+    "grade4": {
+      "Math": ["Multiplication"],
+      "Science": ["Coming Soon..."],
+      "English": ["Coming Soon..."],
+      "Social": ["Coming Soon..."]
+    },      
     "grade7": {
       "Math": ["Adding Integers", "Subtracting Integers", "Multiplying Integers"],
       "Science": ["Coming Soon..."],
