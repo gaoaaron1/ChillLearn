@@ -16,6 +16,18 @@
       "Science": ["Matter", "Energy", "Earth & Space"],
       "English": ["Comprehension", "Creative Writing", "Grammar"],
       "Social": ["History", "Geography", "Civics"]
-    }
+    },
+    "grade3": {
+      "Math": ["Multiplication", "Division", "Fractions"],
+      "Science": ["Matter", "Energy", "Earth & Space"],
+      "English": ["Comprehension", "Creative Writing", "Grammar"],
+      "Social": ["History", "Geography", "Civics"]
+    },
+    "grade7": {
+      "Math": ["Adding Integers", "Subtracting Integers", "Multiplying Integers"],
+      "Science": ["Matter", "Energy", "Earth & Space"],
+      "English": ["Comprehension", "Creative Writing", "Grammar"],
+      "Social": ["History", "Geography", "Civics"]
+    }    
   }
   

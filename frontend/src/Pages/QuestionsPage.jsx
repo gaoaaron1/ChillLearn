@@ -12,8 +12,14 @@ const QuestionsPage = () => {
     const [timeTaken, setTimeTaken] = useState(null);
 
     useEffect(() => {
-        const loadedQuestions = questionsData[grade]?.[subject]?.[unit] || [];
-        setQuestions(loadedQuestions);
+        // Get the full list of questions (e.g., 25 questions for grade 7, subject Math, etc.)
+        const fullQuestions = questionsData[grade]?.[subject]?.[unit] || [];
+
+        // Shuffle the full question list and pick 10 random questions
+        const shuffledQuestions = fullQuestions.sort(() => Math.random() - 0.5);
+        const selectedQuestions = shuffledQuestions.slice(0, 10); // Take the first 10 after shuffle
+
+        setQuestions(selectedQuestions);
         setStartTime(Date.now()); // Record the start time when the component mounts
     }, [grade, subject, unit]);
 

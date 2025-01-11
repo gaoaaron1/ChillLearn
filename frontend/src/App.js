@@ -28,6 +28,8 @@ function App() {
           <Route path='/kindergarten' element={<SubjectContext banner={kindergarten_banner} category="kindergarten" />} />
           <Route path='/grade1' element={<SubjectContext banner={grade_banner} category="grade1" />} />
           <Route path='/grade2' element={<SubjectContext banner={grade_banner} category="grade2" />} />
+          <Route path='/grade3' element={<SubjectContext banner={grade_banner} category="grade3" />} />
+          <Route path='/grade7' element={<SubjectContext banner={grade_banner} category="grade7" />} />
           <Route path="/questions/:grade/:subject/:unit" element={<QuestionsPage />} />
 
           <Route path='/login' element={<LoginSignup />} />
