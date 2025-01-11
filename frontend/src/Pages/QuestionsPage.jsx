@@ -41,6 +41,9 @@ const QuestionsPage = () => {
             correctAnswer: question.answer,
         }));
         setResults(newResults);
+
+        // Scroll to the very bottom of the page after submitting
+        window.scrollTo(0, document.body.scrollHeight);
     };
 
     const calculateScore = () => {
@@ -95,6 +98,8 @@ const QuestionsPage = () => {
                     Submit
                 </button>
             </form>
+
+            {/* Results Summary Section at the Bottom */}
             {results && (
                 <div className="results-summary">
                     <h3>Results Summary</h3>

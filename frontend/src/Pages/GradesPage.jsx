@@ -61,6 +61,13 @@ function GradesPage() {
         >
           Grade 7
         </Link>
+        <Link
+          to="/grade9"
+          className={`grade-option ${selectedGrade === 'grade9' ? 'selected' : ''}`}
+          onClick={() => setSelectedGrade('grade9')}
+        >
+          Grade 9
+        </Link>
         {/* Add more grade options as needed */}
       </div>
     </div>

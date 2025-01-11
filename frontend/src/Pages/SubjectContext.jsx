@@ -41,6 +41,7 @@ const SubjectContext = (props) => {
             case 'grade2': return 'Grade 2';
             case 'grade3': return 'Grade 3';
             case 'grade7': return 'Grade 7';
+            case 'grade9': return 'Grade 9';
             case 'kindergarten': return 'Kindergarten';
             default: return 'Select Grade';
         }
@@ -62,7 +63,7 @@ const SubjectContext = (props) => {
                     </button>
                     {isDropdownOpen && (
                         <ul className="dropdown-menu">
-                            {["kindergarten", "grade1", "grade2", "grade3", "grade7"].map((gradeOption) => (
+                            {["kindergarten", "grade1", "grade2", "grade3", "grade7", "grade9"].map((gradeOption) => (
                                 <li key={gradeOption}>
                                     <button value={gradeOption} onClick={handleGradeChange}>
                                         {getGradeName(gradeOption)}

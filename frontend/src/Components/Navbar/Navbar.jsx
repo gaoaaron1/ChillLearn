@@ -109,7 +109,12 @@ const Navbar = () => {
                     <Link to="/grade7" onClick={() => { handleGradeSelection('grade2'); closeMobileMenu(); }}>
                       Grade 7
                     </Link>
-                  </li>                  
+                  </li>    
+                  <li>
+                    <Link to="/grade9" onClick={() => { handleGradeSelection('grade2'); closeMobileMenu(); }}>
+                      Grade 9
+                    </Link>
+                  </li>                
                 </ul>
               )}
             </li>
