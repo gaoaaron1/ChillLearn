@@ -38,6 +38,7 @@ const Navbar = () => {
   const menuItems = [
     { name: "About", path: "/about" },
     { name: "Contact Us", path: "/contact" },
+    { name: "Donate", path: "/donate" }, 
   ];
 
   const handleGradeSelection = (grade) => {

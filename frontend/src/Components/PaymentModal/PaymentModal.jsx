@@ -14,7 +14,7 @@ const PaymentModal = ({ isOpen, onClose }) => {
         onClose(); // Close the modal after submission
     };
 
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Don't render the modal if not open
 
     return (
         <div className="payment-modal-overlay">

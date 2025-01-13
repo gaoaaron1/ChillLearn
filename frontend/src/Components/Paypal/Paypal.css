@@ -1,0 +1,61 @@
+/* Paypal.css */
+
+/* Wrapper around the donation section */
+.paypal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Heading style */
+  .paypal-container h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* PayPal button container styling */
+  #paypal-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Styling for the Cancel button (if you have one) */
+  .cancel-button {
+    background-color: #f44336; /* Red color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .paypal-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .paypal-container h2 {
+      font-size: 1.2rem;
+    }
+  }
+  

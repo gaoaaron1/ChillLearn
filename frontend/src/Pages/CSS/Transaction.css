@@ -1,0 +1,40 @@
+/* Transaction.css */
+
+/* Wrapper for the entire donation transaction page */
+.transaction-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  /* Heading Style */
+  .transaction-container h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Message Style */
+  .message {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.5;
+    max-width: 500px;
+  }
+  
+  /* Optional: Center the PayPal button */
+  #paypal-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  

@@ -1,0 +1,133 @@
+{
+    "grade4": {
+        "Math": {
+        "Multiplication": [
+            {
+            "question": "What is 23 × 45?",
+            "options": ["1,55", "1,25", "1,45", "1,35"],
+            "answer": "1,35"
+            },
+            {
+            "question": "What is 56 × 32?",
+            "options": ["1,762", "1,872", "1,792", "1,682"],
+            "answer": "1,792"
+            },
+            {
+            "question": "What is 78 × 24?",
+            "options": ["1,862", "1,872", "1,782", "1,952"],
+            "answer": "1,872"
+            },
+            {
+            "question": "What is 41 × 23?",
+            "options": ["963", "953", "943", "933"],
+            "answer": "943"
+            },
+            {
+            "question": "What is 67 × 21?",
+            "options": ["1,377", "1,407", "1,427", "1,387"],
+            "answer": "1,407"
+            },
+            {
+            "question": "What is 89 × 12?",
+            "options": ["1,048", "1,078", "1,068", "1,088"],
+            "answer": "1,068"
+            },
+            {
+            "question": "What is 34 × 52?",
+            "options": ["1,768", "1,748", "1,788", "1,728"],
+            "answer": "1,768"
+            },
+            {
+            "question": "What is 25 × 47?",
+            "options": ["1,185", "1,195", "1,165", "1,175"],
+            "answer": "1,175"
+            },
+            {
+            "question": "What is 63 × 34?",
+            "options": ["2,132", "2,142", "2,152", "2,162"],
+            "answer": "2,142"
+            },
+            {
+            "question": "What is 81 × 19?",
+            "options": ["1,549", "1,539", "1,519", "1,529"],
+            "answer": "1,539"
+            },
+            {
+            "question": "What is 7 × 312?",
+            "options": ["2,194", "2,174", "2,184", "2,164"],
+            "answer": "2,184"
+            },
+            {
+            "question": "What is 8 × 214?",
+            "options": ["1,712", "1,722", "1,742", "1,732"],
+            "answer": "1,712"
+            },
+            {
+            "question": "What is 9 × 146?",
+            "options": ["1,304", "1,334", "1,324", "1,314"],
+            "answer": "1,314"
+            },
+            {
+            "question": "What is 6 × 453?",
+            "options": ["2,738", "2,728", "2,718", "2,708"],
+            "answer": "2,718"
+            },
+            {
+            "question": "What is 8 × 238?",
+            "options": ["1,934", "1,924", "1,904", "1,914"],
+            "answer": "1,904"
+            },
+            {
+            "question": "What is 7 × 305?",
+            "options": ["2,155", "2,145", "2,135", "2,125"],
+            "answer": "2,135"
+            },
+            {
+            "question": "What is 5 × 432?",
+            "options": ["2,140", "2,160", "2,150", "2,170"],
+            "answer": "2,160"
+            },
+            {
+            "question": "What is 6 × 213?",
+            "options": ["1,288", "1,278", "1,258", "1,268"],
+            "answer": "1,278"
+            },
+            {
+            "question": "What is 7 × 148?",
+            "options": ["1,066", "1,056", "1,046", "1,036"],
+            "answer": "1,036"
+            },
+            {
+            "question": "What is 5 × 324?",
+            "options": ["1,620", "1,610", "1,630", "1,640"],
+            "answer": "1,620"
+            },
+            {
+            "question": "What is 23 × 7?",
+            "options": ["171", "151", "161", "181"],
+            "answer": "161"
+            },
+            {
+            "question": "What is 18 × 4?",
+            "options": ["74", "72", "68", "76"],
+            "answer": "72"
+            },
+            {
+            "question": "What is 16 × 5?",
+            "options": ["70", "90", "80", "85"],
+            "answer": "80"
+            },
+            {
+            "question": "What is 21 × 3?",
+            "options": ["53", "83", "73", "63"],
+            "answer": "63"
+            },
+            {
+            "question": "What is 19 × 2?",
+            "options": ["40", "39", "36", "38"],
+            "answer": "38"
+            }
+        ]
+        }
+    }
+}

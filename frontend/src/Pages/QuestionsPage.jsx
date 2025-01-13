@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import questionsData from '../../src/Components/Assets/questionsData.json';
 import './CSS/QuestionsPage.css';
 
 const QuestionsPage = () => {
@@ -12,15 +11,32 @@ const QuestionsPage = () => {
     const [timeTaken, setTimeTaken] = useState(null);
 
     useEffect(() => {
-        // Get the full list of questions (e.g., 25 questions for grade 7, subject Math, etc.)
-        const fullQuestions = questionsData[grade]?.[subject]?.[unit] || [];
+        // Dynamically import the corresponding JSON file for the selected grade
+        const loadQuestionsData = async () => {
+            try {
+                const response = await fetch(`/data/${grade}Questions.json`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load data for grade ${grade}`);
+                }
+                
+                const data = await response.json();
+                const subjectData = data[grade]?.[subject]?.[unit]; // Accessing the questions for the selected grade, subject, and unit
+                
+                if (subjectData && subjectData.length) {
+                    const shuffledQuestions = subjectData.sort(() => Math.random() - 0.5);
+                    const selectedQuestions = shuffledQuestions.slice(0, 10); // Select 10 random questions
+                    setQuestions(selectedQuestions);
+                } else {
+                    console.error(`No questions found for grade ${grade}, subject ${subject}, unit ${unit}`);
+                }
+        
+            } catch (error) {
+                console.error("Error loading questions data:", error);
+            }
+        };
+        
 
-        // Shuffle the full question list and pick 10 random questions
-        const shuffledQuestions = fullQuestions.sort(() => Math.random() - 0.5);
-        const selectedQuestions = shuffledQuestions.slice(0, 10); // Take the first 10 after shuffle
-
-        setQuestions(selectedQuestions);
-        setStartTime(Date.now()); // Record the start time when the component mounts
+        loadQuestionsData();
     }, [grade, subject, unit]);
 
     const handleAnswerSelect = (questionIndex, selectedOption) => {
