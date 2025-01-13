@@ -6,7 +6,7 @@ import { useGradeContext } from '../Context/GradeContext';
 
 const SubjectContext = (props) => {
     const [expandedSubjects, setExpandedSubjects] = useState({});
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
     const { grade } = useParams();
     const { selectedGrade, setSelectedGrade } = useGradeContext();
@@ -28,11 +28,15 @@ const SubjectContext = (props) => {
         navigate(`/questions/${selectedGrade}/${subject}/${unit}`);
     };
 
+    const handleTutorialClick = (subject, unit) => {
+        navigate(`/tutorial/${selectedGrade}/${subject}/${unit}`);
+    };
+
     const handleGradeChange = (e) => {
         const newGrade = e.target.value;
         setSelectedGrade(newGrade);
         navigate(`/${newGrade}`);
-        setIsDropdownOpen(false); 
+        setIsDropdownOpen(false);
     };
 
     const getGradeName = (grade) => {
@@ -76,23 +80,40 @@ const SubjectContext = (props) => {
                 </div>
             </div>
             <div className="subjects">
-                {Object.keys(subjects).map((subject) => (
-                    <div key={subject} className="subject-container">
-                        <button className="expand-btn" onClick={() => handleExpandToggle(subject)}>
-                            {subject} {expandedSubjects[subject] ? '-' : '+'}
-                        </button>
-                        {expandedSubjects[subject] && (
-                            <div className="topics">
-                                {subjects[subject].map((unit, index) => (
-                                    <div key={index} className="unit-item" onClick={() => handleUnitSelection(subject, unit)}>
-                                        {unit}
-                                    </div>
-                                ))}
+    {Object.keys(subjects).map((subject) => (
+        <div key={subject} className="subject-container">
+            <button className="expand-btn" onClick={() => handleExpandToggle(subject)}>
+                {subject} {expandedSubjects[subject] ? '-' : '+'}
+            </button>
+            {expandedSubjects[subject] && (
+                <div className="topics">
+                    {subjects[subject].map((unit, index) => (
+                        <div key={index} className="unit-item">
+                            <div className="unit-header">
+                                <span className="topic-tag">{unit.unit}</span>
+                                <div className="unit-actions">
+                                    <button
+                                        className="test-btn"
+                                        onClick={() => handleUnitSelection(subject, unit.unit)}
+                                    >
+                                        Test
+                                    </button>
+                                    <button
+                                        className="tutorial-btn"
+                                        onClick={() => handleTutorialClick(subject, unit.unit)}
+                                    >
+                                        Tutorial
+                                    </button>
+                                </div>
                             </div>
-                        )}
-                    </div>
-                ))}
-            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    ))}
+</div>
+
         </div>
     );
 };

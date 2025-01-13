@@ -118,6 +118,7 @@
     cursor: pointer;
 }
 
+/* Topic and buttons layout */
 .topics {
     margin: 10px 0;
     padding: 10px;
@@ -129,26 +130,64 @@
 }
 
 .unit-item {
-    padding: 5px 10px;
-    cursor: pointer;
+    padding: 10px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.unit-item:hover {
-    background-color: #e0e0e0;
+.unit-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
-/* Media Queries */
+.topic-tag {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.unit-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.test-btn,
+.tutorial-btn {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.test-btn:hover,
+.tutorial-btn:hover {
+    background-color: #45a049;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .subject-context {
-        padding: 10px;
+    .unit-item {
+        flex-direction: column;
+        align-items: flex-start;
     }
-    .dropdown-btn {
-        font-size: 14px;
+
+    .unit-actions {
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 5px;
     }
-    .expand-btn {
+
+    .topic-tag {
         font-size: 14px;
     }
 }

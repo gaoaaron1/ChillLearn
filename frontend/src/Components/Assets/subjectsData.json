@@ -1,45 +1,320 @@
 {
-    "kindergarten": {
-      "Math": ["Counting", "Shapes", "Patterns"],
-      "Science": ["Plants", "Animals", "Weather"],
-      "English": ["Letter Recognition", "Phonics", "Simple Sentences"],
-      "Social": ["Community", "Family", "Basic Geography"]
-    },
-    "grade1": {
-      "Math": ["Addition", "Subtraction", "Place Value"],
-      "Science": ["Forces", "Magnets", "Living Things"],
-      "English": ["Reading", "Writing", "Grammar"],
-      "Social": ["Maps", "Basic History", "Government"]
-    },
-    "grade2": {
-      "Math": ["Multiplication", "Division", "Fractions"],
-      "Science": ["Matter", "Energy", "Earth & Space"],
-      "English": ["Comprehension", "Creative Writing", "Grammar"],
-      "Social": ["History", "Geography", "Civics"]
-    },
-    "grade3": {
-      "Math": ["Multiplication", "Division", "Fractions"],
-      "Science": ["Matter", "Energy", "Earth & Space"],
-      "English": ["Comprehension", "Creative Writing", "Grammar"],
-      "Social": ["History", "Geography", "Civics"]
-    },
-    "grade4": {
-      "Math": ["Multiplication"],
-      "Science": ["Coming Soon..."],
-      "English": ["Coming Soon..."],
-      "Social": ["Coming Soon..."]
-    },      
-    "grade7": {
-      "Math": ["Adding Integers", "Subtracting Integers", "Multiplying Integers"],
-      "Science": ["Coming Soon..."],
-      "English": ["Coming Soon..."],
-      "Social": ["Coming Soon..."]
-    },    
-    "grade9": {
-      "Math": ["Simplifying Polynomials"],
-      "Science": ["Coming Soon..."],
-      "English": ["Coming Soon..."],
-      "Social": ["Coming Soon..."]
-    }      
+  "kindergarten": {
+    "Math": [
+      {
+        "unit": "Counting",
+        "tutorialVideo": "https://www.youtube.com/watch?v=vN0aL-_vIKM"
+      },
+      {
+        "unit": "Shapes",
+        "tutorialVideo": "https://www.youtube.com/watch?v=anotherVideoID"
+      },
+      {
+        "unit": "Patterns",
+        "tutorialVideo": "https://www.youtube.com/watch?v=yetAnotherVideoID"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Plants",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForPlants"
+      },
+      {
+        "unit": "Animals",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForAnimals"
+      },
+      {
+        "unit": "Weather",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForWeather"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Letter Recognition",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForLetterRecognition"
+      },
+      {
+        "unit": "Phonics",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForPhonics"
+      },
+      {
+        "unit": "Simple Sentences",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForSimpleSentences"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Community",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForCommunity"
+      },
+      {
+        "unit": "Family",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForFamily"
+      },
+      {
+        "unit": "Basic Geography",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForBasicGeography"
+      }
+    ]
+  },
+  "grade1": {
+    "Math": [
+      {
+        "unit": "Addition",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForAddition"
+      },
+      {
+        "unit": "Subtraction",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForSubtraction"
+      },
+      {
+        "unit": "Place Value",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForPlaceValue"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Forces",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForForces"
+      },
+      {
+        "unit": "Magnets",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMagnets"
+      },
+      {
+        "unit": "Living Things",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForLivingThings"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Reading",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForReading"
+      },
+      {
+        "unit": "Writing",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForWriting"
+      },
+      {
+        "unit": "Grammar",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGrammar"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Maps",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMaps"
+      },
+      {
+        "unit": "Basic History",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForHistory"
+      },
+      {
+        "unit": "Government",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGovernment"
+      }
+    ]
+  },
+  "grade2": {
+    "Math": [
+      {
+        "unit": "Multiplication",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplication"
+      },
+      {
+        "unit": "Division",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForDivision"
+      },
+      {
+        "unit": "Fractions",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForFractions"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Matter",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMatter"
+      },
+      {
+        "unit": "Energy",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForEnergy"
+      },
+      {
+        "unit": "Earth & Space",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForEarthSpace"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Comprehension",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForComprehension"
+      },
+      {
+        "unit": "Creative Writing",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForCreativeWriting"
+      },
+      {
+        "unit": "Grammar",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGrammarGrade2"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "History",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForHistoryGrade2"
+      },
+      {
+        "unit": "Geography",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGeographyGrade2"
+      },
+      {
+        "unit": "Civics",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForCivics"
+      }
+    ]
+  },
+  "grade3": {
+    "Math": [
+      {
+        "unit": "Multiplication",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplicationGrade3"
+      },
+      {
+        "unit": "Division",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForDivisionGrade3"
+      },
+      {
+        "unit": "Fractions",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForFractionsGrade3"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Matter",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMatterGrade3"
+      },
+      {
+        "unit": "Energy",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForEnergyGrade3"
+      },
+      {
+        "unit": "Earth & Space",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForEarthSpaceGrade3"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Comprehension",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForComprehensionGrade3"
+      },
+      {
+        "unit": "Creative Writing",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForCreativeWritingGrade3"
+      },
+      {
+        "unit": "Grammar",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGrammarGrade3"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "History",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForHistoryGrade3"
+      },
+      {
+        "unit": "Geography",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForGeographyGrade3"
+      },
+      {
+        "unit": "Civics",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForCivicsGrade3"
+      }
+    ]
+  },
+  "grade4": {
+    "Math": [
+      {
+        "unit": "Multiplication",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplicationGrade4"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ]
+  },
+  "grade7": {
+    "Math": [
+      {
+        "unit": "Adding Integers",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForAddingIntegers"
+      },
+      {
+        "unit": "Subtracting Integers",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForSubtractingIntegers"
+      },
+      {
+        "unit": "Multiplying Integers",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplyingIntegers"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ]
+  },
+  "grade9": {
+    "Math": [
+      {
+        "unit": "Simplifying Polynomials",
+        "tutorialVideo": "https://www.youtube.com/embed/vN0aL-_vIKM?autoplay=1"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ]
   }
-  
+}
