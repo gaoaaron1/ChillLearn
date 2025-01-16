@@ -306,7 +306,11 @@
     ],
     "English": [
       {
-        "unit": "Coming Soon...",
+        "unit": "Urban Green Spaces",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      },
+      {
+        "unit": "Dream of the Garden",
         "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
       }
     ],

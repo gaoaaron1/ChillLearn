@@ -26,6 +26,7 @@ const QuestionsPage = () => {
                     const shuffledQuestions = subjectData.sort(() => Math.random() - 0.5);
                     const selectedQuestions = shuffledQuestions.slice(0, 10); // Select 10 random questions
                     setQuestions(selectedQuestions);
+                    setStartTime(Date.now()); // Set the start time when questions are loaded
                 } else {
                     console.error(`No questions found for grade ${grade}, subject ${subject}, unit ${unit}`);
                 }
@@ -35,7 +36,6 @@ const QuestionsPage = () => {
             }
         };
         
-
         loadQuestionsData();
     }, [grade, subject, unit]);
 
@@ -47,6 +47,11 @@ const QuestionsPage = () => {
     };
 
     const handleSubmit = () => {
+        if (!startTime) {
+            console.error("Quiz start time is not set.");
+            return;
+        }
+
         const endTime = Date.now();
         const elapsedSeconds = Math.floor((endTime - startTime) / 1000);
         setTimeTaken(elapsedSeconds);
