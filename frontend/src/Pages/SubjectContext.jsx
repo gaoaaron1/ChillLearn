@@ -15,6 +15,7 @@ const SubjectContext = (props) => {
         if (grade) setSelectedGrade(grade);
     }, [grade, setSelectedGrade]);
 
+    // Get the subjects for the selected grade
     const subjects = selectedGrade ? subjectsData[selectedGrade] : subjectsData["kindergarten"];
 
     const handleExpandToggle = (subject) => {
@@ -39,22 +40,20 @@ const SubjectContext = (props) => {
         setIsDropdownOpen(false);
     };
 
+    // Dynamically get the grade names from the subjectsData
     const getGradeName = (grade) => {
         switch (grade) {
-            case 'grade1': return 'Grade 1';
-            case 'grade2': return 'Grade 2';
-            case 'grade3': return 'Grade 3';
-            case 'grade4': return 'Grade 4';
-            case 'grade7': return 'Grade 7';
-            case 'grade9': return 'Grade 9';
             case 'kindergarten': return 'Kindergarten';
-            default: return 'Select Grade';
+            default: return `Grade ${grade.replace('grade', '')}`;
         }
     };
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
+
+    // Get all available grades from the subjectsData
+    const gradeOptions = Object.keys(subjectsData);
 
     return (
         <div className="subject-context">
@@ -68,7 +67,7 @@ const SubjectContext = (props) => {
                     </button>
                     {isDropdownOpen && (
                         <ul className="dropdown-menu">
-                            {["kindergarten", "grade1", "grade2", "grade3", "grade4", "grade7", "grade9"].map((gradeOption) => (
+                            {gradeOptions.map((gradeOption) => (
                                 <li key={gradeOption}>
                                     <button value={gradeOption} onClick={handleGradeChange}>
                                         {getGradeName(gradeOption)}
@@ -80,40 +79,39 @@ const SubjectContext = (props) => {
                 </div>
             </div>
             <div className="subjects">
-    {Object.keys(subjects).map((subject) => (
-        <div key={subject} className="subject-container">
-            <button className="expand-btn" onClick={() => handleExpandToggle(subject)}>
-                {subject} {expandedSubjects[subject] ? '-' : '+'}
-            </button>
-            {expandedSubjects[subject] && (
-                <div className="topics">
-                    {subjects[subject].map((unit, index) => (
-                        <div key={index} className="unit-item">
-                            <div className="unit-header">
-                                <span className="topic-tag">{unit.unit}</span>
-                                <div className="unit-actions">
-                                    <button
-                                        className="test-btn"
-                                        onClick={() => handleUnitSelection(subject, unit.unit)}
-                                    >
-                                        Test
-                                    </button>
-                                    <button
-                                        className="tutorial-btn"
-                                        onClick={() => handleTutorialClick(subject, unit.unit)}
-                                    >
-                                        Tutorial
-                                    </button>
-                                </div>
+                {Object.keys(subjects).map((subject) => (
+                    <div key={subject} className="subject-container">
+                        <button className="expand-btn" onClick={() => handleExpandToggle(subject)}>
+                            {subject} {expandedSubjects[subject] ? '-' : '+'}
+                        </button>
+                        {expandedSubjects[subject] && (
+                            <div className="topics">
+                                {subjects[subject].map((unit, index) => (
+                                    <div key={index} className="unit-item">
+                                        <div className="unit-header">
+                                            <span className="topic-tag">{unit.unit}</span>
+                                            <div className="unit-actions">
+                                                <button
+                                                    className="test-btn"
+                                                    onClick={() => handleUnitSelection(subject, unit.unit)}
+                                                >
+                                                    Test
+                                                </button>
+                                                <button
+                                                    className="tutorial-btn"
+                                                    onClick={() => handleTutorialClick(subject, unit.unit)}
+                                                >
+                                                    Tutorial
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    ))}
-</div>
-
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

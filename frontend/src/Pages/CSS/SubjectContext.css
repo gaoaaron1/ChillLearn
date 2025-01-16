@@ -18,9 +18,15 @@
 .grade-selector {
     margin: 20px 0;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px; /* Space between label and dropdown */
+    flex-wrap: wrap;
+}
+
+.grade-selector label {
+    font-size: 18px;
+    color: #333;
+    flex: 0 0 auto; /* Prevent the label from stretching */
 }
 
 .shopcategory-sort {

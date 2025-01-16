@@ -320,5 +320,35 @@
         "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
       }
     ]
+  },
+  "grade10": {
+    "Math": [
+      {
+        "unit": "Trignometry",
+        "tutorialVideo": "https://www.youtube.com/embed/vN0aL-_vIKM?autoplay=1"
+      }
+    ],
+    "Science": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "English": [
+      {
+        "unit": "Urban Green Spaces",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      },
+      {
+        "unit": "Dream of the Garden",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ],
+    "Social": [
+      {
+        "unit": "Coming Soon...",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }
+    ]
   }
 }

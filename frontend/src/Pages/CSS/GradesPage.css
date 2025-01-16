@@ -1,117 +1,109 @@
 .grades-page {
   text-align: center;
   padding: 50px;
+  background-color: #f0f4f8; /* Soft background color */
 }
 
 .grades-page h1 {
   font-size: 36px;
-  margin-bottom: 30px;
+  color: #333;
+  margin-bottom: 40px;
+  font-family: 'Arial', sans-serif;
 }
 
-.expand-btn {
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
-}
-
-.expand-btn:hover {
-  background-color: #45a049;
+.grade-options-container {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 20px;
+  max-height: 600px; /* Set a height for scrolling */
+  width: 100%;
 }
 
 .grade-options {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-  align-items: center;
-  overflow: hidden;
-  max-height: 0; /* Initially collapsed */
-  padding: 0; /* No padding initially */
-  transition: max-height 0.5s ease-out, padding 0.3s ease-out; /* Transition max-height and padding for smoothness */
-}
-
-.grade-options.expanded {
-  max-height: 500px; /* Ensure it’s large enough to reveal content when expanded */
-  padding: 20px 0; /* Add padding when expanded */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller buttons, more items per row */
+  gap: 15px; /* Reduced gap */
+  width: 100%;
 }
 
 .grade-option {
   background-color: #4caf50;
   color: white;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 10px;
+  padding: 12px 20px; /* Smaller padding */
+  font-size: 16px; /* Smaller font size */
   text-decoration: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
   text-align: center;
-  
-  /* Ensure all buttons are the same size */
-  width: 250px; /* Fixed width */
-  height: 60px; /* Fixed height */
+  border-radius: 8px; /* Slightly smaller border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+  transition: all 0.3s ease-in-out;
   display: flex;
-  align-items: center; /* Vertically center text */
-  justify-content: center; /* Horizontally center text */
+  justify-content: center;
+  align-items: center;
+  height: 80px; /* Smaller height */
+  transform: scale(1); /* Default scale */
 }
 
 .grade-option:hover {
-  transform: scale(1.1); /* Slightly expand the button on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
   background-color: #45a049; /* Darker green on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
 }
 
-/* Media Queries for Responsive Design */
+.grade-option.selected {
+  background-color: #388e3c; /* A different color to indicate selection */
+  border: 2px solid #ffffff; /* White border when selected */
+}
+
+.grade-options-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grade-options-container::-webkit-scrollbar-thumb {
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+.grade-options-container::-webkit-scrollbar-track {
+  background: #f0f4f8;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .grades-page h1 {
-      font-size: 28px; /* Smaller heading size on medium screens */
-      margin-bottom: 20px;
+    font-size: 30px;
+    margin-bottom: 20px;
   }
 
   .grade-options {
-      gap: 15px; /* Reduce gap on medium screens */
+    gap: 15px;
   }
 
   .grade-option {
-      padding: 12px 25px; /* Reduce padding on smaller screens */
-      font-size: 16px; /* Smaller text size */
-      width: 200px; /* Adjust width on medium screens */
-      height: 50px; /* Adjust height on medium screens */
+    padding: 10px 18px; /* Reduced padding */
+    font-size: 14px; /* Even smaller font size */
+    height: 70px; /* Reduced height */
   }
 }
 
 @media (max-width: 480px) {
   .grades-page {
-      padding: 20px; /* Reduce padding on small screens */
+    padding: 20px;
   }
 
   .grades-page h1 {
-      font-size: 24px; /* Even smaller font size on very small screens */
-      margin-bottom: 15px;
+    font-size: 24px;
+    margin-bottom: 15px;
   }
 
   .grade-options {
-      gap: 10px; /* Further reduce the gap on very small screens */
-      grid-template-columns: 1fr; /* Stack the options vertically */
+    gap: 10px;
   }
 
   .grade-option {
-      width: 100%; /* Make the grade options take full width */
-      padding: 12px 0; /* Adjust padding for full-width buttons */
-      font-size: 16px; /* Maintain the font size */
-      height: 50px; /* Keep consistent height */
-  }
-}
-
-/* For larger screens, use vertical layout */
-@media (min-width: 1024px) {
-  .grade-options {
-      display: flex; /* Use flex for larger screens */
-      flex-direction: column; /* Arrange items in a single vertical column */
-      gap: 30px; /* Increase gap between buttons */
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    height: 60px; /* Smaller height for mobile */
   }
 }

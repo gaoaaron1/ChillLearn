@@ -4,6 +4,7 @@ import logo from '../Assets/logo2.png';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
 import { useGradeContext } from '../../Context/GradeContext';
+import subjectsData from '../Assets/subjectsData.json';
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
@@ -23,24 +24,6 @@ const Navbar = () => {
     setMenuOpen(false); // Close the mobile menu after selecting an item
   };
 
-  const scrollToElement = (targetId, offset = 50) => {
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const offsetPosition = targetElement.offsetTop - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-      setExpanded(false); // Collapse sidebar after navigation
-    }
-  };
-
-  const menuItems = [
-    { name: "About", path: "/about" },
-    { name: "Contact Us", path: "/contact" },
-    { name: "Donate", path: "/donate" }, 
-  ];
-
   const handleGradeSelection = (grade) => {
     setSelectedGrade(grade); // Update the grade state in GradeContext
     setDropdownOpen(false); // Close the dropdown menu after selecting a grade
@@ -51,6 +34,9 @@ const Navbar = () => {
     event.preventDefault(); // Prevent default behavior (navigation)
     setDropdownOpen(!dropdownOpen); // Toggle dropdown on mobile
   };
+
+  // Dynamically generate grade options from subjectsData
+  const gradeOptions = Object.keys(subjectsData);
 
   return (
     <div className="sidebar2-container">
@@ -64,13 +50,15 @@ const Navbar = () => {
           </div>
 
           <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-            {menuItems.map((item) => (
-              <li key={item.name}>
-                <Link to={item.path} onClick={closeMobileMenu}>
-                  {item.name}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link to="/about" onClick={closeMobileMenu}>About</Link>
+            </li>
+            <li>
+              <Link to="/contact" onClick={closeMobileMenu}>Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/donate" onClick={closeMobileMenu}>Donate</Link>
+            </li>
 
             {/* Grades K-12 dropdown */}
             <li
@@ -91,36 +79,16 @@ const Navbar = () => {
               {/* Dropdown Menu */}
               {dropdownOpen && (
                 <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/kindergarten" onClick={() => { handleGradeSelection('kindergarten'); closeMobileMenu(); }}>
-                      Kindergarten
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/grade1" onClick={() => { handleGradeSelection('grade1'); closeMobileMenu(); }}>
-                      Grade 1
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/grade2" onClick={() => { handleGradeSelection('grade2'); closeMobileMenu(); }}>
-                      Grade 2
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/grade4" onClick={() => { handleGradeSelection('grade4'); closeMobileMenu(); }}>
-                      Grade 4
-                    </Link>
-                  </li>                     
-                  <li>
-                    <Link to="/grade7" onClick={() => { handleGradeSelection('grade7'); closeMobileMenu(); }}>
-                      Grade 7
-                    </Link>
-                  </li>                       
-                  <li>
-                    <Link to="/grade9" onClick={() => { handleGradeSelection('grade9'); closeMobileMenu(); }}>
-                      Grade 9
-                    </Link>
-                  </li>                
+                  {gradeOptions.map((grade) => (
+                    <li key={grade}>
+                      <Link 
+                        to={`/${grade}`} 
+                        onClick={() => { handleGradeSelection(grade); closeMobileMenu(); }}
+                      >
+                        {grade === 'kindergarten' ? 'Kindergarten' : `Grade ${grade.replace('grade', '')}`}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>

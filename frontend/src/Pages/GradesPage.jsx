@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/GradesPage.css'; // Import the CSS file
 import { useGradeContext } from '../Context/GradeContext';
 
 function GradesPage() {
   const { selectedGrade, setSelectedGrade } = useGradeContext();
-  const [isExpanded, setIsExpanded] = useState(true); // Manage expanded/collapsed state
 
   useEffect(() => {
     if (!selectedGrade) {
@@ -13,69 +12,29 @@ function GradesPage() {
     }
   }, [selectedGrade, setSelectedGrade]);
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded); // Toggle the expanded/collapsed state
-  };
+  // Array of grades
+  const grades = [
+    'kindergarten', 'grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6', 
+    'grade7', 'grade8', 'grade9', 'grade10', 'grade11', 'grade12'
+  ];
 
   return (
     <div className="grades-page">
       <h1>Select Your Grade Level</h1>
-      
-      <button className="expand-btn" onClick={toggleExpand}>
-        {isExpanded ? 'Collapse' : 'Expand'} Options
-      </button>
 
-      <div className={`grade-options ${isExpanded ? 'expanded' : 'collapsed'}`}>
-        <Link
-          to="/kindergarten"
-          className={`grade-option ${selectedGrade === 'kindergarten' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('kindergarten')}
-        >
-          Kindergarten
-        </Link>
-        <Link
-          to="/grade1"
-          className={`grade-option ${selectedGrade === 'grade1' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade1')}
-        >
-          Grade 1
-        </Link>
-        <Link
-          to="/grade2"
-          className={`grade-option ${selectedGrade === 'grade2' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade2')}
-        >
-          Grade 2
-        </Link>
-        <Link
-          to="/grade3"
-          className={`grade-option ${selectedGrade === 'grade3' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade3')}
-        >
-          Grade 3
-        </Link>
-        <Link
-          to="/grade4"
-          className={`grade-option ${selectedGrade === 'grade4' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade4')}
-        >
-          Grade 4
-          </Link>        
-        <Link
-          to="/grade7"
-          className={`grade-option ${selectedGrade === 'grade7' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade7')}
-        >
-          Grade 7
-        </Link>
-        <Link
-          to="/grade9"
-          className={`grade-option ${selectedGrade === 'grade9' ? 'selected' : ''}`}
-          onClick={() => setSelectedGrade('grade9')}
-        >
-          Grade 9
-        </Link>
-        {/* Add more grade options as needed */}
+      <div className="grade-options-container">
+        <div className="grade-options">
+          {grades.map((grade) => (
+            <Link
+              key={grade}
+              to={`/${grade}`}
+              className={`grade-option ${selectedGrade === grade ? 'selected' : ''}`}
+              onClick={() => setSelectedGrade(grade)}
+            >
+              {grade.charAt(0).toUpperCase() + grade.slice(1).replace(/grade(\d+)/, 'Grade $1')}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
