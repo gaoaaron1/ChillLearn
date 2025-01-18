@@ -3,6 +3,11 @@ import React from 'react';
 const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, results }) => {
     return (
         <div className="question-item">
+            {questionItem.image && (
+                <div className="question-image">
+                    <img src={questionItem.image} alt={`Question ${index + 1}`} />
+                </div>
+            )}
             <p className="question-text">
                 {index + 1}. {questionItem.question}
             </p>
