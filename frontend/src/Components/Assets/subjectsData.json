@@ -291,6 +291,14 @@
       }
     ]
   },
+  "grade8": {
+    "Math": [
+      {
+        "unit": "Pythagorean Theorem",
+        "tutorialVideo": "https://www.youtube.com/embed/vN0aL-_vIKM?autoplay=1"
+      }
+    ]
+  },
   "grade9": {
     "Math": [
       {

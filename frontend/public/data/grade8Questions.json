@@ -1,0 +1,84 @@
+{
+    "grade8": {
+      "Math": {
+        "Pythagorean Theorem": [
+          {
+            "question": "Find the length of c",
+            "options": ["7", "4", "1", "5"],
+            "answer": "5",
+            "image": "https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/277/2017/04/24223738/CNX_BMath_Figure_09_03_053_img-01.png"
+          },
+          {
+            "question": "Find the length of c",
+            "options": ["2", "14", "10", "12"],
+            "answer": "10",
+            "image": "https://files.mtstatic.com/site_4425/18144/0?Expires=1737179095&Signature=vNz9GYawS9ygHfKjUS0srWMgGn81vnm~20cARSi6Fq3FV7z2tj8GiU~actPNVVmJwARhFcRLtN29snLvmzBLLloH2Z~ZH56hhIB7YVi3lXbgKuDkNilwsX3GrfVohkm15ToS0D0Tg482OY24Nn1CS5y9qmrEdVMT1WPn3xKjR78_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA"
+          },
+          {
+            "question": "Find the length of the ladder (Round to nearest whole number)",
+            "options": ["20 feet", "24 feet", "40 feet", "36 feet"],
+            "answer": "20 feet",
+            "image": "https://www.chilimath.com/wp-content/uploads/2022/09/ladder-word-problem-pythagorean-theorem.png"
+          },
+          {
+            "question": "What is the height of the wall? (Round to nearest whole number)",
+            "options": ["15ft", "18ft", "17ft", "28ft"],
+            "answer": "18ft",
+            "image": "https://ph-static.z-dn.net/files/d91/d0f9026ee0e081713cbb1a3a20607fd5.jpg"
+          },
+          {
+            "question": "A tree casts a shadow. Find the length of the line from top of tree to edge of shadow.",
+            "options": ["17 ft", "23 ft", "8 ft", "20 ft"],
+            "answer": "17 ft",
+            "image": "https://media.baamboozle.com/uploads/images/116714/1632181301_19876.png"
+          },
+          {
+            "question": "A rectangular garden has a diagonal of 10 meters and one side that measures 6 meters. What is the length of the other side?",
+            "options": ["8", "9", "12", "15"],
+            "answer": "8"
+          },
+          {
+            "question": "The diagonal of a square has a length of 12 cm. What is the length of one side of the square?",
+            "options": ["6", "8", "10", "12"],
+            "answer": "6"
+          },
+          {
+            "question": "In a right triangle, the length of one leg is 8 units and the hypotenuse is 17 units. What is the length of the other leg?",
+            "options": ["10", "12", "13", "15"],
+            "answer": "15"
+          },
+          {
+            "question": "A right triangle has legs of lengths 12 units and 16 units. What is the length of the hypotenuse?",
+            "options": ["20", "22", "25", "24"],
+            "answer": "20"
+          },
+          {
+            "question": "A right triangle has legs of lengths 5 and 12 units. What is the length of the hypotenuse?",
+            "options": ["13", "14", "15", "16"],
+            "answer": "13"
+          },
+          {
+            "question": "A rectangular swimming pool has a length of 15 feet and a width of 9 feet. What is the diagonal distance across the pool?",
+            "options": ["17", "18", "19", "20"],
+            "answer": "17"
+          },
+          {
+            "question": "A right triangle has one leg of length 6 cm and the hypotenuse of length 10 cm. What is the length of the other leg?",
+            "options": ["4", "5", "6", "7"],
+            "answer": "8"
+          },
+          {
+            "question": "A right triangle has one leg measuring 9 units and the other leg measuring 12 units. What is the length of the hypotenuse?",
+            "options": ["15", "17", "18", "20"],
+            "answer": "15"
+          },
+          {
+            "question": "A tree casts a shadow that is 10 meters long. The height of the tree is 24 meters. What is the distance from the top of the tree to the tip of the shadow?",
+            "options": ["26", "25", "24", "22"],
+            "answer": "26"
+          }
+        ]
+      }
+    }
+  }
+  
