@@ -1,40 +1,80 @@
-/* Transaction.css */
+/* Outer wrapper for the background image */
+.transaction-bg {
+  background-image: url('../../Components/Assets/bg_studying.jpg'); /* Path to your background image */
+  background-size: cover; /* Make sure the background covers the entire area */
+  background-position: center; /* Center the background image */
+  background-attachment: fixed; /* Keep the background fixed during scrolling */
+  min-height: 100vh; /* Ensure the background takes up the full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Optional: Add some padding around the container */
+}
 
-/* Wrapper for the entire donation transaction page */
 .transaction-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Ensure content is centered vertically */
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background for the container */
+  border-radius: 10px;
+  max-width: 600px;  /* Set the same width as the PayPal container */
+  width: 100%; /* Ensure it takes full available width up to the max-width */
+  margin: 20px auto; /* Center horizontally */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better contrast */
+  text-align: center; 
+  left: 100px;
+}
+
+/* Heading Style */
+.transaction-container h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Message Style */
+.message {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+/* Optional: Center the PayPal button */
+#paypal-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .transaction-container {
+    padding: 15px;
+    width: 90%;
   }
-  
-  /* Heading Style */
+
   .transaction-container h1 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 1.5rem;
   }
-  
-  /* Message Style */
+
   .message {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .transaction-container h1 {
     font-size: 1.2rem;
-    color: #34495e;
-    margin-bottom: 30px;
-    text-align: center;
-    line-height: 1.5;
-    max-width: 500px;
   }
-  
-  /* Optional: Center the PayPal button */
-  #paypal-button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+
+  .message {
+    font-size: 0.9rem;
   }
-  
+}

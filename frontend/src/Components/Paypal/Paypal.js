@@ -84,8 +84,6 @@ const Paypal = () => {
 
   return (
     <div className="paypal-container">
-      <h2>Your donation means a lot!</h2>
-      <p>By donating, you're helping support educational resources.</p>
       <div>
         <label htmlFor="donationAmount">Enter your donation amount (CAD): </label>
         <input
