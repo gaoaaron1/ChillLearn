@@ -236,6 +236,10 @@
       {
         "unit": "Multiplication",
         "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplicationGrade4"
+      },
+      {
+        "unit": "Subtraction",
+        "tutorialVideo": "https://www.youtube.com/watch?v=videoIDForMultiplicationGrade4"
       }
     ],
     "Science": [
@@ -320,7 +324,11 @@
       {
         "unit": "Dream of the Garden",
         "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
-      }
+      },
+      {
+        "unit": "Vision Article",
+        "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
+      }      
     ],
     "Social": [
       {
