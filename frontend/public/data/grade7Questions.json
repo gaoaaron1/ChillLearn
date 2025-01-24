@@ -357,6 +357,161 @@
             "answer": "-5"
             }
         ]
-        }
+        },
+
+        "Science": {
+            "Science Midterm": [
+      {
+        "question": "Which of the following is an abiotic factor in an ecosystem?",
+        "options": ["Plants", "Animals", "Soil", "Bacteria"],
+        "answer": "Soil"
+      },
+      {
+        "question": "What type of symbiotic relationship benefits one species while the other is unaffected?",
+        "options": ["Mutualism", "Commensalism", "Parasitism", "Predation"],
+        "answer": "Commensalism"
+      },
+      {
+        "question": "Which of the following is NOT a basic need of all organisms?",
+        "options": ["Shelter", "Food", "Predators", "Water"],
+        "answer": "Predators"
+      },
+      {
+        "question": "Which human activity is a significant contributor to ecosystem damage?",
+        "options": ["Recycling", "Conserving water", "Dumping garbage into the ocean", "Planting trees"],
+        "answer": "Dumping garbage into the ocean"
+      },
+      {
+        "question": "Which of the following is a producer in an ecosystem?",
+        "options": ["Grass", "Rabbit", "Hawk", "Mushroom"],
+        "answer": "Grass"
+      },
+      {
+        "question": "In the water cycle, water vapor turns into liquid water through:",
+        "options": ["Evaporation", "Condensation", "Precipitation", "Infiltration"],
+        "answer": "Condensation"
+      },
+      {
+        "question": "What process converts carbon dioxide and water into glucose and oxygen?",
+        "options": ["Respiration", "Photosynthesis", "Decomposition", "Combustion"],
+        "answer": "Photosynthesis"
+      },
+      {
+        "question": "Decomposers play a critical role in ecosystems by:",
+        "options": ["Producing oxygen", "Breaking down dead matter", "Storing energy", "Consuming plants"],
+        "answer": "Breaking down dead matter"
+      },
+      {
+        "question": "Which of the following is an example of bioinvasion?",
+        "options": ["Planting native species", "Introducing a foreign fish species to a lake", "Preserving local wildlife", "Conserving water"],
+        "answer": "Introducing a foreign fish species to a lake"
+      },
+      {
+        "question": "Which species is most likely to colonize a barren environment during primary succession?",
+        "options": ["Trees", "Shrubs", "Pioneer species like mosses and lichens", "Grass"],
+        "answer": "Pioneer species like mosses and lichens"
+      },
+      {
+        "question": "Competition between organisms in an ecosystem occurs when:",
+        "options": ["Resources are abundant", "There are no predators", "Resources are limited", "Only one species is present"],
+        "answer": "Resources are limited"
+      },
+      {
+        "question": "Which of the following activities would help reduce your ecological footprint?",
+        "options": ["Driving a car daily", "Eating locally grown food", "Using disposable plastic bags", "Leaving lights on when not in use"],
+        "answer": "Eating locally grown food"
+      },
+      {
+        "question": "What is heat?",
+        "options": [
+          "The transfer of energy from a warmer object to a cooler object",
+          "The amount of matter in an object",
+          "The speed of particles in a substance",
+          "The temperature of an object"
+        ],
+        "answer": "The transfer of energy from a warmer object to a cooler object"
+      },
+      {
+        "question": "Which theory described heat as an invisible fluid?",
+        "options": ["Kinetic Theory", "Caloric Theory", "Particle Theory", "Thermodynamic Theory"],
+        "answer": "Caloric Theory"
+      },
+      {
+        "question": "Humans primarily use heat energy for:",
+        "options": ["Growing plants", "Powering electronic devices", "Cooking and heating homes", "Producing oxygen"],
+        "answer": "Cooking and heating homes"
+      },
+      {
+        "question": "How are the particles in a solid arranged?",
+        "options": [
+          "Closely packed with low kinetic energy",
+          "Far apart with high kinetic energy",
+          "Randomly arranged with moderate kinetic energy",
+          "Constantly colliding at high speeds"
+        ],
+        "answer": "Closely packed with low kinetic energy"
+      },
+      {
+        "question": "Heat differs from temperature because:",
+        "options": [
+          "Heat measures the average energy of particles, while temperature is energy transfer",
+          "Heat measures energy transfer, while temperature measures average particle energy",
+          "Both measure the same thing",
+          "Heat measures particle size"
+        ],
+        "answer": "Heat measures energy transfer, while temperature measures average particle energy"
+      },
+      {
+        "question": "A thermos keeps liquids warm by:",
+        "options": ["Reflecting radiation", "Preventing conduction", "Minimizing convection", "All of the above"],
+        "answer": "All of the above"
+      },
+      {
+        "question": "Passive solar heating relies on:",
+        "options": ["Solar panels", "Absorbing sunlight through windows and walls", "Burning fossil fuels", "Hydroelectric energy"],
+        "answer": "Absorbing sunlight through windows and walls"
+      },
+      {
+        "question": "A radiant floor heating system works by:",
+        "options": [
+          "Circulating hot air",
+          "Using heated water pipes under the floor",
+          "Burning wood for heat",
+          "Capturing solar energy"
+        ],
+        "answer": "Using heated water pipes under the floor"
+      },
+      {
+        "question": "Which of the following is NOT a fossil fuel?",
+        "options": ["Coal", "Oil", "Natural gas", "Solar energy"],
+        "answer": "Solar energy"
+      },
+      {
+        "question": "A major advantage of wind energy is that it:",
+        "options": ["Is non-renewable", "Produces greenhouse gases", "Is renewable and clean", "Requires fossil fuels"],
+        "answer": "Is renewable and clean"
+      },
+      {
+        "question": "Cogeneration is the process of:",
+        "options": [
+          "Using one energy source for multiple purposes",
+          "Generating energy from solar panels",
+          "Using wind turbines and hydroelectric dams together",
+          "Burning fossil fuels more efficiently"
+        ],
+        "answer": "Using one energy source for multiple purposes"
+      },
+      {
+        "question": "Which type of structure is built to resist external forces with a hollow design?",
+        "options": ["Solid structure", "Frame structure", "Shell structure", "Aesthetic structure"],
+        "answer": "Shell structure"
+      },
+      {
+        "question": "A bridge designed primarily for beauty rather than functionality is an example of:",
+        "options": ["Aesthetic design", "Functional design", "Solid structure", "Frame structure"],
+        "answer": "Aesthetic design"
+      }
+    
+    ]}        
     }
 }
