@@ -179,7 +179,110 @@
                     "options": ["11,111", "10,111", "12,111", "11,211"],
                     "answer": "11,111"
                 }
-            ]
+            ], 
+                "Long Division": [
+                    {
+                        "question": "What is 567 ÷ 3?",
+                        "options": ["189", "192", "187", "190"],
+                        "answer": "189"
+                    },
+                    {
+                        "question": "What is 1,234 ÷ 2?",
+                        "options": ["617", "618", "616", "615"],
+                        "answer": "617"
+                    },
+                    {
+                        "question": "What is 4,567 ÷ 7?",
+                        "options": ["651", "652", "653", "650"],
+                        "answer": "652"
+                    },
+                    {
+                        "question": "What is 8,910 ÷ 5?",
+                        "options": ["1,782", "1,781", "1,780", "1,779"],
+                        "answer": "1,782"
+                    },
+                    {
+                        "question": "What is 7,654 ÷ 6?",
+                        "options": ["1,276", "1,275", "1,274", "1,273"],
+                        "answer": "1,275"
+                    },
+                    {
+                        "question": "What is 12,345 ÷ 9?",
+                        "options": ["1,371", "1,372", "1,370", "1,373"],
+                        "answer": "1,371"
+                    },
+                    {
+                        "question": "What is 23,456 ÷ 8?",
+                        "options": ["2,932", "2,931", "2,930", "2,933"],
+                        "answer": "2,932"
+                    },
+                    {
+                        "question": "What is 45,678 ÷ 4?",
+                        "options": ["11,419", "11,420", "11,418", "11,421"],
+                        "answer": "11,419"
+                    },
+                    {
+                        "question": "What is 67,890 ÷ 10?",
+                        "options": ["6,789", "6,788", "6,790", "6,787"],
+                        "answer": "6,789"
+                    },
+                    {
+                        "question": "What is 99,999 ÷ 11?",
+                        "options": ["9,090", "9,091", "9,092", "9,093"],
+                        "answer": "9,090"
+                    },
+                    {
+                        "question": "What is 1,236 ÷ 3?",
+                        "options": ["412", "411", "410", "409"],
+                        "answer": "412"
+                    },
+                    {
+                        "question": "What is 874 ÷ 2?",
+                        "options": ["437", "436", "438", "439"],
+                        "answer": "437"
+                    },
+                    {
+                        "question": "What is 745 ÷ 5?",
+                        "options": ["149", "150", "148", "147"],
+                        "answer": "149"
+                    },
+                    {
+                        "question": "What is 312 ÷ 6?",
+                        "options": ["52", "51", "53", "54"],
+                        "answer": "52"
+                    },
+                    {
+                        "question": "What is 256 ÷ 4?",
+                        "options": ["64", "65", "63", "62"],
+                        "answer": "64"
+                    },
+                    {
+                        "question": "What is 1,008 ÷ 8?",
+                        "options": ["126", "127", "125", "124"],
+                        "answer": "126"
+                    },
+                    {
+                        "question": "What is 648 ÷ 9?",
+                        "options": ["72", "71", "73", "74"],
+                        "answer": "72"
+                    },
+                    {
+                        "question": "What is 1,024 ÷ 4?",
+                        "options": ["256", "257", "255", "254"],
+                        "answer": "256"
+                    },
+                    {
+                        "question": "What is 972 ÷ 3?",
+                        "options": ["324", "325", "323", "326"],
+                        "answer": "324"
+                    },
+                    {
+                        "question": "What is 540 ÷ 5?",
+                        "options": ["108", "109", "107", "110"],
+                        "answer": "108"
+                    }                    
+                ]
+            
         }
     }
 }
