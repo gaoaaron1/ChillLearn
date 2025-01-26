@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Whiteboard from './Whiteboard';
 import ToolButtons from './ToolButtons';
 import AdjustTools from './AdjustTools';
-import './DropdownContainer.css';
+import './BoardContainer.css';
 
-const DropdownContainer = () => {
+const BoardContainer = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tool, setTool] = useState('pencil'); // Default tool is pencil
-  const [showDropdown, setShowDropdown] = useState(false); // Control the visibility of the dropdown
+  const [showboard, setShowboard] = useState(false); // Control the visibility of the board
 
   // State for customizing pencil and eraser settings
   const [pencilSize, setPencilSize] = useState(5);
@@ -22,8 +22,8 @@ const DropdownContainer = () => {
     setTool(toolType);
   };
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const toggleboard = () => {
+    setShowboard(!showboard);
   };
 
   const handlePencilSizeChange = (e) => {
@@ -40,23 +40,23 @@ const DropdownContainer = () => {
 
   return (
     <>
-      <button className="dropdown-btn" onClick={toggleContainer}>
+      <button className="board-btn" onClick={toggleContainer}>
         {isExpanded ? '▼' : '▲'}
       </button>
 
       {isExpanded && (
-        <div className="dropdown-container">
+        <div className="board-container">
           <ToolButtons tool={tool} handleToolChange={handleToolChange} />
 
-          {/* Adjust Tools Dropdown Button */}
-          <div className="adjust-tools-dropdown">
-            <button className="adjust-tools-btn" onClick={toggleDropdown}>
+          {/* Adjust Tools board Button */}
+          <div className="adjust-tools-board">
+            <button className="adjust-tools-btn" onClick={toggleboard}>
               Adjust Tools
             </button>
 
-            {/* Dropdown Menu */}
-            {showDropdown && (
-              <div className="dropdown-menu">
+            {/* board Menu */}
+            {showboard && (
+              <div className="board-tool-menu">
                 <AdjustTools
                   pencilSize={pencilSize}
                   eraserSize={eraserSize}
@@ -81,4 +81,4 @@ const DropdownContainer = () => {
   );
 };
 
-export default DropdownContainer;
+export default BoardContainer;

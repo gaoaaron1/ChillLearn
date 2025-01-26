@@ -1,5 +1,5 @@
-/* Add styles for the dropdown container */
-.dropdown-container {
+/* Add styles for the board container */
+.board-container {
     position: fixed;
     bottom: 50px; /* Space from the bottom of the screen */
     left: 50%;
@@ -16,14 +16,14 @@
     margin-bottom: 0px;
   }
   
-  /* Hover effect for the dropdown container */
-  .dropdown-container:hover {
+  /* Hover effect for the board container */
+  .board-container:hover {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   }
   
-  /* Style for the dropdown button */
-  .dropdown-btn {
+  /* Style for the board button */
+  .board-btn {
     position: fixed;
     bottom: 0px;
     left: 50%;
@@ -42,8 +42,8 @@
     z-index: 10;
   }
   
-  /* Style for the adjust tools dropdown */
-  .adjust-tools-dropdown {
+  /* Style for the adjust tools board */
+  .adjust-tools-board {
     position: relative;
   }
   
@@ -61,8 +61,8 @@
     background-color: #e0e0e0;
   }
   
-  /* Dropdown Menu */
-  .dropdown-menu {
+  /* board Menu */
+  .board-tool-menu {
     position: absolute;
     top: 40px; /* Space from button */
     left: 0;
@@ -75,7 +75,7 @@
     z-index: 100;
   }
   
-  /* Styling for input elements inside the dropdown */
+  /* Styling for input elements inside the board */
   .adjust-tools-container {
     padding: 10px;
     background-color: #f9f9f9;
