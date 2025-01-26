@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css'; // Import CSS
 import logo from '../Assets/logo2.png';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from 'react-router-dom';
 import { useGradeContext } from '../../Context/GradeContext';
-import subjectsData from '../Assets/subjectsData.json';
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(true); // Manage sidebar state
   const [menuOpen, setMenuOpen] = useState(false); // Manage mobile menu visibility
   const [dropdownOpen, setDropdownOpen] = useState(false); // Manage dropdown menu state
+  const [subjectsData, setSubjectsData] = useState(null); // State to store subjects data
   const { selectedGrade, setSelectedGrade } = useGradeContext();
+
+  useEffect(() => {
+    // Fetch the subjects data from GitHub
+    const fetchSubjectsData = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/gaoaaron1/chill-learn-data/main/subjectData.json');
+        const data = await response.json();
+        setSubjectsData(data);
+      } catch (error) {
+        console.error("Error fetching subjects data:", error);
+      }
+    };
+
+    fetchSubjectsData();
+  }, []);
+
+  // If subjectsData hasn't been loaded yet, show a loading state
+  if (!subjectsData) {
+    return <div>Loading...</div>;
+  }
+
+  // Dynamically generate grade options from subjectsData
+  const gradeOptions = Object.keys(subjectsData);
 
   const toggleSidebar = () => {
     setExpanded(!expanded);
@@ -34,9 +57,6 @@ const Navbar = () => {
     event.preventDefault(); // Prevent default behavior (navigation)
     setDropdownOpen(!dropdownOpen); // Toggle dropdown on mobile
   };
-
-  // Dynamically generate grade options from subjectsData
-  const gradeOptions = Object.keys(subjectsData);
 
   return (
     <div className="sidebar2-container">

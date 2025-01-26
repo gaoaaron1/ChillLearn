@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CSS/tutorialPage.css';
 
 const TutorialPage = () => {
     const { grade, subject, unit } = useParams();
     const navigate = useNavigate();
+    const [subjectsData, setSubjectsData] = useState(null); // State to store subjects data
+    const [videoLink, setVideoLink] = useState(null);
 
-    const getTutorialVideo = (grade, subject, unit) => {
-        const subjects = require('../../src/Components/Assets/subjectsData.json'); // Import the data
+    // Fetch the subjects data from GitHub
+    useEffect(() => {
+        const fetchSubjectsData = async () => {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/gaoaaron1/chill-learn-data/main/subjectData.json');
+                const data = await response.json();
+                setSubjectsData(data);
+            } catch (error) {
+                console.error("Error fetching subjects data:", error);
+            }
+        };
 
-        // Find the unit in the subjects data and return the tutorial video link
-        const unitData = subjects[grade]?.[subject]?.find(u => u.unit === unit);
-        return unitData ? unitData.tutorialVideo : null;
-    };
+        fetchSubjectsData();
+    }, []);
 
-    const videoLink = getTutorialVideo(grade, subject, unit);
+    // Extract the tutorial video link from subjects data
+    useEffect(() => {
+        if (subjectsData) {
+            const getTutorialVideo = (grade, subject, unit) => {
+                // Find the unit in the subjects data and return the tutorial video link
+                const unitData = subjectsData[grade]?.[subject]?.find(u => u.unit === unit);
+                return unitData ? unitData.tutorialVideo : null;
+            };
+
+            const videoLink = getTutorialVideo(grade, subject, unit);
+            setVideoLink(videoLink);
+        }
+    }, [subjectsData, grade, subject, unit]);
 
     // Navigate back to the topics page
     const handleBackClick = () => {
@@ -25,6 +46,10 @@ const TutorialPage = () => {
     const handleTestClick = () => {
         navigate(`/questions/${grade}/${subject}/${unit}`);
     };
+
+    if (!subjectsData) {
+        return <div>Loading...</div>; // Show loading message if subjects data is not loaded yet
+    }
 
     return (
         <div className="tutorial-page">

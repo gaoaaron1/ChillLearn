@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/SubjectContext.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import subjectsData from '../../src/Components/Assets/subjectsData.json';
 import { useGradeContext } from '../Context/GradeContext';
 
 const SubjectContext = (props) => {
     const [expandedSubjects, setExpandedSubjects] = useState({});
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [subjectsData, setSubjectsData] = useState(null); // State to store the fetched subjects data
     const navigate = useNavigate();
     const { grade } = useParams();
     const { selectedGrade, setSelectedGrade } = useGradeContext();
@@ -14,6 +14,26 @@ const SubjectContext = (props) => {
     useEffect(() => {
         if (grade) setSelectedGrade(grade);
     }, [grade, setSelectedGrade]);
+
+    // Fetch the subjects data from GitHub
+    useEffect(() => {
+        const fetchSubjectsData = async () => {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/gaoaaron1/chill-learn-data/main/subjectData.json');
+                const data = await response.json();
+                setSubjectsData(data);
+            } catch (error) {
+                console.error("Error fetching subjects data:", error);
+            }
+        };
+
+        fetchSubjectsData();
+    }, []);
+
+    // If subjectsData hasn't been loaded yet, show a loading state
+    if (!subjectsData) {
+        return <div>Loading...</div>;
+    }
 
     // Get the subjects for the selected grade
     const subjects = selectedGrade ? subjectsData[selectedGrade] : subjectsData["kindergarten"];
