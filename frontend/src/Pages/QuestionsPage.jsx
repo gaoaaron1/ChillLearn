@@ -14,26 +14,30 @@ const QuestionsPage = () => {
     const [submitted, setSubmitted] = useState(false); // Track if exam has been submitted
 
     useEffect(() => {
-        // Dynamically import the corresponding JSON file for the selected grade
         const loadQuestionsData = async () => {
             try {
-                const response = await fetch(`/data/${grade}Questions.json`);
+                // Construct the URL dynamically using grade, subject, and unit
+                const filePath = `${grade}/${subject}/${grade}${subject}.json`;
+                const response = await fetch(`https://raw.githubusercontent.com/gaoaaron1/chill-learn-data/main/${filePath}`);
+                
                 if (!response.ok) {
-                    throw new Error(`Failed to load data for grade ${grade}`);
+                    throw new Error(`Failed to load data for grade ${grade}, subject ${subject}`);
                 }
 
                 const data = await response.json();
-                const subjectData = data[grade]?.[subject]?.[unit]; // Accessing the questions for the selected grade, subject, and unit
 
-                if (subjectData && subjectData.length) {
-                    const shuffledQuestions = subjectData.sort(() => Math.random() - 0.5);
+                // Access the specific unit within the subject
+                if (data[grade] && data[grade][subject] && data[grade][subject][unit]) {
+                    const questionsForUnit = data[grade][subject][unit];
+
+                    // Randomize the questions and pick a set (if you want to show only a subset)
+                    const shuffledQuestions = questionsForUnit.sort(() => Math.random() - 0.5);
                     const selectedQuestions = shuffledQuestions.slice(0, 10); // Select 10 random questions
                     setQuestions(selectedQuestions);
                     setStartTime(Date.now()); // Set the start time when questions are loaded
                 } else {
                     console.error(`No questions found for grade ${grade}, subject ${subject}, unit ${unit}`);
                 }
-
             } catch (error) {
                 console.error("Error loading questions data:", error);
             }
@@ -41,7 +45,7 @@ const QuestionsPage = () => {
 
         loadQuestionsData();
     }, [grade, subject, unit]);
-
+    
     const handleAnswerSelect = (questionIndex, selectedOption) => {
         if (submitted) return; // Prevent answer selection if already submitted
         setUserAnswers({
