@@ -370,5 +370,13 @@
         "tutorialVideo": "https://www.youtube.com/watch?v=comingSoonVideo"
       }
     ]
-  }
+  },
+  "grade11": {
+    "Chemistry": [
+        {
+          "unit": "Stoichiometry",
+          "tutorialVideo": "https://www.youtube.com/embed/7Cfq0ilw7ps?list=PLWd9NrmSPAhpBvMgB8T5bDHpoPBAsbKnR"
+        }
+      ]
+    }
 }
