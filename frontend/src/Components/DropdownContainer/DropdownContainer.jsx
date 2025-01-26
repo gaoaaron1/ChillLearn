@@ -1,47 +1,83 @@
 import React, { useState } from 'react';
 import Whiteboard from './Whiteboard';
+import ToolButtons from './ToolButtons';
+import AdjustTools from './AdjustTools';
 import './DropdownContainer.css';
 
 const DropdownContainer = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tool, setTool] = useState('pencil'); // Default tool is pencil
+  const [showDropdown, setShowDropdown] = useState(false); // Control the visibility of the dropdown
+
+  // State for customizing pencil and eraser settings
+  const [pencilSize, setPencilSize] = useState(5);
+  const [eraserSize, setEraserSize] = useState(20);
+  const [pencilColor, setPencilColor] = useState('#000000'); // Default pencil color is black
 
   const toggleContainer = () => {
     setIsExpanded(!isExpanded);
   };
 
   const handleToolChange = (toolType) => {
-    setTool(toolType); // Set the selected tool (pencil or eraser)
+    setTool(toolType);
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handlePencilSizeChange = (e) => {
+    setPencilSize(e.target.value);
+  };
+
+  const handleEraserSizeChange = (e) => {
+    setEraserSize(e.target.value);
+  };
+
+  const handlePencilColorChange = (e) => {
+    setPencilColor(e.target.value);
   };
 
   return (
-    <div className="dropdown-container">
+    <>
       <button className="dropdown-btn" onClick={toggleContainer}>
-        {isExpanded ? '▼' : '▲'} {/* Arrow direction */}
+        {isExpanded ? '▼' : '▲'}
       </button>
+
       {isExpanded && (
-        <div className="container-content">
-          {/* Tool buttons */}
-          <div className="tool-buttons">
-            <button
-              className={`tool-btn ${tool === 'pencil' ? 'active' : ''}`}
-              onClick={() => handleToolChange('pencil')}
-            >
-              Pencil
+        <div className="dropdown-container">
+          <ToolButtons tool={tool} handleToolChange={handleToolChange} />
+
+          {/* Adjust Tools Dropdown Button */}
+          <div className="adjust-tools-dropdown">
+            <button className="adjust-tools-btn" onClick={toggleDropdown}>
+              Adjust Tools
             </button>
-            <button
-              className={`tool-btn ${tool === 'eraser' ? 'active' : ''}`}
-              onClick={() => handleToolChange('eraser')}
-            >
-              Eraser
-            </button>
+
+            {/* Dropdown Menu */}
+            {showDropdown && (
+              <div className="dropdown-menu">
+                <AdjustTools
+                  pencilSize={pencilSize}
+                  eraserSize={eraserSize}
+                  pencilColor={pencilColor}
+                  handlePencilSizeChange={handlePencilSizeChange}
+                  handleEraserSizeChange={handleEraserSizeChange}
+                  handlePencilColorChange={handlePencilColorChange}
+                />
+              </div>
+            )}
           </div>
 
-          {/* Whiteboard */}
-          <Whiteboard tool={tool} />
+          <Whiteboard
+            tool={tool}
+            pencilSize={pencilSize}
+            eraserSize={eraserSize}
+            pencilColor={pencilColor}
+          />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

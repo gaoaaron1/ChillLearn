@@ -1,78 +1,72 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Whiteboard.css';
 
-const Whiteboard = () => {
+const Whiteboard = ({ tool, pencilSize, eraserSize, pencilColor }) => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
-  const [color, setColor] = useState('black');
-  const [lineWidth, setLineWidth] = useState(5);
-
-  const handleMouseDown = (e) => {
-    setIsDrawing(true);
-    const { offsetX, offsetY } = e.nativeEvent;
-    setLastPosition({ x: offsetX, y: offsetY });
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDrawing) return;
-    const { offsetX, offsetY } = e.nativeEvent;
-    const context = canvasRef.current.getContext('2d');
-    context.beginPath();
-    context.moveTo(lastPosition.x, lastPosition.y);
-    context.lineTo(offsetX, offsetY);
-    context.strokeStyle = color;
-    context.lineWidth = lineWidth;
-    context.stroke();
-    setLastPosition({ x: offsetX, y: offsetY });
-  };
-
-  const handleMouseUp = () => {
-    setIsDrawing(false);
-  };
-
-  const handleColorChange = (e) => {
-    setColor(e.target.value);
-  };
-
-  const handleLineWidthChange = (e) => {
-    setLineWidth(e.target.value);
-  };
+  const [lastX, setLastX] = useState(0);
+  const [lastY, setLastY] = useState(0);
+  const [context, setContext] = useState(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    context.lineJoin = 'round';
-    context.lineCap = 'round';
+    const ctx = canvas.getContext('2d');
+    setContext(ctx);
   }, []);
+
+  const startDrawing = (e) => {
+    const ctx = context;
+    if (!ctx) return;
+
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    setLastX(x);
+    setLastY(y);
+    setIsDrawing(true);
+  };
+
+  const draw = (e) => {
+    const ctx = context;
+    if (!ctx || !isDrawing) return;
+
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    ctx.lineWidth = tool === 'pencil' ? pencilSize : eraserSize;
+    ctx.strokeStyle = pencilColor;
+    ctx.lineCap = 'round';
+
+    if (tool === 'pencil') {
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    } else if (tool === 'eraser') {
+      ctx.clearRect(x - eraserSize / 2, y - eraserSize / 2, eraserSize, eraserSize);
+    }
+
+    setLastX(x);
+    setLastY(y);
+  };
+
+  const stopDrawing = () => {
+    setIsDrawing(false);
+  };
 
   return (
     <div className="whiteboard-container">
-      <div className="controls">
-        <input
-          type="color"
-          value={color}
-          onChange={handleColorChange}
-          title="Pick a color"
-        />
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={lineWidth}
-          onChange={handleLineWidthChange}
-          title="Change line width"
-        />
-      </div>
       <canvas
         ref={canvasRef}
-        width={800}
-        height={400}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseOut={handleMouseUp}
-        className="canvas"
+        className="whiteboard"
+        width="600"
+        height="400"
+        onMouseDown={startDrawing}
+        onMouseMove={draw}
+        onMouseUp={stopDrawing}
+        onMouseLeave={stopDrawing}
       />
     </div>
   );

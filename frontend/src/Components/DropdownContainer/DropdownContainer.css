@@ -1,55 +1,101 @@
-/* Make the dropdown container less obvious */
+/* Add styles for the dropdown container */
 .dropdown-container {
     position: fixed;
-    bottom: 0px; /* Keep some space from the bottom of the screen */
+    bottom: 50px; /* Space from the bottom of the screen */
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 900px; /* Adjust the max width to fit your design */
-    background-color: rgba(255, 255, 255, 0.6); /* Lighter transparent white */
-    border-top: 1px solid #ddd; /* Softer, lighter border */
-    border-radius: 20px 20px 0 0; /* Rounded top corners to make it look like a tab */
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-    cursor: pointer; /* Make sure it has a pointer cursor */
-    padding: 0px 0px; /* Smaller padding to make it look like a tab */
-    margin-bottom: 0px; /* Space from bottom */
+    max-width: 900px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid #ddd;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 0px 0px;
+    margin-bottom: 0px;
   }
   
-  /* Hover effect to make it slightly more visible when hovered */
+  /* Hover effect for the dropdown container */
   .dropdown-container:hover {
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque when hovered */
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow when hovered */
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   }
   
-  /* Style the dropdown button to look like a tab */
+  /* Style for the dropdown button */
   .dropdown-btn {
-    background-color: rgba(255, 255, 255, 0.7); /* Subtle transparent white background */
-    color: #333; /* Dark text for contrast */
-    border: none; /* No borders for the button */
-    padding: 8px 15px; /* Adjust padding to make it look like a tab */
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+    border: none;
+    padding: 8px 15px;
     font-size: 18px;
     cursor: pointer;
     text-align: center;
-    border-radius: 12px; /* Rounded corners to make it like a tab */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-    margin: 0 auto; /* Center it */
-    width: auto; /* Let it fit content */
+    border-radius: 12px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    width: auto;
+    z-index: 10;
   }
   
-  /* Hover effect for the dropdown button */
-  .dropdown-btn:hover {
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly more opaque when hovered */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  /* Style for the adjust tools dropdown */
+  .adjust-tools-dropdown {
+    position: relative;
   }
   
-  /* Container that holds the whiteboard */
-  .container-content {
-    margin-top: 10px; /* Reduced margin for a more compact look */
-    display: block;
+  .adjust-tools-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .adjust-tools-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-menu {
+    position: absolute;
+    top: 40px; /* Space from button */
+    left: 0;
     background-color: white;
-    border: 1px solid #ddd; /* Softer border for the whiteboard container */
+    border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 15px; /* Reduced padding for a more compact whiteboard container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  /* Styling for input elements inside the dropdown */
+  .adjust-tools-container {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .adjust-tools-container div {
+    margin-bottom: 15px;
+  }
+  
+  .adjust-tools-container label {
+    font-weight: bold;
+  }
+  
+  .adjust-tools-container input[type="range"] {
+    width: 80%;
+  }
+  
+  .adjust-tools-container input[type="color"] {
+    width: 50px;
   }
   

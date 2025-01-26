@@ -1,0 +1,53 @@
+/* Style for the adjust tools container */
+.adjust-tools-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adjust-tools-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.adjust-tools-item label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.adjust-tools-item input[type="range"] {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.adjust-tools-item input[type="color"] {
+  width: 50px;
+  height: 30px;
+  margin-top: 5px;
+}
+
+/* Display the pencil/eraser size value next to the slider */
+.adjust-tools-item span {
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+}
+
+.adjust-tools-container .adjust-tools-item {
+  position: relative;
+}
+
+.adjust-tools-item input[type="range"]:focus {
+  outline: none;
+  border: 2px solid #007bff; /* Blue outline on focus */
+}
+
+.adjust-tools-item input[type="color"]:focus {
+  outline: none;
+  border: 2px solid #007bff; /* Blue outline on focus */
+}
