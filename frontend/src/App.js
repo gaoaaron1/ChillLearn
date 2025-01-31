@@ -31,6 +31,7 @@ function App() {
             <Route path='/grade2' element={<SubjectContext banner={grade_banner} category="grade2" />} />
             <Route path='/grade3' element={<SubjectContext banner={grade_banner} category="grade3" />} />
             <Route path='/grade4' element={<SubjectContext banner={grade_banner} category="grade4" />} />
+            <Route path='/grade6' element={<SubjectContext banner={grade_banner} category="grade6" />} />            
             <Route path='/grade7' element={<SubjectContext banner={grade_banner} category="grade7" />} />
             <Route path='/grade8' element={<SubjectContext banner={grade_banner} category="grade8" />} />
             <Route path='/grade9' element={<SubjectContext banner={grade_banner} category="grade9" />} />
