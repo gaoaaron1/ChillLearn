@@ -7,6 +7,7 @@ import SubjectContext from './Pages/SubjectContext';
 import QuestionsPage from './Pages/QuestionsPage';
 import LoginSignup from './Pages/LoginSignup';
 import Footer from './Components/Footer/Footer';
+import juniorhigh_banner from './Components/Assets/juniorhigh_banner.png';
 import grade_banner from './Components/Assets/kindergarten_poster.png';
 import kindergarten_banner from './Components/Assets/kindergarten_banner.png';
 import GradesPage from './Pages/GradesPage.jsx'; 
@@ -32,11 +33,11 @@ function App() {
             <Route path='/grade3' element={<SubjectContext banner={grade_banner} category="grade3" />} />
             <Route path='/grade4' element={<SubjectContext banner={grade_banner} category="grade4" />} />
             <Route path='/grade6' element={<SubjectContext banner={grade_banner} category="grade6" />} />            
-            <Route path='/grade7' element={<SubjectContext banner={grade_banner} category="grade7" />} />
-            <Route path='/grade8' element={<SubjectContext banner={grade_banner} category="grade8" />} />
-            <Route path='/grade9' element={<SubjectContext banner={grade_banner} category="grade9" />} />
-            <Route path='/grade10' element={<SubjectContext banner={grade_banner} category="grade10" />} />
-            <Route path='/grade11' element={<SubjectContext banner={grade_banner} category="grade11" />} />
+            <Route path='/grade7' element={<SubjectContext banner={juniorhigh_banner} category="grade7" />} />
+            <Route path='/grade8' element={<SubjectContext banner={juniorhigh_banner} category="grade8" />} />
+            <Route path='/grade9' element={<SubjectContext banner={juniorhigh_banner} category="grade9" />} />
+            <Route path='/grade10' element={<SubjectContext banner={juniorhigh_banner} category="grade10" />} />
+            <Route path='/grade11' element={<SubjectContext banner={juniorhigh_banner} category="grade11" />} />
 
             <Route path="/questions/:grade/:subject/:unit" element={<QuestionsPage />} />
           
