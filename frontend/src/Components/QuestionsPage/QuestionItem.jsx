@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './QuestionItem.css';
 
 //Array for randomizing questions
 const shuffleArray = (array) => {
@@ -11,7 +12,8 @@ const shuffleArray = (array) => {
 
 const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, results }) => {
     const [shuffledOptions, setShuffledOptions] = useState([]);
-   
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(() => {
         // Shuffle options and store them in state
         setShuffledOptions(shuffleArray(questionItem.options));
@@ -21,12 +23,19 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
         <div className="question-item">
             {questionItem.image && (
                 <div className="question-image">
-                    <img src={questionItem.image} alt={`Question ${index + 1}`} />
+                    <img 
+                        src={questionItem.image} 
+                        alt={`Question ${index + 1}`} 
+                        onClick={() => setIsModalOpen(true)} // Open modal on click
+                        className="question-thumbnail"
+                    />
                 </div>
             )}
+
             <p className="question-text">
                 {index + 1}. {questionItem.question}
             </p>
+
             <ul className="options-list">
                 {shuffledOptions.map((option, i) => (
                     <li key={i} className="option-item">
@@ -52,6 +61,18 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
                         : `✘ Wrong answer: Answer is ${results[index].correctAnswer}`}
                 </p>
             )}
+
+
+            {/* Image Modal */}
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+                    <div className="modal-content">
+                        <img src={questionItem.image} alt={`Question ${index + 1}`} />
+                        <button className="close-btn" onClick={() => setIsModalOpen(false)}>✖</button>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
