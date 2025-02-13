@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+//Array for randomizing questions
+const shuffleArray = (array) => {
+    return array
+        .map((item) => ({ item, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ item }) => item);
+};
+
 
 const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, results }) => {
+    const [shuffledOptions, setShuffledOptions] = useState([]);
+   
+    useEffect(() => {
+        // Shuffle options and store them in state
+        setShuffledOptions(shuffleArray(questionItem.options));
+    }, [questionItem.options]);
+
     return (
         <div className="question-item">
             {questionItem.image && (
@@ -12,7 +28,7 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
                 {index + 1}. {questionItem.question}
             </p>
             <ul className="options-list">
-                {questionItem.options.map((option, i) => (
+                {shuffledOptions.map((option, i) => (
                     <li key={i} className="option-item">
                         <label>
                             <input
