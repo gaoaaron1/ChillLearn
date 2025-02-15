@@ -45,13 +45,22 @@ const QuestionsPage = () => {
 
         loadQuestionsData();
     }, [grade, subject, unit]);
-    
-    const handleAnswerSelect = (questionIndex, selectedOption) => {
+
+    const handleAnswerSelect = (questionIndex, selectedOption, blankIndex) => {
         if (submitted) return; // Prevent answer selection if already submitted
-        setUserAnswers({
-            ...userAnswers,
-            [questionIndex]: selectedOption,
-        });
+        
+        const updatedAnswers = { ...userAnswers };
+        
+        if (blankIndex !== undefined) {
+            // Handle fill-in-the-blank (multiple answers per question)
+            if (!updatedAnswers[questionIndex]) updatedAnswers[questionIndex] = [];
+            updatedAnswers[questionIndex][blankIndex] = selectedOption;
+        } else {
+            // Handle multiple-choice (single answer per question)
+            updatedAnswers[questionIndex] = selectedOption;
+        }
+
+        setUserAnswers(updatedAnswers);
     };
 
     const handleSubmit = () => {
