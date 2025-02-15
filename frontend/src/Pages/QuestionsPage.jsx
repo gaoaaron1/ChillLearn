@@ -48,9 +48,9 @@ const QuestionsPage = () => {
 
     const handleAnswerSelect = (questionIndex, selectedOption, blankIndex) => {
         if (submitted) return; // Prevent answer selection if already submitted
-        
+    
         const updatedAnswers = { ...userAnswers };
-        
+    
         if (blankIndex !== undefined) {
             // Handle fill-in-the-blank (multiple answers per question)
             if (!updatedAnswers[questionIndex]) updatedAnswers[questionIndex] = [];
@@ -59,9 +59,10 @@ const QuestionsPage = () => {
             // Handle multiple-choice (single answer per question)
             updatedAnswers[questionIndex] = selectedOption;
         }
-
+    
         setUserAnswers(updatedAnswers);
     };
+    
 
     const handleSubmit = () => {
         if (!startTime) {
@@ -73,12 +74,26 @@ const QuestionsPage = () => {
         const elapsedSeconds = Math.floor((endTime - startTime) / 1000);
         setTimeTaken(elapsedSeconds);
 
-        const newResults = questions.map((question, index) => ({
-            correct: question.answer === userAnswers[index],
-            userAnswer: userAnswers[index],
-            correctAnswer: question.answer,
-        }));
+        const newResults = questions.map((question, index) => {
+            if (question.blanks) {
+                // For fill-in-the-blank questions
+                const isCorrect = question.blanks.every((blank, i) => userAnswers[index]?.[i] === blank.answer);
+                return {
+                    correct: isCorrect,
+                    userAnswer: userAnswers[index],
+                    correctAnswer: question.blanks.map(b => b.answer),
+                };
+            } else {
+                // For multiple-choice questions
+                return {
+                    correct: question.answer === userAnswers[index],
+                    userAnswer: userAnswers[index],
+                    correctAnswer: question.answer,
+                };
+            }
+        });
         setResults(newResults);
+        
 
         // Prevent further changes and disable the submit button
         setSubmitted(true);
