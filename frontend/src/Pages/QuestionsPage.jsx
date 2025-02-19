@@ -11,12 +11,11 @@ const QuestionsPage = () => {
     const [results, setResults] = useState(null);
     const [startTime, setStartTime] = useState(null);
     const [timeTaken, setTimeTaken] = useState(null);
-    const [submitted, setSubmitted] = useState(false); // Track if exam has been submitted
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         const loadQuestionsData = async () => {
             try {
-                // Construct the URL dynamically using grade, subject, and unit
                 const filePath = `${grade}/${subject}/${grade}${subject}.json`;
                 const response = await fetch(`https://raw.githubusercontent.com/gaoaaron1/chill-learn-data/main/${filePath}`);
                 
@@ -26,15 +25,12 @@ const QuestionsPage = () => {
 
                 const data = await response.json();
 
-                // Access the specific unit within the subject
                 if (data[grade] && data[grade][subject] && data[grade][subject][unit]) {
                     const questionsForUnit = data[grade][subject][unit];
-
-                    // Randomize the questions and pick a set (if you want to show only a subset)
                     const shuffledQuestions = questionsForUnit.sort(() => Math.random() - 0.5);
-                    const selectedQuestions = shuffledQuestions.slice(0, 10); // Select 10 random questions
+                    const selectedQuestions = shuffledQuestions.slice(0, 10);
                     setQuestions(selectedQuestions);
-                    setStartTime(Date.now()); // Set the start time when questions are loaded
+                    setStartTime(Date.now());
                 } else {
                     console.error(`No questions found for grade ${grade}, subject ${subject}, unit ${unit}`);
                 }
@@ -47,22 +43,25 @@ const QuestionsPage = () => {
     }, [grade, subject, unit]);
 
     const handleAnswerSelect = (questionIndex, selectedOption, blankIndex) => {
-        if (submitted) return; // Prevent answer selection if already submitted
-    
-        const updatedAnswers = { ...userAnswers };
-    
-        if (blankIndex !== undefined) {
-            // Handle fill-in-the-blank (multiple answers per question)
-            if (!updatedAnswers[questionIndex]) updatedAnswers[questionIndex] = [];
-            updatedAnswers[questionIndex][blankIndex] = selectedOption;
-        } else {
-            // Handle multiple-choice (single answer per question)
-            updatedAnswers[questionIndex] = selectedOption;
-        }
-    
-        setUserAnswers(updatedAnswers);
+        if (submitted) return;
+
+        setUserAnswers(prevState => {
+            const updatedAnswers = { ...prevState };
+
+            if (blankIndex !== undefined) {
+                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION
+                // If the question has blanks, store multiple user inputs in an array.
+                if (!updatedAnswers[questionIndex]) updatedAnswers[questionIndex] = [];
+                updatedAnswers[questionIndex][blankIndex] = selectedOption;
+            } else {
+                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION
+                // If the question has blanks, store multiple user inputs in an array.
+                updatedAnswers[questionIndex] = selectedOption;
+            }
+
+            return updatedAnswers;
+        });
     };
-    
 
     const handleSubmit = () => {
         if (!startTime) {
@@ -74,40 +73,54 @@ const QuestionsPage = () => {
         const elapsedSeconds = Math.floor((endTime - startTime) / 1000);
         setTimeTaken(elapsedSeconds);
 
+        let totalScore = 0;
+        const totalPossibleScore = questions.length;
+
         const newResults = questions.map((question, index) => {
             if (question.blanks) {
-                // For fill-in-the-blank questions
-                const isCorrect = question.blanks.every((blank, i) => userAnswers[index]?.[i] === blank.answer);
+                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION & CALCULATES PARTIAL SCORE
+                const totalBlanks = question.blanks.length;
+                const correctAnswers = question.blanks.filter((blank, i) => userAnswers[index]?.[i] === blank.answer).length;
+                const fractionScore = correctAnswers / totalBlanks;
+
+                totalScore += fractionScore;
+
                 return {
-                    correct: isCorrect,
-                    userAnswer: userAnswers[index],
+                    correct: correctAnswers === totalBlanks,
+                    partialCorrect: correctAnswers,
+                    totalBlanks,
                     correctAnswer: question.blanks.map(b => b.answer),
                 };
             } else {
-                // For multiple-choice questions
+                const isCorrect = question.answer === userAnswers[index];
+                if (isCorrect) totalScore += 1;
+
                 return {
-                    correct: question.answer === userAnswers[index],
+                    correct: isCorrect,
                     userAnswer: userAnswers[index],
                     correctAnswer: question.answer,
                 };
             }
         });
+
         setResults(newResults);
-        
-
-        // Prevent further changes and disable the submit button
         setSubmitted(true);
-
-        // Scroll to the very bottom of the page after submitting
         window.scrollTo(0, document.body.scrollHeight);
     };
 
     const calculateScore = () => {
         if (!results) return { correctCount: 0, percentage: 0 };
-        const correctCount = results.filter((result) => result.correct).length;
-        const totalQuestions = results.length;
-        const percentage = Math.round((correctCount / totalQuestions) * 100);
-        return { correctCount, percentage };
+
+        const totalScore = results.reduce((sum, result) => {
+            if (result.partialCorrect !== undefined) {
+                return sum + result.partialCorrect / result.totalBlanks;
+            }
+            return sum + (result.correct ? 1 : 0);
+        }, 0);
+
+        const percentage = Math.round((totalScore / results.length) * 100);
+
+        return { correctCount: parseFloat(totalScore.toFixed(2)), percentage };
     };
 
     const { correctCount, percentage } = calculateScore();
@@ -125,7 +138,7 @@ const QuestionsPage = () => {
                             userAnswers={userAnswers}
                             handleAnswerSelect={handleAnswerSelect}
                             results={results}
-                            submitted={submitted} // Pass the submission status to QuestionItem
+                            submitted={submitted}
                         />
                     ))}
                 </div>
@@ -133,7 +146,7 @@ const QuestionsPage = () => {
                     type="button"
                     onClick={handleSubmit}
                     className="submit-btn"
-                    disabled={submitted} // Disable button if already submitted
+                    disabled={submitted}
                 >
                     Submit
                 </button>

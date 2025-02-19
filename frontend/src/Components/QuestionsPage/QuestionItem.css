@@ -71,3 +71,64 @@
 .close-btn:hover {
     background: red;
 }
+
+/* Style for the container holding the blanks */
+.blanks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Adds spacing between blank inputs */
+    margin-top: 8px;
+}
+
+/* Style for each individual blank input */
+.blank-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Style for the label of each blank */
+.blank-item label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+/* Style for the input fields */
+.blank-item input {
+    width: 100%;
+    max-width: 300px; /* Adjust width for better readability */
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Input focus effect */
+.blank-item input:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Disable input styling if quiz is submitted */
+.blank-item input:disabled {
+    background-color: #f0f0f0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* Style for feedback (Correct/Wrong) */
+.feedback {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.feedback.correct {
+    color: green;
+}
+
+.feedback.incorrect {
+    color: red;
+}

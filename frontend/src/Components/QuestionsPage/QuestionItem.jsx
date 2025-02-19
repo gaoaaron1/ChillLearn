@@ -77,13 +77,33 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
             )}
 
             {/* Display feedback for results */}
-            {results && (
-                <p className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
-                    {results[index].correct
-                        ? `✔ Correct answer: ${results[index].correctAnswer}`
-                        : `✘ Wrong answer: Answer is ${results[index].correctAnswer}`}
+{/* Display feedback for results */}
+{results && (
+    <>
+        {/* Feedback for multiple-choice questions */}
+        {!questionItem.blanks && (
+            <p className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
+                {results[index].correct
+                    ? `✔ Correct answer: ${results[index].correctAnswer}`
+                    : `✘ Wrong answer: Answer is ${results[index].correctAnswer}`}
+            </p>
+        )}
+
+        {/* Feedback for fill-in-the-blank questions */}
+        {questionItem.blanks && results[index] && (
+            <div className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
+                <p>
+                    {results[index].partialCorrect === results[index].totalBlanks
+                        ? `✔ All correct!`
+                        : `✔ ${results[index].partialCorrect}/${results[index].totalBlanks} correct`}
                 </p>
-            )}
+                <p><strong>Correct answers:</strong> {results[index].correctAnswer.join(", ")}</p>
+            </div>
+        )}
+    </>
+)}
+
+
 
             {/* Image Modal */}
             {isModalOpen && (
