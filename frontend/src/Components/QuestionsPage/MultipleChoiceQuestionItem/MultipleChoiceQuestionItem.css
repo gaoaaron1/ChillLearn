@@ -1,0 +1,51 @@
+/* Container for the multiple choice question item */
+.multiple-choice-question-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.multiple-choice-question-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f1f1f1;
+}
+
+/* Styling for the question text */
+.question-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Options list */
+.options-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Styling for individual option items */
+.option-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+
+/* Label for each option */
+.option-label {
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+

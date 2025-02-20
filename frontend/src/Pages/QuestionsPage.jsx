@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import './CSS/QuestionsPage.css';
 import QuestionItem from '../Components/QuestionsPage/QuestionItem';
 import ResultsSummary from '../Components/QuestionsPage/ResultsSummary';
+import MatchingQuestionItem from '../Components/QuestionsPage/MatchingQuestionItem/MatchingQuestionItem';
+import MultipleChoiceQuestionItem from '../Components/QuestionsPage/MultipleChoiceQuestionItem/MultipleChoiceQuestionItem';
 
 const QuestionsPage = () => {
     const { grade, subject, unit } = useParams();
@@ -49,13 +51,10 @@ const QuestionsPage = () => {
             const updatedAnswers = { ...prevState };
 
             if (blankIndex !== undefined) {
-                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION
-                // If the question has blanks, store multiple user inputs in an array.
+                // Detects fill-in-the-blank questions
                 if (!updatedAnswers[questionIndex]) updatedAnswers[questionIndex] = [];
                 updatedAnswers[questionIndex][blankIndex] = selectedOption;
             } else {
-                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION
-                // If the question has blanks, store multiple user inputs in an array.
                 updatedAnswers[questionIndex] = selectedOption;
             }
 
@@ -78,7 +77,6 @@ const QuestionsPage = () => {
 
         const newResults = questions.map((question, index) => {
             if (question.blanks) {
-                // ✅ DETECTS FILL-IN-THE-BLANK QUESTION & CALCULATES PARTIAL SCORE
                 const totalBlanks = question.blanks.length;
                 const correctAnswers = question.blanks.filter((blank, i) => userAnswers[index]?.[i] === blank.answer).length;
                 const fractionScore = correctAnswers / totalBlanks;
@@ -130,17 +128,45 @@ const QuestionsPage = () => {
             <h2>Exam for {grade} - {subject} - {unit}</h2>
             <form>
                 <div className="questions-list">
-                    {questions.map((questionItem, index) => (
-                        <QuestionItem
-                            key={index}
-                            questionItem={questionItem}
-                            index={index}
-                            userAnswers={userAnswers}
-                            handleAnswerSelect={handleAnswerSelect}
-                            results={results}
-                            submitted={submitted}
-                        />
-                    ))}
+                    {questions.map((questionItem, index) => {
+                        if (questionItem.type === 'multiple-choice') {
+                            return (
+                                <MultipleChoiceQuestionItem
+                                    key={index}
+                                    questionItem={questionItem}
+                                    index={index}
+                                    userAnswers={userAnswers}
+                                    handleAnswerSelect={handleAnswerSelect}
+                                    submitted={submitted}
+                                />
+                            );
+                        }
+
+                        if (questionItem.type === 'matching') {
+                            return (
+                                <MatchingQuestionItem
+                                    key={index}
+                                    questionItem={questionItem}
+                                    index={index}
+                                    userAnswers={userAnswers}
+                                    handleAnswerSelect={handleAnswerSelect}
+                                    submitted={submitted}
+                                />
+                            );
+                        }
+
+                        return (
+                            <QuestionItem
+                                key={index}
+                                questionItem={questionItem}
+                                index={index}
+                                userAnswers={userAnswers}
+                                handleAnswerSelect={handleAnswerSelect}
+                                results={results}
+                                submitted={submitted}
+                            />
+                        );
+                    })}
                 </div>
                 <button
                     type="button"
