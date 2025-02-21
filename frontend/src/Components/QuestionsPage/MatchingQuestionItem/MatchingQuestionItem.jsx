@@ -1,78 +1,123 @@
 import React, { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './MatchingQuestionItem.css';
 
 const MatchingQuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, submitted }) => {
-    // Initialize selected pairs based on user answers
     const [selectedPairs, setSelectedPairs] = useState(userAnswers[index] || []);
+    const [score, setScore] = useState(0);
 
-    // Prevent duplicate right options from being selected
-    const usedRightOptions = selectedPairs.map(pair => pair.right);
+    // Calculate the score based on correct matches
+    const getScore = () => {
+        return selectedPairs.filter(pair => {
+            // Safe access to pair properties
+            const match = questionItem.pairs.find(p => p.left === pair.left);
+            return match && pair.right === match.right;
+        }).length;
+    };
 
-    // Handle the selection of a pair (leftOption, rightOption)
-    const handlePairSelect = (leftOption, rightOption) => {
-        // Remove existing pair if leftOption is already selected
-        const updatedPairs = selectedPairs.filter(pair => pair.left !== leftOption);
+    useEffect(() => {
+        if (submitted) {
+            setScore(getScore());
+        }
+    }, [submitted, selectedPairs]);
 
-        // Add the new pair if the right option isn't already used
-        if (!usedRightOptions.includes(rightOption)) {
-            updatedPairs.push({ left: leftOption, right: rightOption });
-            setSelectedPairs(updatedPairs);
-            handleAnswerSelect(index, updatedPairs); // Update parent state
+    const onDragEnd = (result) => {
+        const { destination, source } = result;
+        if (!destination) return;
+
+        // If the item is dropped in the same place, return early
+        if (destination.index === source.index && destination.droppableId === source.droppableId) {
+            return;
+        }
+
+        const items = Array.from(selectedPairs);
+        const [reorderedItem] = items.splice(source.index, 1);
+        items.splice(destination.index, 0, reorderedItem);
+
+        // Update the selected pairs state after the drag-and-drop
+        setSelectedPairs(items);
+
+        // Only pass the updated state to the parent when the user is still in the quiz (not submitted)
+        if (!submitted) {
+            handleAnswerSelect(index, items);  // Callback to update the parent component's answers
         }
     };
 
-    // Check if the question has been answered correctly
-    const isCorrect = () => {
-        return selectedPairs.length === questionItem.pairs.length &&
-            selectedPairs.every(pair => pair.right === questionItem.pairs.find(p => p.left === pair.left)?.right);
-    };
+    // Make sure the pairs are valid before rendering
+    const validPairs = questionItem.pairs?.filter(pair => pair?.left && pair?.right) || [];
 
     return (
         <div className="matching-question-item">
-            <p className="question-text">
-                {index + 1}. {questionItem.question}
-            </p>
+            <p className="question-text">{index + 1}. {questionItem.question}</p>
 
-            <div className="matching-question-options">
-                {/* Left column with cell components */}
-                <div className="left-column">
-                    {questionItem.pairs.map((pair, i) => {
-                        // Check if a pair has been selected for this left item
-                        const isMatched = selectedPairs.some(selectedPair => selectedPair.left === pair.left);
-                        return (
+            <DragDropContext onDragEnd={onDragEnd}>
+                <div className="matching-container">
+                    <Droppable droppableId="terms" direction="horizontal">
+                        {(provided) => (
                             <div
-                                key={i}
-                                className={`option-item ${isMatched ? 'matched' : ''}`}
+                                className="terms-container"
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
                             >
-                                {pair.left}
+                                {validPairs.map((pair, i) => {
+                                    const isMatched = selectedPairs.some(selectedPair => selectedPair?.left === pair?.left);
+                                    return (
+                                        <Draggable key={pair?.left} draggableId={`term-${pair?.left}`} index={i}>
+                                            {(provided) => (
+                                                <div
+                                                    className={`option-item ${isMatched ? 'matched' : ''}`}
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    style={{
+                                                        ...provided.draggableProps.style,
+                                                        cursor: submitted || isMatched ? 'not-allowed' : 'move',
+                                                    }}
+                                                >
+                                                    {pair?.left}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    );
+                                })}
+                                {provided.placeholder}
                             </div>
-                        );
-                    })}
-                </div>
+                        )}
+                    </Droppable>
 
-                {/* Right column with functions */}
-                <div className="right-column">
-                    {questionItem.pairs.map((pair, i) => {
-                        // Check if a pair has been matched for this right item
-                        const isMatched = selectedPairs.some(selectedPair => selectedPair.right === pair.right);
-                        return (
+                    <Droppable droppableId="definitions">
+                        {(provided) => (
                             <div
-                                key={i}
-                                className={`option-item ${isMatched ? 'matched' : ''}`}
-                                onClick={() => handlePairSelect(pair.left, pair.right)}
-                                style={{ cursor: submitted || isMatched ? 'not-allowed' : 'pointer' }}
+                                className="definitions-container"
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
                             >
-                                {pair.right}
+                                {validPairs.map((pair, i) => {
+                                    const isMatched = selectedPairs.some(selectedPair => selectedPair?.right === pair?.right);
+                                    return (
+                                        <div
+                                            key={pair?.right}
+                                            className={`definition-box ${isMatched ? 'matched' : ''}`}
+                                            style={{
+                                                backgroundColor: isMatched ? '#c8e6c9' : '#f1f1f1',
+                                                borderColor: isMatched ? '#4caf50' : '#ddd',
+                                            }}
+                                        >
+                                            {pair?.right}
+                                        </div>
+                                    );
+                                })}
+                                {provided.placeholder}
                             </div>
-                        );
-                    })}
+                        )}
+                    </Droppable>
                 </div>
-            </div>
+            </DragDropContext>
 
-            {/* Feedback after quiz submission */}
             {submitted && (
                 <div className="feedback">
-                    {isCorrect() ? (
+                    <p className="score">Your score: {score} / {validPairs.length}</p>
+                    {score === validPairs.length ? (
                         <p className="correct">✔ All pairs are correct!</p>
                     ) : (
                         <p className="incorrect">✘ Some pairs are incorrect.</p>
