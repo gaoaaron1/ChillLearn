@@ -23,25 +23,37 @@ const MatchingQuestionItem = ({ questionItem, index, userAnswers, handleAnswerSe
 
     const onDragEnd = (result) => {
         const { destination, source } = result;
-        if (!destination) return;
-
-        // If the item is dropped in the same place, return early
+        if (!destination) return; // if dropped outside
+    
+        // If it's dropped on the same place, do nothing
         if (destination.index === source.index && destination.droppableId === source.droppableId) {
             return;
         }
-
+    
         const items = Array.from(selectedPairs);
-        const [reorderedItem] = items.splice(source.index, 1);
-        items.splice(destination.index, 0, reorderedItem);
-
-        // Update the selected pairs state after the drag-and-drop
-        setSelectedPairs(items);
-
-        // Only pass the updated state to the parent when the user is still in the quiz (not submitted)
+    
+        // If dropped into the terms area, just re-order the terms
+        if (destination.droppableId === "terms") {
+            const [reorderedItem] = items.splice(source.index, 1);
+            items.splice(destination.index, 0, reorderedItem);
+        }
+    
+        // If dropped into the definitions area, pair the term with the definition
+        if (destination.droppableId === "definitions") {
+            const matchedTerm = items[source.index];
+            const matchedDefinition = questionItem.pairs[destination.index].right;
+            const newPair = { left: matchedTerm, right: matchedDefinition };
+            
+            const updatedPairs = [...selectedPairs, newPair];
+            setSelectedPairs(updatedPairs);
+        }
+    
+        // Update the parent state with the selected answers
         if (!submitted) {
-            handleAnswerSelect(index, items);  // Callback to update the parent component's answers
+            handleAnswerSelect(index, selectedPairs);  // This is your callback to update answers in the parent
         }
     };
+    
 
     // Make sure the pairs are valid before rendering
     const validPairs = questionItem.pairs?.filter(pair => pair?.left && pair?.right) || [];
