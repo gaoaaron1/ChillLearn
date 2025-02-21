@@ -22,36 +22,43 @@ const MatchingQuestionItem = ({
   const onDragEnd = (result) => {
     const { destination, source } = result;
   
-    console.log('Drag End Result:', result);
-  
     // If no destination or source and destination are the same, do nothing
     if (!destination || destination.index === source.index) return;
   
     // Clone the current answers to avoid mutating state directly
     const updatedAnswers = [...currentAnswers];
   
-    console.log('Before Update - currentAnswers:', currentAnswers);
+    // Insert the term at the destination position
+    const sourceTerm = updatedAnswers[source.index];
+    updatedAnswers.splice(source.index, 1);
+    updatedAnswers.splice(destination.index, 0, sourceTerm);
   
-    // Fetch terms directly from current answers based on their indices
-    const sourceTerm = currentAnswers[source.index];
-    const destinationTerm = currentAnswers[destination.index];
+    // Log the updated answers after drag-and-drop for debugging
+    console.log('Updated answers after drag:', updatedAnswers);
   
-    console.log('Swapping:');
-    console.log(`Source Term: ${sourceTerm} (Index: ${source.index})`);
-    console.log(`Destination Term: ${destinationTerm} (Index: ${destination.index})`);
-  
-    // Perform the swap in the updated answers array
-    updatedAnswers[source.index] = destinationTerm;
-    updatedAnswers[destination.index] = sourceTerm;
-  
-    console.log('After Swap - updatedAnswers:', updatedAnswers);
-  
-    // Update the local state to reflect the changes
+    // Update the state to reflect the new answers
     setCurrentAnswers(updatedAnswers);
   
     // Sync the updated answers with the parent component
     handleAnswerSelect(index, updatedAnswers);
   };
+  
+  
+  const checkAnswer = (userAnswer, leftTerm) => {
+    // Find the correct pair based on the left term
+    const correctPair = questionItem.pairs.find(pair => pair.left === leftTerm);
+  
+    // Log user input and correct answer at this stage for debugging
+    console.log(`Checking answer for ${leftTerm}`);
+    console.log(`User answer: ${userAnswer}`);
+    console.log(`Correct answer: ${correctPair ? correctPair.right : 'Not found'}`);
+  
+    // Now check if the userAnswer matches the right term (pair.right)
+    const isCorrect = correctPair && correctPair.right === userAnswer;
+    console.log(`Is the answer correct? ${isCorrect ? '✅' : '❌'}`);
+    return isCorrect;
+  };
+  
   
 
 
@@ -109,7 +116,7 @@ const MatchingQuestionItem = ({
                           {...provided.dragHandleProps}
                           className="draggable-item definition"
                         >
-                          {pair.right}
+                          {pair.right} {/* Show the function */}
                         </div>
                       )}
                     </Draggable>
@@ -124,20 +131,30 @@ const MatchingQuestionItem = ({
 
       {/* After submission, show the user's answers with correctness */}
       {submitted && (
-        <div className="answer-check">
-          <h4>Your Answers:</h4>
-          <ul>
-            {questionItem.pairs.map((pair, idx) => {
-              const isCorrect = currentAnswers[idx] === pair.right;
-              return (
-                <li key={idx} className={isCorrect ? 'correct' : 'incorrect'}>
-                  {pair.left} = {currentAnswers[idx] || 'Not answered'}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+  <div className="answer-check">
+    <h4>Your Answers:</h4>
+    <ul>
+      {questionItem.pairs.map((pair, idx) => {
+        const userAnswer = currentAnswers[idx];
+        const isCorrect = checkAnswer(userAnswer, pair.left); // Check function correctness here
+        
+        // Log the user's answer and whether it's correct
+        console.log(`User's answer for ${pair.left}: ${userAnswer}`);
+        console.log(`Is the answer correct? ${isCorrect ? '✅' : '❌'}`);
+
+        return (
+          <li key={idx} className={isCorrect ? 'correct' : 'incorrect'}>
+            {pair.right} = {userAnswer || 'Not answered'}
+            {/* Show checkmark or X */}
+            {isCorrect ? ' ✅' : ' ❌'}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+)}
+
+
     </div>
   );
 };
