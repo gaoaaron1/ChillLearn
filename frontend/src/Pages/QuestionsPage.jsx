@@ -5,6 +5,7 @@ import QuestionItem from '../Components/QuestionsPage/QuestionItem';
 import ResultsSummary from '../Components/QuestionsPage/ResultsSummary';
 import MatchingQuestionItem from '../Components/QuestionsPage/MatchingQuestionItem/MatchingQuestionItem';
 import MultipleChoiceQuestionItem from '../Components/QuestionsPage/MultipleChoiceQuestionItem/MultipleChoiceQuestionItem';
+import FillBlankQuestionItem from '../Components/QuestionsPage/FillBlankQuestionItem/FillBlankQuestionItem';
 
 const QuestionsPage = () => {
     const { grade, subject, unit } = useParams();
@@ -145,6 +146,19 @@ const QuestionsPage = () => {
                         if (questionItem.type === 'matching') {
                             return (
                                 <MatchingQuestionItem
+                                    key={index}
+                                    questionItem={questionItem}
+                                    index={index}
+                                    userAnswers={userAnswers}
+                                    handleAnswerSelect={handleAnswerSelect}
+                                    submitted={submitted}
+                                />
+                            );
+                        }
+
+                        if (questionItem.type === 'fill-in-the-blank') {
+                            return (
+                                <FillBlankQuestionItem
                                     key={index}
                                     questionItem={questionItem}
                                     index={index}
