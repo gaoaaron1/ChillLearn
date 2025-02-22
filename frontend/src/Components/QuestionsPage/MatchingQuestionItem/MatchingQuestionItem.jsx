@@ -59,7 +59,7 @@ const MatchingQuestionItem = ({
     console.log(`User answer: ${userAnswer}`);
     console.log(`Correct answer: ${correctPair ? correctPair.right : 'Not found'}`);
 
-    // Now check if the userAnswer matches the right term (pair.right)
+    // Now check if the userAnswer matches the left term 
     const isCorrect = correctPair && correctPair.left === userAnswer;
     console.log(`Is the answer correct? ${isCorrect ? '✅' : '❌'}`);
     return isCorrect;
@@ -88,7 +88,7 @@ const MatchingQuestionItem = ({
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className="draggable-item term"
+                            className={`draggable-item term ${submitted ? 'disabled' : ''}`}
                           >
                             {term} {/* Display the current answer */}
                           </div>

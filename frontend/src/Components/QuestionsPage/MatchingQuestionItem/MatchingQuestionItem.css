@@ -59,3 +59,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.disabled {
+  pointer-events: none;   /* Disable all mouse events on the draggable item */
+  opacity: 0.5;            /* Make the item appear visually disabled */
+}
