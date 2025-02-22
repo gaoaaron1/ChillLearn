@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './MatchingQuestionItem.css';
 
+
+const shuffleArray = (array) => {
+    return array
+        .map((item) => ({ item, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ item }) => item);
+};
+
 const MatchingQuestionItem = ({
   questionItem,
   index,
@@ -54,7 +62,7 @@ const MatchingQuestionItem = ({
     console.log(`Correct answer: ${correctPair ? correctPair.right : 'Not found'}`);
   
     // Now check if the userAnswer matches the right term (pair.right)
-    const isCorrect = correctPair && correctPair.right === userAnswer;
+    const isCorrect = correctPair && correctPair.left === userAnswer;
     console.log(`Is the answer correct? ${isCorrect ? '✅' : '❌'}`);
     return isCorrect;
   };
@@ -136,23 +144,19 @@ const MatchingQuestionItem = ({
     <ul>
       {questionItem.pairs.map((pair, idx) => {
         const userAnswer = currentAnswers[idx];
-        const isCorrect = checkAnswer(userAnswer, pair.left); // Check function correctness here
-        
-        // Log the user's answer and whether it's correct
-        console.log(`User's answer for ${pair.left}: ${userAnswer}`);
-        console.log(`Is the answer correct? ${isCorrect ? '✅' : '❌'}`);
+        const isCorrect = checkAnswer(userAnswer, pair.left); // Check if the answer matches
 
         return (
           <li key={idx} className={isCorrect ? 'correct' : 'incorrect'}>
             {pair.right} = {userAnswer || 'Not answered'}
-            {/* Show checkmark or X */}
-            {isCorrect ? ' ✅' : ' ❌'}
+            {isCorrect ? ' ✅' : ' ❌'}  {/* Display checkmark or cross */}
           </li>
         );
       })}
     </ul>
   </div>
 )}
+
 
 
     </div>
