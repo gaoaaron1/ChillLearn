@@ -15,6 +15,7 @@ const QuestionsPage = () => {
     const [startTime, setStartTime] = useState(null);
     const [timeTaken, setTimeTaken] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const loadQuestionsData = async () => {
@@ -64,6 +65,17 @@ const QuestionsPage = () => {
     };
 
     const handleSubmit = () => {
+        const unansweredQuestions = questions.filter((_, index) => !userAnswers[index]);
+       
+        if (unansweredQuestions.length > 0) {
+            setShowModal(true);  // Show the modal if there are unanswered questions
+        } else {
+            submitAnswers();
+        } 
+    };
+
+    const submitAnswers = () => {
+
         if (!startTime) {
             console.error("Quiz start time is not set.");
             return;
@@ -75,44 +87,43 @@ const QuestionsPage = () => {
 
         let totalScore = 0;
         const newResults = questions.map((question, index) => {
-            if (question.type === "fill-in-the-blank") {
+            if (question.blanks) {
                 const totalBlanks = question.blanks.length;
                 const correctAnswers = question.blanks.filter((blank, i) => userAnswers[index]?.[i] === blank.answer).length;
                 const fractionScore = correctAnswers / totalBlanks;
-                totalScore += fractionScore;
-
+        
                 return {
                     correct: correctAnswers === totalBlanks,
                     partialCorrect: correctAnswers,
                     totalBlanks,
                     correctAnswer: question.blanks.map(b => b.answer),
                 };
-            } 
-            else if (question.type === "matching") {
+            } else if (question.type === "matching") {
                 const correctPairs = question.pairs;
                 const userMatchedAnswers = userAnswers[index] || [];
                 let correctMatches = 0;
-
+        
                 correctPairs.forEach((pair, idx) => {
                     if (userMatchedAnswers[idx] === pair.left) {
                         correctMatches++;
                     }
                 });
-
+        
                 const fractionScore = correctMatches / correctPairs.length;
                 totalScore += fractionScore;
-
+        
                 return {
                     correct: correctMatches === correctPairs.length,
                     partialCorrect: correctMatches,
                     totalBlanks: correctPairs.length,
-                    correctAnswer: correctPairs.map(p => p.left),
+                    correctAnswer: Array.isArray(correctPairs) ? correctPairs.map(p => p.left) : [],
                 };
-            } 
-            else {
+            }
+            else
+            
+            
+            {
                 const isCorrect = question.answer === userAnswers[index];
-                if (isCorrect) totalScore += 1;
-
                 return {
                     correct: isCorrect,
                     userAnswer: userAnswers[index],
@@ -120,11 +131,27 @@ const QuestionsPage = () => {
                 };
             }
         });
+        
+
+        
+
+        
 
         setResults(newResults);
         setSubmitted(true);
         window.scrollTo(0, document.body.scrollHeight);
     };
+
+    const handleModalConfirm = () => {
+        setShowModal(false);  // Close the modal
+        submitAnswers();  // Proceed with submitting answers
+    };
+
+    const handleModalCancel = () => {
+        setShowModal(false);  // Just close the modal and let the user continue
+    };
+
+
     const calculateScore = () => {
         if (!results) return { correctCount: 0, percentage: 0 };
 
@@ -218,7 +245,22 @@ const QuestionsPage = () => {
                     percentage={percentage}
                 />
             )}
+
+
+            {/* Modal for confirmation */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Are you sure you want to submit your answers?</h3>
+                        <p>You have unanswered questions.</p>
+                        <button onClick={handleModalConfirm}>Yes, Submit</button>
+                        <button onClick={handleModalCancel}>No, Go Back</button>
+                    </div>
+                </div>
+            )}
         </div>
+
+        
     );
 };
 
