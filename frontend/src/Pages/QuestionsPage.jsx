@@ -74,14 +74,11 @@ const QuestionsPage = () => {
         setTimeTaken(elapsedSeconds);
 
         let totalScore = 0;
-        const totalPossibleScore = questions.length;
-
         const newResults = questions.map((question, index) => {
-            if (question.blanks) {
+            if (question.type === "fill-in-the-blank") {
                 const totalBlanks = question.blanks.length;
                 const correctAnswers = question.blanks.filter((blank, i) => userAnswers[index]?.[i] === blank.answer).length;
                 const fractionScore = correctAnswers / totalBlanks;
-
                 totalScore += fractionScore;
 
                 return {
@@ -90,7 +87,29 @@ const QuestionsPage = () => {
                     totalBlanks,
                     correctAnswer: question.blanks.map(b => b.answer),
                 };
-            } else {
+            } 
+            else if (question.type === "matching") {
+                const correctPairs = question.pairs;
+                const userMatchedAnswers = userAnswers[index] || [];
+                let correctMatches = 0;
+
+                correctPairs.forEach((pair, idx) => {
+                    if (userMatchedAnswers[idx] === pair.left) {
+                        correctMatches++;
+                    }
+                });
+
+                const fractionScore = correctMatches / correctPairs.length;
+                totalScore += fractionScore;
+
+                return {
+                    correct: correctMatches === correctPairs.length,
+                    partialCorrect: correctMatches,
+                    totalBlanks: correctPairs.length,
+                    correctAnswer: correctPairs.map(p => p.left),
+                };
+            } 
+            else {
                 const isCorrect = question.answer === userAnswers[index];
                 if (isCorrect) totalScore += 1;
 
@@ -106,7 +125,6 @@ const QuestionsPage = () => {
         setSubmitted(true);
         window.scrollTo(0, document.body.scrollHeight);
     };
-
     const calculateScore = () => {
         if (!results) return { correctCount: 0, percentage: 0 };
 
