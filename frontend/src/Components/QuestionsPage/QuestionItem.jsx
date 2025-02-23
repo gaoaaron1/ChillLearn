@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './QuestionItem.css';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 // Array for randomizing options if needed
 const shuffleArray = (array) => {
@@ -12,12 +14,38 @@ const shuffleArray = (array) => {
 const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, results, submitted }) => {
     const [shuffledOptions, setShuffledOptions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    
+
     useEffect(() => {
         if (questionItem.options) {
             setShuffledOptions(shuffleArray(questionItem.options)); // For multiple-choice
         }
     }, [questionItem.options]);
+
+    const renderLaTeX = (text) => {
+        // Handle multiplication symbol
+        text = text.replace(/\\times/g, " \u00D7 ");
+
+        // Handle exponents
+        text = text.replace();
+
+        // Handle fractions
+        const latexPattern = /\\frac{[^}]*}{[^}]*}/g;
+        const parts = text.split(latexPattern).map((part, index) => {
+            return <span key={index}>{part}</span>;
+        });
+    
+        const latexMatches = text.match(latexPattern);
+        if (latexMatches) {
+            latexMatches.forEach((latex, index) => {
+                parts.splice(index * 2 + 1, 0, <InlineMath key={index} math={latex} />);
+            });
+        }
+
+    
+        // Render the final text as LaTeX
+        return parts;
+    };
+    
 
     return (
         <div className="question-item">
@@ -35,7 +63,7 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
 
             {/* Display question text */}
             <p className="question-text">
-                {index + 1}. {questionItem.question}
+                {index + 1}. {renderLaTeX(questionItem.question)}
             </p>
 
             {/* Render fill-in-the-blank questions */}
@@ -68,7 +96,8 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
                                     disabled={submitted}
                                 />
                                 <span className="option-label">
-                                    {String.fromCharCode(65 + i)}. {option}
+                                    {String.fromCharCode(65 + i)}.
+                                    {renderLaTeX(option)}
                                 </span>
                             </label>
                         </li>
@@ -77,33 +106,42 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
             )}
 
             {/* Display feedback for results */}
-{/* Display feedback for results */}
-{results && (
-    <>
-        {/* Feedback for multiple-choice questions */}
-        {!questionItem.blanks && (
-            <p className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
-                {results[index].correct
-                    ? `✔ Correct answer: ${results[index].correctAnswer}`
-                    : `✘ Wrong answer: Answer is ${results[index].correctAnswer}`}
-            </p>
-        )}
+            {results && (
+                <>
+                    {/* Feedback for multiple-choice questions */}
+                    {!questionItem.blanks && (
+                        <p className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
+                            {results[index].correct
+                                ? <>
+                                    ✔ Correct answer: {renderLaTeX(results[index].correctAnswer)}
+                                  </>
+                                : <>
+                                    ✘ Wrong answer: Answer is {renderLaTeX(results[index].correctAnswer)}
+                                  </>}
+                        </p>
+                    )}
 
-        {/* Feedback for fill-in-the-blank questions */}
-        {questionItem.blanks && results[index] && (
-            <div className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
-                <p>
-                    {results[index].partialCorrect === results[index].totalBlanks
-                        ? `✔ All correct!`
-                        : `✔ ${results[index].partialCorrect}/${results[index].totalBlanks} correct`}
-                </p>
-                <p><strong>Correct answers:</strong> {results[index].correctAnswer.join(", ")}</p>
-            </div>
-        )}
-    </>
-)}
-
-
+    {/* Feedback for fill-in-the-blank questions */}
+    {questionItem.blanks && results[index] && (
+      <div className={`feedback ${results[index].correct ? 'correct' : 'incorrect'}`}>
+        <p>
+          {results[index].partialCorrect === results[index].totalBlanks
+            ? `✔ All correct!`
+            : `✔ ${results[index].partialCorrect}/${results[index].totalBlanks} correct`}
+        </p>
+        <p><strong>Correct answers:</strong> 
+          {/* Ensure the correct answers are rendered as LaTeX */}
+          {Array.isArray(results[index].correctAnswer) 
+            ? results[index].correctAnswer.map((answer, idx) => (
+                <span key={idx}>{renderLaTeX(answer)}</span>
+              ))
+            : renderLaTeX(results[index].correctAnswer)
+          }
+        </p>
+      </div>
+    )}
+                </>
+            )}
 
             {/* Image Modal */}
             {isModalOpen && (
