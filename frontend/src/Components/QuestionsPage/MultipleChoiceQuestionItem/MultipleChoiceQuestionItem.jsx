@@ -11,6 +11,7 @@ const shuffleArray = (array) => {
 const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, submitted }) => {
     const [shuffledOptions, setShuffledOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (questionItem.options) {
@@ -28,6 +29,18 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
 
     return (
         <div className="multiple-choice-question-item">
+            {/* Display question image if available */}
+            {questionItem.image && (
+                <div className="question-image">
+                    <img
+                        src={questionItem.image}
+                        alt={`Question ${index + 1}`}
+                        onClick={() => setIsModalOpen(true)} // Open modal on click
+                        className="question-thumbnail"
+                    />
+                </div>
+            )}
+
             <p className="question-text">
                 {index + 1}. {questionItem.question}
             </p>
@@ -45,6 +58,7 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
                             ? 'correct'
                             : ''
                         : '';
+
                     return (
                         <li
                             key={i}
@@ -72,6 +86,16 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
                 <p className={`feedback ${isCorrect ? 'correct' : 'incorrect'}`}>
                     {isCorrect ? '✔ Correct' : '✘ Incorrect'} - Correct answer: {questionItem.answer}
                 </p>
+            )}
+
+            {/* Image Modal */}
+            {isModalOpen && (
+                <div className="img-modal-overlay" onClick={() => setIsModalOpen(false)}>
+                    <div className="img-modal-content">
+                        <img src={questionItem.image} alt={`Question ${index + 1}`} />
+                        <button className="close-btn" onClick={() => setIsModalOpen(false)}>✖</button>
+                    </div>
+                </div>
             )}
         </div>
     );
