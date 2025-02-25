@@ -16,3 +16,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.katex {
+  font-family: 'Georgia', serif !important; /* Override KaTeX font */
+  font-size: inherit; /* Keep the same font size */
+  font-weight: bold;
+  color: inherit; /* Match text color */
+}
+
+.katex .mathnormal {
+  font-family: 'Georgia', serif !important;
+  font-weight: bold;
+}

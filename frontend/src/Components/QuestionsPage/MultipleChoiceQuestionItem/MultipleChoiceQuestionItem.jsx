@@ -24,6 +24,8 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
         handleAnswerSelect(index, option);
     };
 
+    const isCorrect = userAnswers[index] === questionItem.answer;
+
     return (
         <div className="multiple-choice-question-item">
             <p className="question-text">
@@ -31,28 +33,46 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
             </p>
 
             <ul className="options-list">
-                {shuffledOptions.map((option, i) => (
-                    <li
-                        key={i}
-                        className={`option-item ${selectedOption === option ? 'selected' : ''} 
-                            ${submitted && option === questionItem.correctAnswer ? 'correct' : ''} 
-                            ${submitted && userAnswers[index] === option && option !== questionItem.correctAnswer ? 'incorrect' : ''}`}
-                        onClick={() => handleCardClick(option)}
-                    >
-                        <input
-                            type="radio"
-                            name={`question-${index}`}
-                            value={option}
-                            checked={userAnswers[index] === option}
-                            onChange={() => handleAnswerSelect(index, option)}
-                            disabled={submitted}
-                        />
-                        <span className="option-label">
-                            {String.fromCharCode(65 + i)}. {option}
-                        </span>
-                    </li>
-                ))}
+                {shuffledOptions.map((option, i) => {
+                    const isOptionCorrect = option === questionItem.answer;
+                    const isOptionSelected = userAnswers[index] === option;
+                    const optionClass = submitted
+                        ? isOptionSelected
+                            ? isOptionCorrect
+                                ? 'correct'
+                                : 'incorrect'
+                            : isOptionCorrect
+                            ? 'correct'
+                            : ''
+                        : '';
+                    return (
+                        <li
+                            key={i}
+                            className={`option-item ${optionClass}`}
+                            onClick={() => handleCardClick(option)}
+                        >
+                            <input
+                                type="radio"
+                                name={`question-${index}`}
+                                value={option}
+                                checked={userAnswers[index] === option}
+                                onChange={() => handleAnswerSelect(index, option)}
+                                disabled={submitted}
+                            />
+                            <span className="option-label">
+                                {String.fromCharCode(65 + i)}. {option}
+                            </span>
+                        </li>
+                    );
+                })}
             </ul>
+
+            {/* Feedback message after submission */}
+            {submitted && userAnswers[index] && (
+                <p className={`feedback ${isCorrect ? 'correct' : 'incorrect'}`}>
+                    {isCorrect ? '✔ Correct' : '✘ Incorrect'} - Correct answer: {questionItem.answer}
+                </p>
+            )}
         </div>
     );
 };
