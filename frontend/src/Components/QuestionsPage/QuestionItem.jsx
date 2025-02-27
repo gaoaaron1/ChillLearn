@@ -23,16 +23,15 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
 
     const renderLaTeX = (text) => {
         // Handle multiplication symbol
-        text = text.replace(/\\times/g, " \u00D7 ");
-
-        // Handle exponents
-        text = text.replace();
-
-        // Handle fractions
-        const latexPattern = /\\frac{[^}]*}{[^}]*}/g;
-        const parts = text.split(latexPattern).map((part, index) => {
-            return <span key={index}>{part}</span>;
-        });
+        text = text.replace(/\\times/g, " \\times ");
+    
+        // Handle exponents (Convert `x^y` into proper LaTeX format)
+        const exponentPattern = /(\w+)\^(\d+)/g;
+        text = text.replace(exponentPattern, "$1^{ $2 }");
+    
+        // Split text for processing fractions and exponents separately
+        const latexPattern = /\\frac{[^}]*}{[^}]*}|\w+\^{\s*\d+\s*}/g;
+        const parts = text.split(latexPattern).map((part, index) => <span key={index}>{part}</span>);
     
         const latexMatches = text.match(latexPattern);
         if (latexMatches) {
@@ -40,9 +39,7 @@ const QuestionItem = ({ questionItem, index, userAnswers, handleAnswerSelect, re
                 parts.splice(index * 2 + 1, 0, <InlineMath key={index} math={latex} />);
             });
         }
-
     
-        // Render the final text as LaTeX
         return parts;
     };
     

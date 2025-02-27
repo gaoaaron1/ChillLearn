@@ -57,14 +57,7 @@
     transition: color 0.3s ease;
 }
 
-/* Question image container */
-.question-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    width: 100%;
-}
+
 
 .question-thumbnail {
     max-width: 100%;
