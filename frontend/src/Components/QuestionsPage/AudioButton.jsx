@@ -65,7 +65,6 @@ const handleFractions = (text) => {
       let textToSpeak = handleBlanks(isReadingAnswer ? answerText : questionText); // Handle blanks in the text
       textToSpeak = removePinyin(textToSpeak); // Remove Pinyin if Chinese is detected
       textToSpeak = handleFractions(textToSpeak); 
-      
       // Split text into segments by language (Chinese vs English)
       const textSegments = textToSpeak.split(/([^\x00-\x7F]+)/); // Split by non-ASCII (Chinese characters)
       let lastLang = null;
