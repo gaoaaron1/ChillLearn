@@ -61,22 +61,29 @@ const handleFractions = (text) => {
     
     if (!isPlaying) {
       setIsPlaying(true); // Start the audio playback
-
+  
       let textToSpeak = handleBlanks(isReadingAnswer ? answerText : questionText); // Handle blanks in the text
       textToSpeak = removePinyin(textToSpeak); // Remove Pinyin if Chinese is detected
       textToSpeak = handleFractions(textToSpeak); 
+  
       // Split text into segments by language (Chinese vs English)
       const textSegments = textToSpeak.split(/([^\x00-\x7F]+)/); // Split by non-ASCII (Chinese characters)
       let lastLang = null;
-
+  
+      // Get available voices and match based on language
+      const voices = window.speechSynthesis.getVoices();
+      
       textSegments.forEach((segment) => {
         // Determine if the segment is Chinese or English
         const languageToUse = /[\u4e00-\u9fa5]/.test(segment) ? 'zh-CN' : 'en-US';
-
+  
+        // Find the corresponding voice
+        const voice = voices.find(voice => voice.lang === languageToUse);
+  
         // Only speak the segment if it's not empty
         if (segment.trim()) {
           const utterance = new SpeechSynthesisUtterance(segment);
-          utterance.lang = languageToUse;
+          utterance.voice = voice || voices[0]; // Use the first available voice if not found
           
           // Reset playing state once speech ends
           utterance.onend = () => {
@@ -85,14 +92,15 @@ const handleFractions = (text) => {
               setIsPlaying(false);
             }
           };
-
+  
           window.speechSynthesis.speak(utterance);
         }
-        
+  
         lastLang = languageToUse; // Update last language to avoid repeated language detection
       });
     }
   };
+  
 
   return (
     <span 
