@@ -33,42 +33,65 @@ const AudioButton = ({ questionText, answerText, isReadingAnswer }) => {
     return languageMap[detectedLang] || 'en-US';
   };
 
-  // Function to handle blanks (underscores) by replacing them with "blank"
+  // Function to handle blanks (underscores) by replacing them with a single "blank"
   const handleBlanks = (text) => {
-    return text.replace(/_/g, ' blank '); // Replace underscores with "blank"
-  };
-
-  // Function to remove Pinyin (with tonal marks) from the text
-  const removePinyin = (text) => {
-    // Remove Pinyin in parentheses (e.g., (Wǒ bǎ shū fàng zài zhuōzi shàng))
-    text = text.replace(/\([A-Za-z0-9\u4e00-\u9fa5\s]+\)/g, '');
-
-    // Remove inline Pinyin with tonal marks (e.g., Wǒ, bǎ, shū, etc.)
-    // Matches Pinyin-like words and tonal marks
-    text = text.replace(/[A-Za-z]+\s?[ǖǘǚǜāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+/g, '');
-
+    // Replace consecutive underscores with a single "blank"
+    text = text.replace(/_+/g, ' blank '); // Replace 1 or more underscores with "blank"
     return text;
   };
 
-  // Handle button click to trigger speech synthesis
+// Function to handle LaTeX fractions like \frac{7}{8} and convert to "7 over 8"
+const handleFractions = (text) => {
+    // Regular expression to match LaTeX fraction format \frac{numerator}{denominator}
+    const fractionRegex = /\\frac\{([0-9]+)\}\{([0-9]+)\}/g;
+    return text.replace(fractionRegex, '$1 over $2');
+    }
+
+  // Function to only remove Pinyin from the text
+  const removePinyin = (text) => {
+    // Remove Pinyin-like words while keeping English words intact
+    // Pinyin words are Latin letters with tonal marks, so we target them specifically.
+    text = text.replace(/[A-Za-z]+\s?[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+/g, ''); // Remove Pinyin with tones
+    return text;
+  };
+
+  // Function to split the text into segments and read each part with the corresponding language
   const handleAudioClick = (e) => {
     e.preventDefault(); // Prevent form submission or page refresh
+    
     if (!isPlaying) {
-      setIsPlaying(true);
+      setIsPlaying(true); // Start the audio playback
+
       let textToSpeak = handleBlanks(isReadingAnswer ? answerText : questionText); // Handle blanks in the text
       textToSpeak = removePinyin(textToSpeak); // Remove Pinyin if Chinese is detected
+      textToSpeak = handleFractions(textToSpeak); 
+      
+      // Split text into segments by language (Chinese vs English)
+      const textSegments = textToSpeak.split(/([^\x00-\x7F]+)/); // Split by non-ASCII (Chinese characters)
+      let lastLang = null;
 
-      const languageToUse = detectLanguage(textToSpeak);
+      textSegments.forEach((segment) => {
+        // Determine if the segment is Chinese or English
+        const languageToUse = /[\u4e00-\u9fa5]/.test(segment) ? 'zh-CN' : 'en-US';
 
-      // Create a SpeechSynthesisUtterance and set its language
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.lang = languageToUse;
+        // Only speak the segment if it's not empty
+        if (segment.trim()) {
+          const utterance = new SpeechSynthesisUtterance(segment);
+          utterance.lang = languageToUse;
+          
+          // Reset playing state once speech ends
+          utterance.onend = () => {
+            if (textSegments.indexOf(segment) === textSegments.length - 1) {
+              // If this is the last segment, set isPlaying to false to enable replay
+              setIsPlaying(false);
+            }
+          };
 
-      // Start speaking
-      window.speechSynthesis.speak(utterance);
-
-      // Reset play state once the speech ends
-      utterance.onend = () => setIsPlaying(false);
+          window.speechSynthesis.speak(utterance);
+        }
+        
+        lastLang = languageToUse; // Update last language to avoid repeated language detection
+      });
     }
   };
 

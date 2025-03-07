@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MultipleChoiceQuestionItem.css';
+import AudioButton from '../AudioButton';
 
 const shuffleArray = (array) => {
     return array
@@ -45,6 +46,12 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
                 {index + 1}. {questionItem.question}
             </p>
 
+                {/* Audio Button to read the question aloud */}
+                <AudioButton
+                questionText={questionItem.question} // Pass the question text to AudioButton
+                isReadingAnswer={false} // Indicating this button is for reading the question
+            />
+
             <ul className="options-list">
                 {shuffledOptions.map((option, i) => {
                     const isOptionCorrect = option === questionItem.answer;
@@ -76,6 +83,14 @@ const MultipleChoiceQuestionItem = ({ questionItem, index, userAnswers, handleAn
                             <span className="option-label">
                                 {String.fromCharCode(65 + i)}. {option}
                             </span>
+
+
+                            
+                            {/* Audio Button to read the question aloud */}
+                            <AudioButton
+                            questionText={option} // Pass the question text to AudioButton
+                            isReadingAnswer={false} // Indicating this button is for reading the question
+                            />
                         </li>
                     );
                 })}
