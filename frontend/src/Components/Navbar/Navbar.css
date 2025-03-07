@@ -299,6 +299,11 @@
     z-index: 1000; /* Ensure it's above other elements */
   }
 
+  .dropdown-menu {
+    overflow-y: auto;
+    max-height: 50vh;
+  }
+
   .nav-menu.open {
     display: flex; /* Show menu when hamburger is clicked */
     width: 100%;
